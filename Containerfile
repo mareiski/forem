@@ -14,11 +14,13 @@ RUN apt-get update -qq && \
     curl \
     gnupg2 \
     nodejs \
-    yarnpkg \
     libxml2-dev \
     libxslt1-dev \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Yarn via npm (global)
+RUN npm install -g yarn
 
 # Set working directory
 WORKDIR /app
