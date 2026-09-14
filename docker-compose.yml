@@ -9,7 +9,7 @@ services:
     environment:
       NODE_ENV: production
       RAILS_ENV: production
-      DATABASE_URL: postgres://postgres:yourpostgrespassword@db:5432/forem_production
+      DATABASE_URL: postgres://postgres:tranym26!$@db:5432/forem_production
       REDIS_URL: redis://redis:6379/1
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}  # Generate with `bundle exec rails secret`
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}      # Generate with `bundle exec rails secret`
@@ -24,7 +24,7 @@ services:
     environment:
       NODE_ENV: production
       RAILS_ENV: production
-      DATABASE_URL: postgres://postgres:yourpostgrespassword@db:5432/forem_production
+      DATABASE_URL: postgres://postgres:tranym26!$@db:5432/forem_production
       REDIS_URL: redis://redis:6379/1
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
@@ -38,7 +38,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: yourpostgrespassword
+      POSTGRES_PASSWORD: tranym26!$
       POSTGRES_DB: forem_production
     healthcheck:
       test: pg_isready -U postgres
