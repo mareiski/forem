@@ -1,7 +1,7 @@
 # Use Ruby 3.1.4 (Forem's requirement)
 FROM ruby:3.1.4
 
-# Install system dependencies for native gems and Node.js
+# Install system dependencies
 RUN apt-get update -qq && \
     apt-get install -y \
     build-essential \
@@ -22,10 +22,7 @@ WORKDIR /app
 
 # Install gems (skip development/test)
 COPY Gemfile Gemfile.lock ./
-RUN bundle config set --local without 'development test' && \
-    bundle config set --local deployment 'true' && \
-    bundle config set --local clean 'true' && \
-    bundle install --jobs 4 --retry 3
+RUN bundle install --jobs 4 --retry 3 --without development test
 
 # Install Node.js dependencies
 COPY package.json yarn.lock ./
