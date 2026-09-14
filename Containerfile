@@ -1,5 +1,8 @@
-# Use Ruby 3.1.4 (Forem's requirement)
-FROM ruby:3.1.4
+# Use Ruby 3.3.0 (required by Forem)
+FROM ruby:3.3.0
+
+# Install Bundler 2.4.17
+RUN gem install bundler:2.4.17
 
 # Install system dependencies
 RUN apt-get update -qq && \
@@ -20,9 +23,12 @@ RUN apt-get update -qq && \
 # Set working directory
 WORKDIR /app
 
+# Copy .ruby-version, Gemfile, and Gemfile.lock
+COPY .ruby-version Gemfile Gemfile.lock ./
+
 # Install gems (skip development/test)
-COPY Gemfile Gemfile.lock ./
-RUN bundle install --jobs 4 --retry 3 --without development test
+RUN bundle config set --local without 'development test' && \
+    bundle install --jobs 4 --retry 3
 
 # Install Node.js dependencies
 COPY package.json yarn.lock ./
