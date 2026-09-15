@@ -1,0 +1,15 @@
+---
+de:
+  views:
+    leaderboards:
+      index:
+        title: "Bestenliste"
+        heading: "Bestenliste"
+        subtitle: "Top %{count} Abzeichen-Führende in %{community_name}"
+        rank: "Platz"
+        user: "Mitglied"
+        recent_badges: "Aktuelle Abzeichen"
+        badges: "Abzeichen"
+        no_users: "Noch keine Mitglieder auf der Bestenliste."
+
+

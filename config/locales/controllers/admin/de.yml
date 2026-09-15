@@ -1,0 +1,259 @@
+﻿---
+de:
+  admin_controller:
+    dashboard:
+      title: Admin-Dashboard
+      welcome: Willkommen im Admin-Dashboard
+    users:
+      title: Benutzer verwalten
+      suspend: Aussetzen
+      unsuspend: Sperre aufheben
+      ban: Verbot
+      unban: Entsperren
+      delete: LÃ¶schen
+      edit: Bearbeiten
+      view: Ansehen
+    articles:
+      title: Artikel verwalten
+      delete: LÃ¶schen
+      edit: Bearbeiten
+      view: Ansehen
+      publish: VerÃ¶ffentlichen
+      unpublish: VerÃ¶ffentlichung aufheben
+    comments:
+      title: BeitrÃ¤ge bearbeiten
+      delete: LÃ¶schen
+      edit: Bearbeiten
+      view: Ansehen
+      moderate: Mittel
+    reports:
+      title: Berichte verwalten
+      view: Ansehen
+      resolve: KlÃ¤ren
+      dismiss: SchlieÃŸen
+    settings:
+      title: Einstellungen vornehmen
+      save: Speichern
+      cancel: Abbrechen
+  admin:
+    articles_controller:
+      saved: Artikel gespeichert
+      pinned: Artikel angeheftet!
+      unpinned: Artikel nicht angeheftet!
+      favorite_removed: Juwel entfernt.
+    comments_controller:
+      favorite_removed: Juwel entfernt.
+    badge_achievements_controller:
+      deleted: Abzeichenleistung wurde gelÃ¶scht!
+      rewarded: Abzeichen werden belohnt. Die Aufgabe wird in KÃ¼rze abgeschlossen.
+      congrats: Herzlichen GlÃ¼ckwunsch zu deinem Erfolg! ðŸŽ‰ Und danke, dass du ein so wichtiger Teil von  %{community} bist!
+      award: Bitte wÃ¤hlen Sie ein Abzeichen aus, das Sie vergeben mÃ¶chten
+      wrong: Es ist ein Fehler aufgetreten.
+    badges_controller:
+      created: Abzeichen wurde erstellt!
+      updated: Abzeichen wurde aktualisiert!
+    broadcasts_controller:
+      created: Broadcast wurde erstellt!
+      deleted: Broadcast wurde gelÃ¶scht
+      updated: Broadcast wurde aktualisiert!
+      wrong: Beim LÃ¶schen der Ãœbertragung ist ein Fehler aufgetreten.
+    bulk_assign_role_controller:
+      role_assigment: Rolle  %{role}  dem Benutzer zugewiesen.
+      role_blank: Bitte wÃ¤hlen Sie eine Rolle aus, die Sie hinzufÃ¼gen mÃ¶chten.
+      success_message: Rollen werden hinzugefÃ¼gt. Die Aufgabe wird in KÃ¼rze abgeschlossen.
+    consumer_apps_controller:
+      created: '%{app}  wurde erstellt!'
+      deleted: '%{app}  wurde gelÃ¶scht!'
+      updated: '%{app}  wurde aktualisiert!'
+      wrong: Beim LÃ¶schen von %{app} ist ein Fehler aufgetreten.
+    billboards_controller:
+      created: Billboard wurde erstellt!
+      deleted: Werbetafel wurde gelÃ¶scht!
+      updated: Billboard wurde aktualisiert!
+      wrong: Beim LÃ¶schen der Werbetafel ist ein Fehler aufgetreten.
+    emails:
+      customerio_cutover_notice: Der E-Mail-Versand wurde auf Customer.io verschoben. Die folgenden Aufzeichnungen sind historisch; erstellen Sie neue Sendungen und Newsletter im Arbeitsbereich Customer.io.
+    emails_controller:
+      created: E-Mails wurden erstellt!
+      drafted: E-Mail wurde erstellt!
+      activated: "%d E-Mail wurde aktiviert"
+      deleted: E-Mail wurde gelÃ¶scht
+      updated: Deine E-Mail wurde aktualisiert
+      wrong: Beim LÃ¶schen der E-Mail ist ein Fehler aufgetreten.
+    gdpr_delete_requests_controller:
+      deleted: Erfolgreich als gelÃ¶scht markiert
+    extensions_controller:
+      update_success: Erweiterungen wurden aktualisiert.
+    html_variants_controller:
+      fork: '%{name}  FORK- %{rand}'
+      created: HTML-Variante wurde erstellt!
+      deleted: HTML-Variante wurde gelÃ¶scht!
+      updated: HTML-Variante wurde aktualisiert!
+      wrong: Beim LÃ¶schen der HTML-Variante ist ein Fehler aufgetreten.
+    invitations_controller:
+      duplicate: 'Einladung wurde nicht versendet. Es gibt bereits einen registrierten Benutzer mit der E-Mail-Adresse:  %{email}'
+      create_success: Die Einladung wurde an die E-Mail-Adresse des Benutzers gesendet.
+      destroy_success: Einladung storniert fÃ¼r  %{email}.
+      resend_success: Lade %{email} erneut ein.
+    listing_categories_controller:
+      created: Inseratskategorie wurde erstellt!
+      updated: Die Inseratskategorie wurde aktualisiert!
+      deleted: Inseratskategorie wurde gelÃ¶scht!
+    listings_controller:
+      updated: Inserat erfolgreich aktualisiert
+      destroyed: "' %{title} ' wurde erfolgreich zerstÃ¶rt"
+      no_credit: Nicht genÃ¼gend verfÃ¼gbares Guthaben
+    mods_controller:
+      trusted: '%{username} hat jetzt eine vertrauenswÃ¼rdige Rolle!'
+    navigation_links_controller:
+      deleted: Navigationslink  %{link}  gelÃ¶scht
+      created: 'Navigationslink erfolgreich erstellt:  %{link}'
+      updated: 'Navigationslink erfolgreich aktualisiert:  %{link}'
+    organization_memberships_controller:
+      not_exist: 'Organisation # %{org_id}  existiert nicht.'
+      wrong: Beim Entfernen des Benutzers aus  %{org} ist etwas schief gelaufen
+      added: Benutzer wurde erfolgreich zu  %{org} hinzugefÃ¼gt
+      removed: Benutzer wurde erfolgreich aus  %{org} entfernt
+      updated: Benutzer wurde erfolgreich auf  %{type} aktualisiert
+    organizations_controller:
+      credit_updated: Credits erfolgreich aktualisiert
+      deletion_scheduled: 'Organisation, â€ž %{organization_name} â€œ, LÃ¶schung ist geplant.'
+      error: 'Dein Unternehmen,  %{organization_name}, konnte nicht gelÃ¶scht werden:  %{error}.'
+      fully_trusted_enabled: VollstÃ¤ndig vertrauenswÃ¼rdiger Status wurde fÃ¼r diese Organisation aktiviert.
+      fully_trusted_disabled: Der Status "VollstÃ¤ndig vertrauenswÃ¼rdig" wurde fÃ¼r diese Organisation deaktiviert.
+      baseline_score_updated: Baseline-Score aktualisiert!
+      verified_enabled: Diese Organisation wurde verifiziert.
+      verified_disabled: Die Verifizierung wurde fÃ¼r diese Organisation widerrufen.
+      org_feature_enabled: "%{feature}  wurde fÃ¼r diese Organisation aktiviert."
+      org_feature_disabled: "%{feature}  wurde fÃ¼r diese Organisation deaktiviert."
+      org_feature_invalid: "UngÃ¼ltige Organisationsfunktion angegeben."
+      bulk_add_users:
+        added: "%{count}  Benutzer(__ T1__ ) wurden erfolgreich zur Organisation hinzugefÃ¼gt."
+        already_members: "Bereits Mitglied(er):  %{usernames}."
+        not_found: "Benutzer nicht gefunden:  %{usernames}."
+        failed: "Fehler beim HinzufÃ¼gen von %{count}  Benutzer(n):  %{errors}."
+        empty_input: "Bitte geben Sie mindestens einen Benutzernamen an."
+    org_features_controller:
+      invalid_feature: "UngÃ¼ltige Feature-Version."
+      global_enabled: "%{feature}  wurde fÃ¼r alle Organisationen aktiviert."
+      global_disabled: "%{feature} Der globale Zugriff wurde deaktiviert. Nur individuell aktivierte Organisationen behalten den Zugriff."
+      cta_updated: "CTA-Einstellungen fÃ¼r Upgrades wurden aktualisiert."
+    pages_controller:
+      updated: Der Seitenname wurde erfolgreich aktualisiert.
+      created: wurde erfolgreich erstellt.
+      deleted: wurde erfolgreich gelÃ¶scht
+      code_of_conduct:
+        title: Verhaltenskodex
+        description: Eine Seite, die beschreibt, wie man sich auf dieser Plattform verhÃ¤lt
+      privacy_policy:
+        title: Datenschutzbestimmungen
+        description: Eine Seite, die die DatenschutzerklÃ¤rung beschreibt
+      terms_of_use:
+        title: Nutzungsbedingungen
+        description: Eine Seite, die die Nutzungsbedingungen fÃ¼r die Anwendung beschreibt
+    page_templates_controller:
+      created: Seitenvorlage wurde erfolgreich erstellt
+      updated: Seitenvorlage wurde erfolgreich aktualisiert!
+      deleted: Template wurde erfolgreich gelÃ¶scht.
+      cannot_delete_with_pages: Die Vorlage kann nicht gelÃ¶scht werden, solange ihr Seiten zugeordnet sind. Bitte entfernen Sie zuerst die Seiten oder weisen Sie sie neu zu.
+    podcasts_controller:
+      new_owner_added: Neuer Besitzer hinzugefÃ¼gt!
+      no_such_user: Kein solcher Benutzer
+      scheduled: "Der Abruf der Podcast-Episoden war geplant ( %{title}, # %{id} )"
+      updated: Podcast aktualisiert
+    profile_field_groups_controller:
+      deleted: Gruppe  %{group}  gelÃ¶scht
+      updated: Gruppe  %{group}  aktualisiert
+      created: 'Gruppe erfolgreich erstellt:  %{group}'
+    profile_fields_controller:
+      created: Profilfeld  %{field}  erstellt
+      deleted: Profilfeld gelÃ¶scht.
+      updated: Profilfeld  %{field}  aktualisiert
+    response_templates_controller:
+      saved: 'Antwortvorlage: â€ž %{title} â€œ erfolgreich gespeichert.'
+      updated: Die Antwortvorlage â€ž %{title} â€œ wurde aktualisiert.
+      deleted: Die Antwortvorlage â€ž %{title} â€œ wurde gelÃ¶scht.
+    secrets_controller:
+      not_in_vault: Nicht im Tresor
+      updated: Secret  %{key}  wurde erfolgreich in Vault aktualisiert.
+      value: 't0'
+    settings_controller:
+      confirmation: Mein Benutzername ist @ %{username}  und diese Aktion ist zu 100 % sicher und angemessen.
+    spaces_controller:
+      update_success: Der Speicherplatz wurde aktualisiert.
+    subforems_controller:
+      created: Unterforum wurde erstellt!
+      created_with_ai: Unterforum wurde erstellt! Im Hintergrund werden Details generiert.
+      updated: Unterforum wurde aktualisiert!
+      deleted: Unterforum wurde gelÃ¶scht!
+    tags:
+      moderators_controller:
+        not_found: 'Benutzername " %{username} " wurde nicht gefunden'
+        not_found_or: 'Benutzer-ID # %{user_id}  wurde nicht gefunden oder ihr Konto weist Fehler auf:  %{errors}'
+        removed: '@ %{username}  - ID # %{user_id}  wurde als Tag-Moderator entfernt.'
+        added: '%{username}  wurde als Tag-Moderator hinzugefÃ¼gt!'
+    tags_controller:
+      created: '%{tag_name}  wurde erstellt!'
+      updated: '%{tag_name}  Tag erfolgreich aktualisiert!'
+      update_fail: 'Das Tag-Update ist fehlgeschlagen:  %{errors}'
+      form:
+        moderation_instructions: "Moderationsanweisungen"
+        moderation_instructions_description: "Benutzerdefinierte KI-Moderationsanweisungen fÃ¼r BeitrÃ¤ge, die mit diesem Tag gekennzeichnet sind. Wenn sie bereitgestellt werden, werden sie an die Aufforderung zur Moderation von KI-Inhalten angehÃ¤ngt."
+    surveys_controller:
+      created: Umfrage wurde erstellt!
+      updated: Umfrage wurde aktualisiert!
+      deleted: Umfrage wurde gelÃ¶scht!
+      wrong: Bei der DurchfÃ¼hrung der Umfrage ist ein Fehler aufgetreten.
+    tools_controller:
+      article_busted: 'Artikel # %{article}  wurde erfolgreich geknackt'
+      user_busted: 'Benutzer # %{user}  wurde erfolgreich geknackt'
+      link_busted: '%{link}  wurde erfolgreich geknackt'
+      social_images_queued: 'Regeneration des sozialen Images in der Warteschlange fÃ¼r @ %{user}'
+      user_not_found: 'Benutzer nicht gefunden'
+    users_controller:
+      exported: Daten, die in %{receiver} exportiert wurden. Der Auftrag wird augenblicklich abgeschlossen.
+      email_fail: E-Mail konnte nicht gesandt werden
+      email_sent: E-Mail wurde gesendet!
+      confirm_sent: BestÃ¤tigungs-E-Mail gesendet
+      verify_sent: BestÃ¤tigungs-E-Mail wurde gesendet!
+      manual_verification_sent: E-Mail manuell verifiziert!
+      full_delete_html: '@ %{user}  (E-Mail:  %{email}, user_id:  %{id} ) wurde vollstÃ¤ndig gelÃ¶scht. Wenn dies eine DSGVO-LÃ¶schung ist, lÃ¶sche sie aus Mailchimp & Google Analytics und bestÃ¤tige sie am  %{the_page}.'
+      no_email: Keine E-Mail
+      parameter_missing: Betreff und Text sind erforderlich!
+      role_removed: 'Rolle:  %{role}  wurde erfolgreich vom Benutzer entfernt!'
+      identity_removed: Die  %{provider}  IdentitÃ¤t wurde erfolgreich gelÃ¶scht und gesichert.
+      the_page: die Seite
+      banished: Dieser Benutzer wird im Hintergrund verbannt. Der Auftrag wird in KÃ¼rze abgeschlossen sein.
+      unlocked: Freigeschaltetes Benutzerkonto!
+      unpublished: BeitrÃ¤ge werden im Hintergrund nicht verÃ¶ffentlicht. Der Auftrag wird in KÃ¼rze abgeschlossen sein.
+      updated: Benutzer wurde aktualisiert
+      updated_json: Erfolgreich!  %{username}  wurde aktualisiert.
+      credits_added: Guthaben wurde hinzugefÃ¼gt!
+      credits_removed: Credits wurden entfernt.
+      tag_not_found: 'Tag " %{tag_name} " wurde nicht gefunden'
+      email_confirmed: E-Mail bestÃ¤tigt
+      email_confirm_fail: E-Mail-BestÃ¤tigung fehlgeschlagen.
+      pending_email_confirmed: Ausstehende E-Mail-Ã„nderung bestÃ¤tigt!
+      pending_email_confirm_fail: Keine ausstehende E-Mail-Ã„nderung zur BestÃ¤tigung.
+    welcome_controller:
+      thread_content: |
+        ---
+        title: Willkommens-Thread - v0
+        published: falsch
+        description: Stelle dich der Community vor!
+        tags: Willkommen
+        ---
+
+        Hey there! Welcome to %{community}!
+
+        ![WELCOME TO THE INTERNET](https://slack-imgs.com/?c=1&url=http%3A%2F%2Fmedia0.giphy.com%2Fmedia%2FzhbrTTpmSCYog%2Fgiphy-downsized.gif)
+
+        Leave a comment below to introduce yourself to the community!âœŒï¸
+    concepts_controller:
+      created: Konzept erfolgreich erstellt. Die Backfill-Klassifizierung wurde in die Warteschlange gestellt.
+      updated: Konzept erfolgreich aktualisiert. Die Backfill-Klassifizierung wurde in die Warteschlange gestellt.
+      deleted: Konzept erfolgreich gelÃ¶scht.
+      failed_deletion: Beim LÃ¶schen des Konzepts ist etwas schief gelaufen.
+      lookback_triggered: "Der Konzept-Lookback von  %{days}  Tagen wurde in die Warteschlange gestellt."
+      invalid_days: "Bitte geben Sie eine gÃ¼ltige Anzahl von Tagen an, die grÃ¶ÃŸer als 0 und grÃ¶ÃŸer als die aktuelle RÃ¼ckblickabdeckung ist."
+

@@ -1,0 +1,11 @@
+---
+de:
+  views:
+    events:
+      meta:
+        title: Kommende Veranstaltungen
+        description: Entdecke kommende virtuelle Veranstaltungen, Challenges, Streams und Hackathons.
+      view_on_calendar: Im Kalender anzeigen
+      no_events: Derzeit sind keine kommenden Veranstaltungen geplant. Schau später nochmal vorbei!
+
+

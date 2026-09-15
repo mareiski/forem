@@ -1,0 +1,8 @@
+---
+de:
+  concerns:
+    image_uploads:
+      too_long: Dateiname zu lang - das Maximum sind %{max} Zeichen.
+      is_not_file: Ungültiger Dateityp. Bitte laden Sie ein gültiges Bild hoch.
+
+

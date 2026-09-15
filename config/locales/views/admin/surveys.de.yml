@@ -1,0 +1,22 @@
+---
+de:
+  admin:
+    surveys:
+      index:
+        title: Umfragen verwalten
+        create: Neue Umfrage erstellen
+        empty: Keine Umfragen gefunden.
+        table:
+          title: Titel
+          active: Aktiv
+          polls_count: Umfragen
+          created_at: Erstellt am
+          actions: Aktionen
+      new:
+        title: Neue Umfrage
+      edit:
+        title: Umfrage bearbeiten
+      show:
+        title: Umfrage-Details
+
+

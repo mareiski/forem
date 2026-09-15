@@ -1,0 +1,134 @@
+---
+de:
+  views:
+    auth:
+      welcome_to_subforem: "Willkommen bei %{community_name} - Teil des Forem-Netzwerks!"
+      create:
+        text: Konto erstellen
+        aria_label: Neues Konto erstellen
+      login:
+        text: Anmelden
+        aria_label: Anmelden
+    badges:
+      meta:
+        title: Abzeichen
+      all:
+        one: Ein Abzeichen anzeigen
+        other: Alle %{count} Abzeichen anzeigen
+      heading: Abzeichen
+      desc: Erhalte Abzeichen für besondere Leistungen! Klicke auf ein Abzeichen, um zu sehen, wie du es verdienen kannst.
+      icon_close: Schließen
+      gotit: Verstanden
+      indicator: "%{user} hat dieses Abzeichen %{number} Mal erhalten."
+    campaign:
+      subtitle: Geschichten (%{count})
+      view: Alle Beiträge anzeigen
+    deep_links:
+      subtitle: Oeffne die Mobile-App...
+      alert:
+        subtitle: Oh nein! Probleme beim Oeffnen der Mobile-App?
+        desc_html: Stelle sicher, dass sie installiert ist, und versuche es erneut. Falls das Problem besteht, kontaktiere %{email}
+        back: Zurueck
+        again: Nochmal versuchen
+        install: App installieren
+    email_subscriptions:
+      unsubscribe:
+        heading: "Du hast dich von %{type} abgemeldet."
+        description_html: Du erhaeltst keine solchen E-Mails mehr. Wenn du dich erneut anmelden oder deine E-Mail-Einstellungen verwalten moechtest, klicke bitte %{link}.
+        link: hier
+      invalid:
+        heading: Token abgelaufen oder ungueltig
+        description_html: Bitte %{signin}, um deine E-Mail-Einstellungen zu verwalten.
+        signin: melde dich an
+    hamburger:
+      icon: Navigationsmenue
+      icon_close: Schließen
+      icon_left: Linkes Menue
+      icon_right: Rechtes Menue
+    logo:
+      color_1:
+        label: Markenfarbe 1
+        description: Wird für Hintergründe, Rahmen usw. verwendet
+      color_2:
+        label: Markenfarbe 2
+        description_html: Wird für Texte verwendet (normalerweise auf <em>Markenfarbe 1</em>)
+      preview:
+        icon: App-Logo
+        text: 'Vorschau:'
+    mailers:
+      contact_mailto_html: Kontaktiere uns unter <a href="mailto:%{contact_email}">%{contact_email}</a>, wenn wir dir weiterhelfen koennen.
+    onboardings:
+      meta:
+        title: Willkommen bei %{community}
+      heading: Du bist jetzt Teil der Community!
+      subtitle: VORGESCHLAGENE AKTIONEN
+      close: Willkommensnachricht schließen
+      settings_html: "<span class=\"emoji\">\U0001F485\U0001F3FC</span>Passe dein Profil an"
+      welcome_html: "<span class=\"emoji\">\U0001F642</span>Nimm am Willkommens-Thread teil"
+      write_html: "<span class=\"emoji\">\U0001F48D\U0001F3FE</span>Schreibe deinen ersten %{community}-Beitrag"
+      join_subscription_html: "<span class=\"emoji\">\U0001F680</span>Werde DEV++ Mitglied"
+    pins:
+      article: Angepinnt
+      pinned: "\U0001F4CC Angepinnt! (Angepinnte Beitraege werden chronologisch angezeigt, max. 5)"
+      removed: "\U0001F5D1 Pin entfernt"
+      error: Du kannst nur fuenf Pins haben
+    profile:
+      color:
+        label: Markenfarbe
+        description: Wird für Hintergründe, Rahmen usw. verwendet
+    reading_list:
+      meta:
+        title: Lesezeichen
+        description: Meine gespeicherten Beitraege.
+        og:
+          title: Lesezeichen - %{community}
+
+    series:
+      meta:
+        description: Zeige %{title} auf %{site}
+      heading: "%{user}s Serien"
+      empty: Dieser Nutzer hat keine Serien
+      list:
+        heading: "Artikel der Serie %{series}"
+        back: Zurueck zu %{user}s Serien
+        empty: Diese Serie hat keine Artikel
+    stats:
+      meta:
+        title: Statistiken fuer deinen Artikel
+      heading_html: Statistiken fuer "%{article}"
+      period:
+        aria_label: Analysezeitraum
+        week: Woche
+        month: Monat
+        infinity: Unbegrenzt
+      readers: Leser
+      readers_description: "Seitenaufrufe aller Besucher (anonyme Aufrufe werden geschaetzt). Die Lesezeit wird nur fuer angemeldete Leser verfolgt."
+      followers: Neue Follower
+      reactions: "Reaktionen"
+      comments: "Kommentare"
+      traffic:
+        text: "Traffic-Quellen"
+        source: Quelle
+        views: Aufrufe
+      reactions_history: "Reaktionsverlauf"
+      by: von
+      top_contributors:
+        heading: Top-Interagierer
+    sticky:
+      joined: Beigetreten
+      default_cta: Mehr erfahren
+      email: E-Mail
+      hot: Beliebt
+      location: Standort
+      more_from_html: Mehr von %{actor}
+      no_summary: Beitraege mit diesem Tag
+      trending_html: Trendend auf %{app}
+    videos:
+      meta:
+        title: Videos
+        og:
+          description: Alle Videos auf %{community}
+      heading: "%{community} auf Video"
+      beta_html: "<strong>Video ist in der Beta-Phase:</strong> %{contact}"
+      upload: "\U0001F3A5 Videodatei hochladen \U0001F64C"
+      max_file_size: "Maximale Dateigroesse: %{size}."

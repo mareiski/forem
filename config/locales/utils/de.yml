@@ -1,0 +1,16 @@
+---
+de:
+  xml:
+    opensearch:
+      short_name: "%{community} Suche"
+      description: Finde Beiträge von %{community}.
+    user:
+      image: "%{user} Profilbild"
+  json:
+    author: Aktiver %{community}-Autor
+  mailer:
+    adjust: Passe deine E-Mail-Einstellungen an
+    adjust_only_html: Keine Lust auf solche E-Mails? Passe deine E-Mail-Einstellungen an unter %{path}
+    unsubscribe: Abbestellen
+
+

@@ -1,0 +1,12 @@
+---
+de:
+  views:
+    pagination:
+      aria_next: "Nächste Seite"
+      aria_previous: "Vorherige Seite"
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: "%{first}&nbsp;-&nbsp;%{last} von %{total}"
+
+

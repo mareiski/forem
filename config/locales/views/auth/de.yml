@@ -1,0 +1,80 @@
+---
+de:
+  views:
+    auth:
+      background: forem Hintergrund
+      create:
+        aria_label: Neues Konto erstellen
+        text: Konto erstellen
+      creator:
+        text1: Beginnen wir deine Forem-Reise!
+        text2: Erstelle zuerst dein Admin-Konto.
+        text3: Dann führen wir dich durch die Forem-Einrichtung.
+        hint:
+          aria_label: Benutzernamen bearbeiten
+          icon: Benutzernamen bearbeiten
+          text_html: "%{start}Dein Benutzername wird sein_%{end}%{button}"
+        submit: Mein Konto erstellen
+      already_have_an_account: Hast du schon ein Konto?
+      sign_in: Anmelden
+      login:
+        aria_label: Anmelden
+        text: Anmelden
+        forgot: Passwort vergessen?
+      provider:
+        text: "%{action} mit %{provider}"
+        login: Weiter
+        signup: Registrieren
+        email:
+          icon: E-Mail
+          text: Mit E-Mail registrieren
+      register:
+        errors:
+          one: Huch, wir haben %{count} Problem gefunden
+          other: Huch, wir haben %{count} Probleme gefunden
+        allow:
+          one_html: Registration nur für <strong>@%{domain}</strong> E-Mails.
+          list: Registration nur für folgende E-Mails
+        create: Erstelle dein Konto
+        field:
+          name:
+            aria_label: Name
+            label: Name
+          username:
+            aria_label: Benutzername
+            desc: Ein Benutzername darf nur Buchstaben, Zahlen und Unterstriche enthalten. Die maximale Länge eines Benutzernamens beträgt 30 Zeichen.
+            label: Benutzername
+          email:
+            aria_label: E-Mail
+            label: E-Mail
+            placeholder: john@example.com
+          password:
+            aria_label: Passwort
+            desc: Mindestens 8 Zeichen
+            label: Passwort
+            placeholder: "••••••••"
+            hide: Passwort ausblenden
+            show: Passwort anzeigen
+          confirm:
+            aria_label: Passwortbestätigung
+            label: Passwortbestätigung
+          required: "* - Pflichtfeld"
+        secret:
+          label: Neues Forem-Geheimnis
+          placeholder: Wie von deinem Forem-Host bereitgestellt
+          hide: Neues Forem-Geheimnis ausblenden
+          show: Neues Forem-Geheimnis anzeigen
+        submit: Registrieren
+      wizard:
+        meta:
+          title: Beginnen wir mit Forem
+        heading: Beginnen wir deine Forem-Reise
+        step_1: Erstelle ein Konto. Es wird das erste Super-Admin-Konto sein.
+        step_2_html: Sobald du dich unten registrierst, kannst du deine Community unter %{path} konfigurieren.
+        step_3: Als Admin gibt es vieles, was du tun kannst, aber es gibt eine Lernkurve.
+        step_4: Bitte wende dich an das Forem-Team, wenn du dir bei etwas unsicher bist!
+        step_5: "Für eine starke Community 🌱"
+      tagline: Wir sind ein Ort, an dem Entwickler teilen, auf dem Laufenden bleiben und ihre Karriere fördern.
+      title:
+        text_html: "%{name} ist eine Community von %{maybe_size}fantastischen %{label}"
+        size: "%{num} "

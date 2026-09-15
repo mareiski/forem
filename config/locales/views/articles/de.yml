@@ -1,0 +1,125 @@
+---
+de:
+  views:
+    articles:
+      meta:
+        description: Ein Beitrag aus der Community
+      ai_disclosure:
+        no_ai_description: Ohne KI-Unterstützung verfasst.
+        some_ai_description: Der Autor hat angegeben, KI-Tools zur Unterstützung beim Schreiben dieses Beitrags verwendet zu haben.
+        fully_autonomous_description: Der Autor hat angegeben, dass dieser Beitrag autonom von KI generiert wurde.
+      actions:
+        aria_label: Beitragsaktionen
+      comments:
+        aria_label: Kommentar zu Beitrag hinzufügen - %{title}
+        sort:
+          heading: "Diskussion sortieren: "
+          title:
+            top: Beliebteste
+            latest: Neueste
+            oldest: Älteste
+          desc:
+            top: Die am häufigsten bewerteten und relevantesten Kommentare werden zuerst angezeigt
+            latest: Die neuesten Kommentare werden zuerst angezeigt
+            oldest: Die ältesten Kommentare werden zuerst angezeigt
+        sort_button:
+          aria_label: Kommentare sortieren
+        subtitle:
+          top_html: Beliebte Kommentare %{num}
+          latest_html: Neueste Kommentare %{num}
+          oldest_html: Älteste Kommentare %{num}
+        num: "(%{num})"
+        subscribe: Abonnieren
+      comment_cue:
+        zero: Es ist ruhig hier... fast zu ruhig. Sei ein Trendsetter und starte die Konversation!
+        few: Einige Leute unterhalten sich bereits. Lass sie nicht warten - bring deine Meinung ein!
+        many: Die Kommentar-Sektion ist am Kochen. 🔥 Spring rein und sag deine Meinung!
+        close: Schließen
+      conduct:
+        aria_label: Verhaltensregel-Steuerelemente
+        code: Verhaltensregeln
+        report: Missbrauch melden
+      delete:
+        heading: Möchtest du diesen Beitrag wirklich löschen?
+        desc:
+          text_html: Diese Aktion kann nicht rückgängig gemacht werden. Möchtest du stattdessen vielleicht %{action}?
+          edit: bearbeiten
+          unpublish: zurückziehen
+        action:
+          button: Löschen
+          cancel: Abbrechen
+          edit: Bearbeiten
+          unpublish: Zurückziehen
+      jump_to_comments:
+        aria_label: Zu Kommentaren springen
+        label: Zu Kommentaren springen
+      boost:
+        label: Boost
+        aria_label: Boost
+      lock:
+        meta:
+          title: Diskussion-Sperre bestätigen
+        heading: Möchtest du die Diskussion zu diesem Beitrag wirklich sperren?
+        desc_html: Benutzer können keine neuen Kommentare mehr hinzufügen. Dadurch werden <em class="fw-bold">keine</em> bestehenden Kommentare gelöscht. Du kannst die Diskussion jederzeit wieder freischalten, um Benutzern das Kommentieren zu ermöglichen.
+        cancel: Abbrechen
+        notes:
+          label: Notizen (optional) - dies ist nur für dich und Admins sichtbar
+          placeholder: Weitere Details, warum du die Diskussion gesperrt hast.
+        reason:
+          label: Grund für das Sperren der Diskussion (optional) - dies wird öffentlich angezeigt
+          placeholder: Der Grund, warum du diese Diskussion sperrst.
+        submit: Diskussion sperren
+      preview_discuss_html:
+        zero: Neue Diskussion!
+        one: '#discuss <img src="%{image}" />%{count}'
+        other: '#discuss <img src="%{image}" />%{count}'
+      save:
+        title: "Beitrag %{title} zu Lesezeichen hinzufügen"
+        aria_label: "Beitrag %{title} zu Lesezeichen hinzufügen"
+        initial: Speichern
+        success: Gespeichert
+      scheduled:
+        subtitle: Geplanter Beitrag.
+        text: " Diese URL ist öffentlich, aber geheim. Teile sie also nach eigenem Ermessen."
+        edit: Zum Bearbeiten klicken
+      series:
+        subtitle: "%{slug} (%{size})"
+        size:
+          one: "%{count}-teilige Serie"
+          other: "%{count}-teilige Serie"
+        published: Veröffentlicht am %{date}
+        inbetween:
+          num: "..."
+          text:
+            one: noch ein Teil...
+            other: "noch %{count} Teile..."
+          title: Mehr anzeigen
+      unlock:
+        meta:
+          title: Freischaltung der Diskussion bestätigen
+        heading: Möchtest du die Diskussion zu diesem Beitrag wirklich freischalten?
+        desc: Benutzer können wieder neue Kommentare hinzufügen. Du kannst die Diskussion jederzeit wieder sperren, um zu verhindern, dass Benutzer Kommentare hinterlassen.
+        cancel: Abbrechen
+        notes: 'Notizen vom Zeitpunkt, als diese Diskussion gesperrt wurde (nur für dich und Admins sichtbar):'
+        reason: 'Grund, warum diese Diskussion gesperrt wurde (öffentlich sichtbar):'
+        submit: Diskussion freischalten
+      unpublished:
+        subtitle: Unveröffentlichter Beitrag.
+        text: " Diese URL ist öffentlich, aber geheim. Teile sie also nach eigenem Ermessen."
+        edit: Zum Bearbeiten klicken
+      co_authors_html: mit %{names}
+      crossposted:
+        text_html: Ursprünglich veröffentlicht unter %{url} %{on}
+        on_html: am %{date}
+      edited: Bearbeitet am %{date}
+      edited_html: Bearbeitet am %{date}
+      for_org_html: "%{start} für %{end}%{org}"
+      missing: Beitrag nicht mehr verfügbar
+      published_html: Veröffentlicht am %{date}
+      scheduled_html: Geplant für %{date}
+      sign_in_for_full_latest_html: Einige der neuesten Beiträge sind nur für Mitglieder sichtbar. <a href="%{link}">Melde dich an</a>, um alle neuesten Beiträge zu sehen.
+      read_next: Nächsten lesen
+      reading_time:
+        one: "1 Min. Lesezeit"
+        other: "%{count} Min. Lesezeit"
+      right_nav: Autordetails

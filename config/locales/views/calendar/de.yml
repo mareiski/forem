@@ -1,0 +1,38 @@
+---
+de:
+  views:
+    calendar:
+      meta:
+        title: Kalender
+      heading: Kalender
+      range:
+        from: Von
+        to: Bis
+        apply: Anwenden
+      nav:
+        previous_month: Vorheriger Monat
+        next_month: Nächster Monat
+      weekdays:
+        - So
+        - Mo
+        - Di
+        - Mi
+        - Do
+        - Fr
+        - Sa
+      hint: Klicken Sie auf einen Starttag, dann auf einen Endtag, um einen Bereich festzulegen.
+      legend:
+        selected: Ausgewählt
+        today: Heute
+        has_events: Hat Veranstaltungen
+      today: Heute
+      empty: Keine Veranstaltungen in diesem Zeitraum. Probieren Sie einen anderen Monat!
+      event:
+        attending: Teilnehmend
+        view: Veranstaltung anzeigen
+      pagination:
+        label: Events-Seiten
+        previous: Vorherige Seite
+        next: Nächste Seite
+
+

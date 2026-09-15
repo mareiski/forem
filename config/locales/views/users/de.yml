@@ -1,0 +1,98 @@
+---
+de:
+  views:
+    users:
+      meta:
+        og:
+          title: "%{user} — %{community} Profil"
+      comments_locked_cta:
+        title: Möchtest du mit %{user} in Kontakt treten?
+        description: Erstelle ein Konto, um mit %{user} in Kontakt zu treten. Du kannst dich auch unten anmelden, wenn du bereits ein Konto hast.
+        create_account: Konto erstellen
+        already_have_an_account: Hast du schon ein Konto?
+        sign_in: Anmelden
+      comments:
+        all:
+          one: Alle Kommentare
+          other: Alle Kommentare
+        last:
+          one: Aktuelle Kommentare
+          other: Aktuelle Kommentare
+        recent: Aktuelle Kommentare
+        view: Alle Aktivitäten anzeigen
+        view_all:
+          one: Alle Kommentare anzeigen
+          other: Alle Kommentare anzeigen
+        view_last:
+          one: Aktuelle Kommentare anzeigen
+          other: Aktuelle Kommentare anzeigen
+      github:
+        heading: GitHub-Repositorys
+        fork: Fork
+        stars:
+          one: 1 Stern
+          other: "%{count} Sterne"
+      pin_icon: Anheften
+      pinned: Angepinnt
+      profile_fields:
+        bio:
+          label: Bio
+          placeholder: Kurze Bio...
+        display_email_on_profile: E-Mail im Profil anzeigen
+        location:
+          label: Standort
+          placeholder: Halifax, Nova Scotia
+        website:
+          label: Website-URL
+          placeholder: https://deine-website.de
+        education: Ausbildung
+        currently learning: Lerne gerade
+        currently hacking on: Arbeite gerade an
+        available for: Verfügbar für
+        skills/languages: Fähigkeiten/Sprachen
+        work: Arbeit
+      side:
+        comment:
+          icon: Kommentar
+          text:
+            one: 1 Kommentar geschrieben
+            other: "%{count} Kommentare geschrieben"
+        org: Organisationen
+        post:
+          icon: Beitrag
+          text:
+            one: 1 Beitrag veröffentlicht
+            other: "%{count} Beiträge veröffentlicht"
+        tag:
+          icon: Tag
+          text:
+            one: 1 Tag gefolgt
+            other: "%{count} Tags gefolgt"
+      signout:
+        meta:
+          title: Abmeldung bestätigen - %{community}
+        heading: Möchtest du dich wirklich abmelden?
+        'yes': Ja, abmelden
+      block: @%{user} blockieren
+      details: "%{user} Profildetails"
+      dropdown: Benutzeraktionen
+      email_icon: E-Mail-Adresse
+      empty: 404 Bio nicht gefunden
+      flag: @%{user} melden
+      follow: Folgen
+      joined:
+        icon: Beigetreten
+        text_html: "Beigetreten am %{date}"
+      location_icon: Standort
+      logo: "%{user} Profilbild"
+      more: Mehr Infos über @%{user}
+      send_pm:
+        code: Verhaltensregeln
+        notice_html: Alle privaten Interaktionen <b>müssen</b> die %{code} einhalten.
+        placeholder: Gib hier deine Nachricht ein...
+        submit: Senden
+      spam: @%{user} als Spam markieren
+      social: "%{service} Website"
+      unflag: @%{user} Melde-Sperre aufheben
+      unspam: @%{user} in gutem Standing setzen
+      website: Persönliche Website

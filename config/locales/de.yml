@@ -1,0 +1,283 @@
+﻿---
+de:
+  div: div
+  span: span
+  img: img
+  contact_prompts:
+    if_any_questions_html: <a href="/contact">Kontaktiere uns</a>, wenn du Fragen hast.
+    if_continued_trouble_html: <a href="/contact">Kontaktiere uns</a>, wenn du weiterhin Probleme hast.
+    if_we_can_help_html: <a href="/contact">Kontaktiere uns</a>, wenn wir dir irgendwie helfen können.
+  favorites:
+    favorite: Als Highlight auswählen
+    favorited: Als Highlight ausgewählt
+    favorited_by_you: Von dir als Highlight ausgewählt
+    modal:
+      title: Highlight ausgewählt!
+      body: Du hast dies als Community-Highlight ausgewählt!
+      remaining_zero: Du hast heute keine Highlights mehr zu vergeben.
+      remaining_one: Du hast heute noch 1 Highlight zu vergeben.
+      remaining_other: Du hast heute noch %{count} Highlights zu vergeben.
+      remaining_unlimited: Du kannst unbegrenzt Highlights vergeben.
+      close: Verstanden
+    modal_exhausted:
+      title: Keine Highlights übrig
+      body: Du hast heute keine Highlights mehr zu vergeben. Dein Kontingent wird bald erneuert!
+      close: Verstanden
+  core:
+    add_comment: Kommentar hinzufügen
+    beta: beta
+    comment: Kommentar
+    copy_link: Link kopieren
+    edit_profile: Profil bearbeiten
+    follow: Folgen
+    follow_back: Zurückfolgen
+    following: Folge ich
+    like: Gefällt mir
+    loading: lädt...
+    reaction: Reaktion
+    report_abuse: Missbrauch melden
+    search: Suchen
+    success_settings: Einstellungen erfolgreich aktualisiert.
+    search_placeholder: Suchen...
+    search_find_related_posts: Ähnliche Beiträge finden...
+    search_powered_by: Unterstützt von Algolia
+    search_submit_search: Suche für erweiterte Filterung absenden.
+    search_displaying_recommendations: Algolia-Empfehlungen werden angezeigt - beginne mit der Eingabe, um zu suchen
+    article_form_save_changes: Änderungen speichern
+    article_form_schedule: Planen
+    article_form_publish: Veröffentlichen
+    article_form_loading_preview: Vorschau wird geladen
+    article_form_preview_loaded: Vorschau geladen
+    article_form_co_authors: Co-Autorinnen und Co-Autoren
+    article_form_co_authors_description: Füge bis zu 4 Co-Autorinnen oder Co-Autoren von %{org_name} hinzu.
+    article_form_co_authors_placeholder: Bis zu 4 hinzufügen...
+    comments_preview: Vorschau
+    comments_continue_editing: Weiter bearbeiten
+    survey_enter_response: Gib hier deine Antwort ein...
+    survey_thank_you_response: Danke für deine Antwort.
+    survey_thank_you_completing: Danke, dass du die Umfrage abgeschlossen hast!
+    dashboard_analytics_readers: Leserinnen und Leser
+    dashboard_analytics_avg_read_time: durchschn. Lesezeit %{seconds}s
+    dashboard_analytics_comments: Kommentare
+    dashboard_analytics_reactions: Reaktionen
+    dashboard_analytics_unique_reactors: von %{count} eindeutigen Nutzern
+    dashboard_analytics_bookmarks: Lesezeichen
+    dashboard_analytics_followers: Neue Follower
+    top_contributors_empty: Für diesen Zeitraum wurden keine Interaktionen gefunden.
+    top_contributors_reactions: Reaktionen
+    top_contributors_comments: Kommentare
+    top_contributors_weight_note: Kommentare werden stärker gewichtet
+    follower_engagement_ratio: "%{ratio}% der Follower haben interagiert"
+    follower_engagement_detail: "(%{engaged} of %{total})"
+    dashboard_analytics_no_data: Für diesen Zeitraum sind keine Daten verfügbar
+    dashboard_analytics_no_referrers: Noch keine Traffic-Quellen
+    stats_by: von
+    editor_new_title: Neuer Beitragstitel hier...
+    editor_body_placeholder: Schreibe hier deinen Beitrag...
+    tags_field_label: Bis zu 4 Tags hinzufügen
+    tags_field_placeholder: Bis zu 4 Tags hinzufügen...
+    counted_organization:
+      one: "%{count} Organisation"
+      other: "%{count} Organisationen"
+    counted_user:
+      one: "%{count} Person"
+      other: "%{count} Personen"
+    not_following: "Du folgst niemandem"
+    following_everyone: "Du folgst %{details} (allen)"
+    you_are_following: "Du folgst"
+    and: "und"
+  datetime:
+    distance_in_words_ago: # https://github.com/openstreetmap/openstreetmap-website/issues/2255
+      about_x_hours:
+        one: vor etwa 1 Stunde
+        other: vor etwa %{count} Stunden
+      about_x_months:
+        one: vor etwa 1 Monat
+        other: vor etwa %{count} Monaten
+      about_x_years:
+        one: vor etwa 1 Jahr
+        other: vor etwa %{count} Jahren
+      almost_x_years:
+        one: vor fast 1 Jahr
+        other: vor fast %{count} Jahren
+      half_a_minute: vor einer halben Minute
+      less_than_x_seconds:
+        one: vor weniger als 1 Sekunde
+        other: vor weniger als %{count} Sekunden
+      less_than_x_minutes:
+        one: vor weniger als 1 Minute
+        other: vor weniger als %{count} Minuten
+      over_x_years:
+        one: vor über 1 Jahr
+        other: vor über %{count} Jahren
+      x_seconds:
+        one: vor 1 Sekunde
+        other: "vor %{count} Sekunden"
+      x_minutes:
+        one: vor 1 Minute
+        other: "vor %{count} Minuten"
+      x_days:
+        one: vor 1 Tag
+        other: "vor %{count} Tagen"
+      x_months:
+        one: vor 1 Monat
+        other: "vor %{count} Monaten"
+      x_years:
+        one: vor 1 Jahr
+        other: "vor %{count} Jahren"
+    expired_ago:
+      about_x_hours:
+        one: Vor etwa 1 Stunde abgelaufen
+        other: Vor etwa %{count} Stunden abgelaufen
+      about_x_months:
+        one: Vor etwa 1 Monat abgelaufen
+        other: Vor etwa %{count} Monaten abgelaufen
+      about_x_years:
+        one: Vor etwa 1 Jahr abgelaufen
+        other: Vor etwa %{count} Jahren abgelaufen
+      almost_x_years:
+        one: Vor fast 1 Jahr abgelaufen
+        other: Vor fast %{count} Jahren abgelaufen
+      half_a_minute: Vor einer halben Minute abgelaufen
+      less_than_x_seconds:
+        one: Vor weniger als 1 Sekunde abgelaufen
+        other: Vor weniger als %{count} Sekunden abgelaufen
+      less_than_x_minutes:
+        one: Vor weniger als 1 Minute abgelaufen
+        other: Vor weniger als %{count} Minuten abgelaufen
+      over_x_years:
+        one: Vor über 1 Jahr abgelaufen
+        other: Vor über %{count} Jahren abgelaufen
+      x_seconds:
+        one: Vor 1 Sekunde abgelaufen
+        other: Vor %{count} Sekunden abgelaufen
+      x_minutes:
+        one: Vor 1 Minute abgelaufen
+        other: Vor %{count} Minuten abgelaufen
+      x_days:
+        one: Vor 1 Tag abgelaufen
+        other: Vor %{count} Tagen abgelaufen
+      x_months:
+        one: Vor 1 Monat abgelaufen
+        other: Vor %{count} Monaten abgelaufen
+      x_years:
+        one: Vor 1 Jahr abgelaufen
+        other: Vor %{count} Jahren abgelaufen
+    expires_in:
+      about_x_hours:
+        one: Läuft in etwa 1 Stunde ab
+        other: Läuft in etwa %{count} Stunden ab
+      about_x_months:
+        one: Läuft in etwa 1 Monat ab
+        other: Läuft in etwa %{count} Monaten ab
+      about_x_years:
+        one: Läuft in etwa 1 Jahr ab
+        other: Läuft in etwa %{count} Jahren ab
+      almost_x_years:
+        one: Läuft in fast 1 Jahr ab
+        other: Läuft in fast %{count} Jahren ab
+      half_a_minute: Läuft in einer halben Minute ab
+      less_than_x_seconds:
+        one: Läuft in weniger als 1 Sekunde ab
+        other: Läuft in weniger als %{count} Sekunden ab
+      less_than_x_minutes:
+        one: Läuft in weniger als 1 Minute ab
+        other: Läuft in weniger als %{count} Minuten ab
+      over_x_years:
+        one: Läuft in über 1 Jahr ab
+        other: Läuft in über %{count} Jahren ab
+      x_seconds:
+        one: Läuft in 1 Sekunde ab
+        other: Läuft in %{count} Sekunden ab
+      x_minutes:
+        one: Läuft in 1 Minute ab
+        other: Läuft in %{count} Minuten ab
+      x_days:
+        one: Läuft in 1 Tag ab
+        other: Läuft in %{count} Tagen ab
+      x_months:
+        one: Läuft in 1 Monat ab
+        other: Läuft in %{count} Monaten ab
+      x_years:
+        one: Läuft in 1 Jahr ab
+        other: Läuft in %{count} Jahren ab
+  billboard:
+    promoted: Gesponsert
+    menu:
+      aria_label: Dropdown-Menü umschalten
+      icon: Dropdown-Menü
+      close: Schließen
+      manage_preferences: Einstellungen verwalten
+      what_is_a_billboard: Was ist ein Billboard?
+      report_billboard: Billboard melden
+      edit_billboard: Billboard bearbeiten
+  admin_api:
+    errors:
+      user_not_found: "Benutzer nicht gefunden"
+      identity_not_found: "Identität für Benutzer nicht gefunden"
+      user_already_has_identity_for_provider: "Benutzer hat bereits eine Identität für den Anbieter '%{provider}'"
+      identity_uid_taken: "Identitäts-UID %{uid} (%{provider}) ist bereits mit einem anderen Benutzer verknüpft"
+      invalid_notification_settings: "notification_setting muss mindestens einen unterstützten Schlüssel enthalten (email_newsletter)"
+      invalid_identities: "identities muss ein Array mit 1 bis %{limit} Einträgen sein"
+      cannot_merge_user_into_itself: "Ein Benutzer kann nicht mit sich selbst zusammengeführt werden"
+      merge_identity_conflict: "Zusammenführung konnte nicht abgeschlossen werden: %{reason}"
+      unknown_provider: "Anbieter '%{provider}' ist nicht konfiguriert"
+      invalid_status: "Status nicht erlaubt"
+      email_taken: "E-Mail-Adresse wird bereits verwendet"
+      email_invalid: "E-Mail-Adresse ist ungültig"
+      validation_failed: "Validierung fehlgeschlagen"
+  errors:
+    messages:
+      accepted: muss akzeptiert werden
+      bad_protocol: muss mit %{protocols} beginnen
+      bad_uri: ist keine gültige URL
+      blank: darf nicht leer sein
+      confirmation: stimmt nicht mit %{attribute} überein
+      contains_prohibited_characters: enthält nicht-alphanumerische oder unzulässige Unicode-Zeichen
+      empty: darf nicht leer sein
+      equal_to: muss gleich %{count} sein
+      even: muss gerade sein
+      exclusion: ist reserviert
+      general: 'Error: %{errors}'
+      greater_than: muss größer als %{count} sein
+      greater_than_or_equal_to: muss größer oder gleich %{count} sein
+      inclusion: ist nicht in der Liste enthalten
+      integer_only: Nur Ganzzahlen. Kein Vorzeichen erlaubt.
+      invalid: ist ungültig
+      less_than: muss kleiner als %{count} sein
+      less_than_or_equal_to: muss kleiner oder gleich %{count} sein
+      model_invalid: 'Validierung fehlgeschlagen: %{errors}'
+      not_a_number: ist keine Zahl
+      not_an_integer: muss eine Ganzzahl sein
+      odd: muss ungerade sein
+      other_than: muss ungleich %{count} sein
+      present: muss leer sein
+      required: muss vorhanden sein
+      taken: ist bereits vergeben
+      too_long:
+        one: ist zu lang (maximal 1 Zeichen)
+        other: ist zu lang (maximal %{count} Zeichen)
+      too_short:
+        one: ist zu kurz (mindestens 1 Zeichen)
+        other: ist zu kurz (mindestens %{count} Zeichen)
+      try_again_email: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut oder sende eine E-Mail an: %{email}'
+      wrong_length:
+        one: hat die falsche Länge (sollte 1 Zeichen lang sein)
+        other: hat die falsche Länge (sollte %{count} Zeichen lang sein)
+  time:
+    formats:
+      admin_user: "%Y-%m-%d, %H:%M"
+      comment: "%B %d, %Y"
+      email_verified: "%b %e '%y, %H:%M"
+      github: "%b %d, %Y"
+      json: "%b %e, %Y"
+      medium: "%b %-d, %Y"
+      members: "%d %b"
+      members_with_year: "%d %b, %Y"
+      reddit: "%b %e '%y"
+      short: "%b %-e"
+      short_with_yy: "%b %-d '%y"
+      short_with_year: "%b %-e, %Y"
+      stackexchange: "%b %e '%y"
+
+

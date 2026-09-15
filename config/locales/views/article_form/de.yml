@@ -1,0 +1,11 @@
+---
+de:
+  views:
+    article_form:
+      save_changes: Änderungen speichern
+      schedule: Planen
+      publish: Veröffentlichen
+      loading_preview: Vorschau wird geladen
+      preview_loaded: Vorschau geladen
+
+

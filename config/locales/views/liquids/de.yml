@@ -1,0 +1,46 @@
+---
+de:
+  views:
+    liquids:
+      github:
+        view: Auf GitHub anzeigen
+      medium:
+        logo: Medium-Logo
+      poll:
+        show_results: Zeige mir einfach die Ergebnisse
+      reddit:
+        author: 'Autor: %{author}'
+        see: Vollständigen Beitrag anzeigen
+      stackexchange:
+        answer:
+          text_html: "%{answer} re: %{title}"
+          answer: Antwort
+        answers: 'Antworten: %{count}'
+        comments: 'Kommentare: %{count}'
+        open:
+          answer: Vollständige Antwort öffnen
+          article: Vollständigen Artikel öffnen
+          question: Vollständige Frage öffnen
+      twitter:
+        view: Auf Twitter anzeigen
+      user_subscription:
+        confirm:
+          subtitle: Abo bestätigen
+          button_text: Abo bestätigen
+          cancel_text: Abbrechen
+          text_html: "Du teilst deine E-Mail-Adresse, deinen Benutzernamen, deinen Namen und deine %{community}-Profil-URL mit %{username}. Sobald du dies tust, kannst du es nicht mehr rückgängig machen."
+        logged_out: "Du musst dich zunächst bei %{community} anmelden."
+        sign_in: Anmelden
+        subscribe:
+          apple:
+            button: Abonnieren
+            desc_html: "Hey! Es sieht so aus, als hättest du dein %{community}-Konto mit Apple und einer privaten Relay-E-Mail-Adresse erstellt. Wenn du abonnieren möchtest, ändere bitte zuerst deine %{update} zu einer anderen E-Mail-Adresse."
+            update: E-Mail-Adresse in den Einstellungen
+          button: Abonnieren
+          desc_html: "Du abonnierst mit der E-Mail-Adresse, die mit deinem %{community}-Konto verknüpft ist. Um eine andere E-Mail-Adresse zu verwenden, kannst du deine %{update}."
+          update: E-Mail-Adresse in den Einstellungen
+      wikipedia:
+        logo: Wikipedia-Logo
+        view: Auf Wikipedia anzeigen
+
+

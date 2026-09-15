@@ -1,0 +1,13 @@
+---
+de:
+  views:
+    sidebars:
+      onboarding_progress:
+        heading: "Anmeldungs-Checkliste"
+        subheading: "%{completed} von %{total} abgeschlossen"
+        items:
+          fill_out_profile: "Fülle dein Profil aus"
+          comment_in_welcome: "Sag Hallo im Willkommens-Thread"
+          made_first_post: "Schreibe deinen ersten Beitrag"
+
+

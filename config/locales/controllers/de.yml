@@ -1,0 +1,161 @@
+﻿---
+de:
+  api_secrets_controller:
+    generated: 'Ihr API-SchlÃ¼ssel wurde generiert:  %{secret}'
+    revoked: Ihr API-SchlÃ¼ssel wurde erfolgreich widerrufen.
+  application_controller:
+    bad_request: 'Fehler: UngÃ¼ltige Anfrage'
+    invalid_authenticity_token: 'Fehler: UngÃ¼ltiges AuthentizitÃ¤tstoken'
+    not_authorized: 'Fehler: nicht autorisiert'
+    please_sign_in: Bitte anmelden
+  articles_controller:
+    deleted: Artikel wurde erfolgreich gelÃ¶scht.
+  comments_controller:
+    create:
+      success: erstellt
+      failure: Kommentierung existiert bereits
+      authorization_error: Ihre Privilegien wurden ausgesetzt.
+    delete:
+      error: Etwas ist schief gelaufen; Kommentar NICHT gelÃ¶scht.
+      notice: Kommentar wurde erfolgreich gelÃ¶scht.
+    markdown: 'In deinem Abschlag ist ein Fehler aufgetreten:  %{error}'
+    markdown_html: "<p> ðŸ˜” In deinem Markdown ist ein Fehler aufgetreten </p>  <hr>  <p>  %{error}  </p>"
+    moderated: Aufgrund von ModerationsmaÃŸnahmen nicht zulÃ¤ssig
+  confirmations_controller:
+    email_sent: E-Mail gesendet! Bitte wende dich unter  %{email} an den Support, wenn du Probleme hast, deine BestÃ¤tigungsanweisungen zu erhalten.
+  credits_controller:
+    done:
+      one: "%{count}  neues Guthaben gekauft!"
+      other: "%{count}  neues Guthaben gekauft!"
+  devices_controller:
+    not_found: Nicht gefunden
+  discussion_locks_controller:
+    locked: Diskussion wurde erfolgreich gesperrt!
+    unlocked: Diskussion wurde erfolgreich freigeschaltet!
+  email_subscriptions_controller:
+    badge_notifications: badge-Benachrichtigungen
+    comment_notifications: Benachrichtigungen Ã¼ber neue Kommentare
+    digest_emails: "%{community}  Digest-E-Mails"
+    follower_notifications: follower-Benachrichtigungen
+    mention_notifications: benachrichtigungen erwÃ¤hnen
+    this_list: Dieser Liste
+    unread_notifications: Ungelesene Benachrichtigungen
+    newsletter: newsletter
+  favorites_controller:
+    create:
+      already_favorited: Dieser wurde bereits als Edelstein ausgewÃ¤hlt.
+      no_allowance: Sie haben Ihre Edelsteinpauschale aufgebraucht.
+      cannot_favorite: Dies kann nicht als Edelstein ausgewÃ¤hlt werden.
+  feeds:
+    sources:
+      created: Ihre Feed-Quelle wurde hinzugefÃ¼gt und ein Import wurde ausgelÃ¶st.
+      updated: Ihre Feed-Quelle wurde aktualisiert.
+      deleted: Ihre Feed-Quelle wurde entfernt.
+  feedback_messages_controller:
+    error_fill: "Stellen Sie sicher, dass die Formulare ausgefÃ¼llt sind. ðŸ¤– Weitere mÃ¶gliche Fehler:  %{errors}"
+    n_a: N/A
+    submitted: Ihr Bericht wurde eingereicht
+  follows_controller:
+    already_followed: bereits befolgt
+    daily_limit: TÃ¤gliches Kontofollow-Limit erreicht!
+    followed: gefolgt
+    unfollowed: Nicht mehr gefolgt
+  github_repos_controller:
+    repo_not_found: GitHub-Repository nicht gefunden
+    github_unauthorized: 'GitHub nicht autorisiert:  %{e_message}'
+  ai_image_generations_controller:
+    prompt_required: Bildaufforderung ist erforderlich
+    generation_failed: Bild konnte nicht generiert werden. Bitte versuchen Sie es erneut.
+    timeout: ZeitÃ¼berschreitung bei der Bilderzeugung. Bitte versuchen Sie es erneut.
+    unexpected_error: Beim Erzeugen des Bildes ist ein unerwarteter Fehler aufgetreten.
+  image_uploads_controller:
+    server_error: Ein Server-Fehler ist aufgetreten.
+  listings_controller:
+    deleted: Das Inserat wurde erfolgreich gelÃ¶scht.
+    no_credit: Nicht genÃ¼gend verfÃ¼gbares Guthaben
+  omniauth_callbacks_controller:
+    log_in_error: 'Anmeldefehler:  %{e}'
+    username_taken: ist bereits vergeben
+  organizations_controller:
+    secret_updated: Ihr Organisationsgeheimnis wurde aktualisiert
+    deletion_scheduled: 'Dein Unternehmen: Die LÃ¶schung von â€ž %{organization_name} â€œ ist geplant. Du wirst benachrichtigt, wenn es gelÃ¶scht wird.'
+    not_deleted: Ihre Organisation wurde nicht gelÃ¶scht. Sie mÃ¼ssen ein Administrator sein, das einzige Mitglied in der Organisation sein und keine Artikel haben, die mit der Organisation verbunden sind.
+    created: Ihr Unternehmen wurde erfolgreich erstellt und Sie sind ein Administrator.
+    updated: Ihre Organisation wurde erfolgreich aktualisiert.
+    page_save_error: "Seite konnte nicht gespeichert werden:  %{message}"
+    invite:
+      user_not_found: Benutzer mit Benutzername " %{username} " nicht gefunden.
+      already_member: Der Benutzer ist bereits im Staff der Organisation
+      already_pending: Dieser Benutzer hat bereits eine ausstehende Einladung.
+      success: "%{username} wurde erfolgreich in die Organisation eingeladen."
+      added_success: "%{username} wurde erfolgreich zur Organisation hinzugefÃ¼gt."
+      rate_limit_exceeded: Du hast das tÃ¤gliche Einladungslimit von  %{limit}  Einladungen pro Tag erreicht. Bitte versuchen Sie es morgen erneut.
+      max_outstanding_exceeded: Du hast das maximale Limit fÃ¼r ausstehende Einladungen von  %{limit} erreicht. Bitte warte, bis einige Einladungen angenommen oder storniert werden, bevor du weitere sendest.
+    confirm_invitation:
+      invalid_token: UngÃ¼ltiges oder abgelaufenes Token.
+      already_confirmed: Diese wurde bereits ambulant
+      wrong_user: Sie mÃ¼ssen als eingeladener Benutzer angemeldet sein, um diese Einladung zu bestÃ¤tigen.
+      sign_in_required: Bitte melden Sie sich an, um die Mitgliedschaft in Ihrer Organisation zu bestÃ¤tigen.
+      success: "%{organization_name} erfolgreich beigetreten!"
+  lead_submissions:
+    inactive_form: Diesem Formular kann nicht mehr fÃ¼r Ãœbermittlungen verwendet werden.
+    not_found: Formular nicht gefunden
+    already_submitted: Sie haben dieses Formular bereits eingereicht.
+    name_and_email_required: Name und E-Mail sind Pflichtfelder.
+  podcasts_controller:
+    podcast_suggested: Podcast vorgeschlagen
+  profiles_controller:
+    updated: Dein Profil wurde aktualisiert
+  rating_votes_controller:
+    not_upserted_successfully: Nicht erfolgreich hochgeladen
+  registrations_controller:
+    error:
+      recaptcha: Sie mÃ¼ssen das Recaptcha abschlieÃŸen âœ…
+      domain: ist nicht in erlaubten Domains enthalten.
+  response_templates_controller:
+    response_template_error: 'Antwortvorlagenfehler:  %{errors}'
+    created: Deine Antwortvorlage â€ž %{title} â€œ wurde erstellt.
+    deleted: Deine Antwortvorlage â€ž %{title} â€œ wurde gelÃ¶scht.
+    updated: Deine Antwortvorlage â€ž %{title} â€œ wurde aktualisiert.
+  social_previews_controller:
+    fonts: Roboto|Roboto+kondensiert
+  stories:
+    pinned_articles_controller:
+      not_found: nicht gefunden
+  stories_controller:
+    404_bio_not_found: 404 Nicht gefunden
+    searching: "Suche lÃ¤uft..."
+  stripe_active_cards_controller:
+    cannot_remove: Die Karte kann nicht entfernt werden, wenn du eine aktive Mitgliedschaft hast. Bitte kÃ¼ndigen Sie zuerst Ihre Mitgliedschaft.
+    cannot_update: Beim Aktualisieren deiner Rechnungsinformationen ist ein Problem aufgetreten.
+    updated: Ihre Abrechnungsdaten wurden aktualisiert
+    removed: Ihre Karte wurde erfolgreich entfernt.
+  tag_adjustments_controller:
+    failure: 'Fehler:  %{errors}'
+    destroyed: Tag-Anpassung zerstÃ¶rt
+  tags_controller:
+    tag_successfully_updated: "Erfolgreich aktualisiert!"
+  users_controller:
+    removed_admin: "%{name}  ist kein Administrator mehr."
+    removed_member: "%{name}  ist nicht mehr Teil deines Unternehmens."
+    added_admin: "%{name}  ist jetzt Administrator."
+    provide_email: Bitte geben Sie eine E-Mail an, um Ihr Konto zu lÃ¶schen.
+    provide_email_delete: Bitte geben Sie eine E-Mail an, um Ihr Konto zu lÃ¶schen
+    send_export: "Der Export wird Ihnen in KÃ¼rze per E-Mail zugesandt."
+    invalid_secret: Das angegebene Organisationsgeheimnis war ungÃ¼ltig.
+    username_blank: Benutzername darf nicht leer sein
+    deletion_in_progress: Sie haben bereits die LÃ¶schung Ihres Kontos beantragt. Weitere Anweisungen findest du in deiner E-Mail.
+    joined_org: Du bist der Organisation %{organization_name} beigetreten.
+    left_org: Sie haben Ihr Unternehmen verlassen.
+    deletion_requested: Sie haben die LÃ¶schung Ihres Kontos beantragt. Weitere Anweisungen findest du in deiner E-Mail.
+    log_in_to_delete: Sie mÃ¼ssen angemeldet sein, um mit der LÃ¶schung des Kontos fortzufahren.
+    deletion_scheduled: Die LÃ¶schung Ihres Kontos ist geplant. Du wirst benachrichtigt, wenn es gelÃ¶scht wird.
+    removed_identity: Dein  %{provider}  -Konto wurde erfolgreich entfernt.
+    updated_config: Ihre Konfiguration wurde aktualisiert. Aktualisieren, um alle Ã„nderungen zu sehen.
+    updated_profile: Ihr Profil wurde erfolgreich aktualisiert
+    token_expired: Ihr Token ist abgelaufen, bitte fordern Sie ein neues an. Token halten nur 12 Stunden, nachdem die LÃ¶schung des Kontos eingeleitet wurde.
+    notifications_settings_updated: Deine Benachrichtigungseinstellungen wurden aktualisiert.
+  video_states_controller:
+    related_article_not_found: Verwandter Artikel nicht gefunden
+    video_state_updated: Videostatus aktualisiert
+

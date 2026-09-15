@@ -1,0 +1,165 @@
+---
+de:
+  views:
+    comments:
+      meta:
+        title_root: Diskussion zu %{title}
+        description: Ein Beitrag aus der Community
+        og:
+          title: Diskussion zu %{title}
+          title_rel: "%{root} — %{site}"
+          title_root: "[Diskussion] %{title} — %{site}"
+          description: "%{site} Kommentar"
+      parent:
+        subtitle_html: "%{start}Diskussion zu: %{end}%{title}"
+        metadata_html: "%{name}%{on}"
+        date: " am %{date}"
+        full: Gesamt Diskussion
+        read: gesamten Beitrag lesen
+        view: Beitrag anzeigen
+        view_full:
+          one: ganze Diskussion anzeigen (%{count} Kommentar)
+          other: ganze Diskussion anzeigen (%{count} Kommentare)
+        reply_html: "%{start}Antworten auf:%{end} %{title}"
+      delete:
+        heading: Möchtest du diesen Kommentar wirklich löschen?
+        desc_html: Diese Aktion kann nicht rückgängig gemacht werden. Möchtest du stattdessen vielleicht %{action}?
+        action: Bearbeiten
+        submit: Löschen
+        edit: Bearbeiten
+        cancel: Abbrechen
+        comment_deleted: Kommentar gelöscht
+      collapse: Zusammenklappen
+      edit: Kommentar bearbeiten
+      edited:
+        text_html: "• Bearbeitet am %{date}"
+        short_html: "• Bearbeitet"
+      expand: Aufklappen
+      visible_signed_in:
+        text_html: "Einige Kommentare sind nur für angemeldete Besucher sichtbar. %{sign_in}, um alle Kommentare zu sehen."
+        sign_in: "Anmelden"
+      limited_unauthenticated:
+        text_html: "Es wird eine Teilmenge aller Kommentare angezeigt. Bitte %{sign_in}, um alle Kommentare zu diesem Beitrag zu sehen."
+        sign_in: "melde dich an"
+      hidden:
+        text_html: Einige Kommentare wurden vom Autor des Beitrags ausgeblendet - %{info}
+        info: mehr erfahren
+        comment_hidden: Kommentar vom Beitragsautor ausgeblendet
+      hider:
+        description_html: Möchtest du diesen Kommentar wirklich ausblenden? Er wird in deinem Beitrag ausgeblendet, ist aber weiterhin über den %{permalink} des Kommentars sichtbar.
+        hide_child: Unterkommentare ebenfalls ausblenden
+        note_html: Für weitere Maßnahmen könntest du in Betracht ziehen, diese Person zu blockieren und/oder %{reporting}
+        permalink: Permalink
+        reporting: Missbrauch zu melden
+        submit: Bestätigen
+      locked: Die Diskussion wurde gesperrt. Neue Kommentare können nicht hinzugefügt werden.
+      orphan:
+        deleted: "[Kommentar von einem gelöschten Beitrag]"
+      re:
+        text_html: "%{re}%{title}"
+        re: 'Antwort: '
+      settings:
+        meta:
+          title: Kommentar-Einstellungen
+        heading: Kommentar-Einstellungen
+        state:
+          show:
+            subtitle: Benachrichtigungen für diesen Thread anzeigen
+            desc: Du erhältst alle Benachrichtigungen für diesen Kommentar und alle deine Kommentare in dieser Kette.
+          mute:
+            subtitle: Benachrichtigungen für diesen Thread stummschalten
+            desc: Alle Benachrichtigungen für diesen Kommentar und alle deine Kommentare in diesem Thread sind derzeit stummgeschaltet.
+        subscribe:
+          subtitle: Abonnement
+          desc: Du bist weiterhin für alle Kommentare im breiteren Thread abonniert, was bedeutet, dass du weiterhin Benachrichtigungen für Antworten auf diesen Kommentar erhältst.
+          mute: Benachrichtigungen stummschalten
+          unmute: Stummschaltung aufheben
+      quality:
+        low: Kommentar als minderwertig/ nich konstruktiv von der Community markiert.
+        superlow: Kommentar-Punkte unter der Ausblendeschwelle, nur für Admins sichtbar
+        conduct: Verhaltensregeln anzeigen
+        hidden:
+          icon: Info
+          text:
+            visible_in_permalink: Kommentar vom Beitragsautor ausgeblendet - Thread nur in diesem Permalink sichtbar
+            accessible_via_permalink: Kommentar vom Beitragsautor ausgeblendet - Thread nur über Permalink zugänglich
+      write:
+        errors:
+          one: '1 Fehler hat das Speichern dieses Kommentars verhindert:'
+          other: "%{count} Fehler haben das Speichern dieses Kommentars verhindert:"
+        field:
+          aria_label: Kommentar zur Diskussion hinzufügen
+          placeholder: Zur Diskussion beitragen
+          submit: Hochladen
+          templates: Vorlagen
+          upload: Bild hochladen
+          use: Antwortvorlage verwenden
+          guide:
+            title: Markdown-Anleitung
+            icon: Editor-Anleitung
+        template:
+          article: Dieser Beitrag enthält eine Kommentarvorlage
+          create:
+            subtitle: Vorlage erstellen
+            desc: Vorlagen ermöglichen es dir, häufig gestellte Fragen schnell zu beantworten oder Code-Snippets für die Wiederverwendung zu speichern.
+          moderator: Vertrauenswürdiger Nutzer
+          personal: Persönlich
+        submit: Absenden
+        preview: Vorschau
+        continue_editing: Weiter bearbeiten
+        cancel: Abbrechen
+        ai_disclosure_title: KI-Nutzung offenlegen
+      ai_disclosure:
+        no_ai_description: Ohne KI-Unterstützung verfasst.
+        some_ai_description: Der Kommentator hat angegeben, KI-Tools zur Unterstützung dieses Kommentars verwendet zu haben.
+        fully_autonomous_description: Der Kommentator hat angegeben, dass dieser Kommentar autonom von KI generiert wurde.
+      menu:
+        aria_label: Dropdown-Menü umschalten
+        icon: Dropdown-Menü
+        copy:
+          aria_label: Link zu %{user}s Kommentar kopieren
+          text: Link kopieren
+        settings:
+          aria_label: Zu %{user}s Kommentar-Einstellungen
+        action:
+          aria_label: "%{action} %{user}s Kommentar"
+          hide: Ausblenden
+          unhide: Einblenden
+          hide_text: Ausblenden
+          unhide_text: Einblenden
+        moderate:
+          aria_label: %{user}s Kommentar moderieren
+        report:
+          aria_label: %{user}s Kommentar als Missbrauch oder Verstoß gegen unsere Verhaltensregeln und/oder Nutzungsbedingungen melden
+      footer:
+        heart:
+          aria_label: Gefällt mir
+          title: Gefällt mir
+          icon: 'Gefällt mir Kommentar: '
+          count_html: "%{num}%{likes}"
+          text: Gefällt mir
+        reply:
+          aria_label: Auf Kommentar antworten...
+          icon: Kommentar-Button
+          done: Beantwortet
+          text: Antworten
+          placeholder: Antwort...
+        thread:
+          icon: Thread
+          text: Thread
+        view:
+          icon: Anzeigen-Button
+          text: Anzeigen
+        subscribe:
+          icon: Abonnieren-Button
+          text: Kommentare abonnieren
+      count:
+        one: "%{count} Kommentar"
+        other: "%{count} Kommentare"
+      empty: Neu
+      add: "Kommentar_hinzufuegen"
+      summary:
+        count_html:
+          one: "%{count}%{start}_Kommentar%{end}"
+          other: "%{count}%{start}_Kommentare%{end}"
+        title: Kommentare

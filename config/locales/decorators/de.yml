@@ -1,0 +1,6 @@
+﻿---
+de:
+  decorators:
+    article_decorator:
+      tagged_with: "Getaggt mit  %{cached_tag_list}."
+

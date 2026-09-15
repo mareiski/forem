@@ -1,0 +1,81 @@
+---
+de:
+  views:
+    main:
+      aria_home: "%{community} Startseite"
+      header:
+        create_account: Konto erstellen
+        login: Anmelden
+        nav:
+          aria_label: Navigationsmenü
+        moderation:
+          aria_label: Moderation
+          icon: Moderation
+        manage:
+          aria_label: Subforem verwalten
+          icon: Subforem verwalten
+        notifications:
+          aria_label: Benachrichtigungen
+          icon: Benachrichtigungen
+        skip: Zum Inhalt springen
+      modal:
+        create_account:
+          aria_label: Neues Konto erstellen
+          text: Konto erstellen
+        login:
+          aria_label: Anmelden
+          text: Anmelden
+      nav:
+        admin: Admin
+        manage_subforem: Subforem verwalten
+        agent_sessions: Agent-Sitzungen
+        dashboard: Dashboard
+        placeholder: "..."
+        list: Lesezeichen
+        moderator_center: Moderator-Center
+        leadership: Community-Curation
+        other: Sonstiges
+        settings: Einstellungen
+        account: Konto
+      nav_name:
+        About: Über uns
+        Code of Conduct: Verhaltensregeln
+        Contact: Kontakt
+        FAQ: FAQ
+        Home: Startseite
+        Listings: Inserate
+        Podcasts: Podcasts
+        Privacy Policy: Datenschutzrichtlinie
+        Reading List: Lesezeichen
+        Tags: Tags
+        trends: Trends
+        Terms of use: Nutzungsbedingungen
+        Videos: Videos
+      side:
+        active_discussions: "Aktive Diskussionen"
+        upcoming_events: "Kommende Veranstaltungen"
+        listings:
+          heading: Inserate
+          all: Alle anzeigen
+          new: Inserat erstellen
+        trend: Trendende Anleitungen/Ressourcen
+        recent: Kürzlich gesucht
+      tags:
+        aria_label: Tag-Priorität anpassen
+        follow: Folgen
+        my_tags: Meine Tags
+        popular_tags: Beliebte Tags
+      footer:
+        built:
+          text_html: Basierend auf %{forem} — der %{opensource} Software, die %{dev} und andere inklusive Communities betreibt.
+          forem: Forem
+          opensource: Open Source
+          dev: DEV
+        desc_html: "%{community} — %{desc}"
+        logo: Forem-Logo
+        powered:
+          text_html: Gemacht mit Liebe und %{rails}. %{community} <span title="copyright">©</span> %{copyright}.
+          rails: Ruby on Rails
+        sidebar_desc_html: "%{community}\n%{desc}"
+      create_post: Beitrag erstellen
+      signout: Abmelden

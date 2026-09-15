@@ -1,0 +1,67 @@
+---
+de:
+  views:
+    tags:
+      meta:
+        title: Tags
+        description: Tags zum Folgen auf %{community}
+        og:
+          description: "%{community} ist großartig!"
+      heading:
+        default: Tags
+        search_results: Suchergebnisse für %{q}
+      search:
+        aria_labels:
+          search_input: Tag-Suchbegriff
+          submit: Tags suchen
+        placeholder: Nach Tag suchen
+      edit:
+        meta:
+          title: %{tag} bearbeiten
+        admin: "Admin"
+        help: "Hilfe"
+        view: "Anzeigen"
+        form:
+          pretty_name:
+            label: Anzeigename
+            placeholder: Das ist der Name oben auf der Tag-Seite.
+          bg_color_hex:
+            label: Tag-Farbe
+          short_summary:
+            label: Kurze Zusammenfassung
+            placeholder: Kurze Übersicht, worum es bei diesem Tag geht.
+          wiki_body_markdown:
+            label: Wiki-Inhalt (Markdown)
+            placeholder: Das ist ein 'Über'-Abschnitt. Füge gerne FAQs, zusätzliche Ressourcen usw. hinzu.
+          rules_markdown:
+            label: Regeln (Markdown)
+            placeholder: Optional - Kann für Challenges verwendet werden, z.B. Einreichungsrichtlinien.
+          submit: Speichern
+      follow: Folgen
+      hide: Ausblenden
+      aria_labels:
+        follow: "Tag folgen: %{tag_name}"
+        hide: "Tag ausblenden: %{tag_name}"
+      following_tags: Gefolgte Tags
+      hidden_tags: Ausgeblendete Tags
+      moderator:
+        text_html: "Komma-getrennt, Leerzeichen ist optional. Beispiel: %{code}"
+        code: 123
+        placeholder: "Komma-getrennt, Leerzeichen ist optional. Beispiel: 1,2,3"
+      published:
+        one: 1 Beitrag
+        other: "%{count} Beiträge"
+      sidebar:
+        about: 'über #%{tag}'
+        admin: Admin
+        edit: Bearbeiten
+        guidelines: Einreichungsrichtlinien
+        moderate: Moderieren
+        mods: Tag-Moderatoren
+        new: Beitrag erstellen
+        older: 'Ältere #%{tag} Beiträge'
+        published:
+          one: 1 Beitrag veröffentlicht
+          other: "%{count} Beiträge veröffentlicht"
+
+

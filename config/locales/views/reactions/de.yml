@@ -1,0 +1,44 @@
+---
+de:
+  views:
+    reactions:
+      category:
+        hands: Hände
+        like: Gefällt mir
+        readinglist: Lesezeichen
+        thinking: Nachdenklich
+        thumbsup: Daumen hoch
+        thumbsdown: Daumen runter
+        unicorn: Einhorn
+        vomit: Melden
+        lightbulb: Glühbirne
+        raised_hands: Hände hoch
+        rocket: Rakete
+        exploding_head: Explodierender Kopf
+        fire: Feuer
+      drawer_button: Reaktion hinzufügen
+      summary:
+        count_html:
+          one: "%{count}%{start}\_Reaktion%{end}"
+          other: "%{count}%{start}\_Reaktionen%{end}"
+        title: Reaktionen
+      like:
+        title: Gefällt mir
+        aria_label: Gefällt mir
+        icon: Favoriten-Herz-Button
+        text: Gefällt mir
+      unicorn:
+        title: Einhorn
+        aria_label: Mit Einhorn reagieren
+      readingList:
+        title: Speichern
+        aria_label: Zu Lesezeichen hinzufügen
+        icon: Speichern-Button
+        text: Speichern
+      subscribe:
+        title: Kommentare abonnieren
+        aria_label: Kommentare abonnieren
+        icon: Speichern-Button
+        text: Kommentare abonnieren
+
+

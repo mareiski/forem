@@ -1,0 +1,28 @@
+---
+de:
+  views:
+    actions:
+      copy:
+        text: In die Zwischenablage kopiert
+        button: Link kopieren
+      more:
+        title: Mehr...
+        aria_label: Beitrags-Optionen teilen
+      share:
+        facebook:
+          text: Auf Facebook teilen
+        hackernews:
+          text: Auf Hacker News teilen
+        linkedin:
+          text: Auf LinkedIn teilen
+        mastodon:
+          text: Auf Mastodon teilen
+        reddit:
+          text: Auf Reddit teilen
+        twitter:
+          text: Auf X teilen
+          query: '"%{article}" von %{author}'
+        link: Beitrag über... teilen
+        report: Missbrauch melden
+
+

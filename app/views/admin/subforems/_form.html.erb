@@ -30,6 +30,7 @@
       <%= form.select :default_locale, 
           options_for_select([
             ['English', 'en'],
+            ['German', 'de'],
             ['Portuguese (Brazilian)', 'pt'],
             ['French', 'fr']
           ], @subforem.default_locale || 'en'),

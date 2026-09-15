@@ -1,0 +1,60 @@
+---
+de:
+  views:
+    credits:
+      meta:
+        title: Guthaben
+      ledger:
+        class:
+          listing: Inserat
+        category: Kategorie
+        item: Artikel
+        cost: Kosten (Guthaben)
+        date: Datum
+        misc: Sonstige Artikel
+      listing:
+        create: Inserat erstellen
+        dashboard: Zum Inserate-Dashboard
+      new:
+        meta:
+          title: Guthaben kaufen
+        heading: Guthaben für @%{name} kaufen
+        hook:
+          text_html: Guthaben werden für %{listings} sowie für kommende Produkte und Dienstleistungen verwendet.
+          listings: "%{community} Inserate"
+        form:
+          amount:
+            label: Zu kaufender Betrag
+            placeholder: Beliebigen Betrag eingeben
+          method:
+            label: Zahlungsmethode
+            number: "**** **** **** %{last}"
+            exp: "%{mm}/%{yy}"
+            add: Neue Karte hinzufügen
+          submit: Kauf abschließen
+          submitting: Wird gesendet...
+          note_org: "*Alle Organisations-Admins haben Zugriff auf von der Organisation besitztes Guthaben"
+        switch:
+          org: Wechsle zu %{name}
+          user: Zu persönlichem Kauf wechseln
+        status:
+          subtitle:
+            org: Wie viele Guthaben hat %{name}?
+            user: Wie viele Guthaben habe ich derzeit?
+          desc:
+            org: "%{name} hat %{count} Guthaben."
+            user: Du hast %{count} Guthaben.
+        how:
+          subtitle: Wie kann ich Guthaben verdienen?
+          desc_html: Mitglieder erhalten <strong>5 Guthaben</strong> für jedes Profil-Abzeichen, das du verdienst.
+      purchase: Zusätzliches Guthaben kaufen
+      tag: 'Tag: %{name}'
+      status:
+        user:
+          one: "Du hast %{count} persönliches Guthaben zum Ausgeben"
+          other: "Du hast %{count} persönliche Guthaben zum Ausgeben"
+        org_html:
+          one: "%{name} hat %{num} Guthaben zum Ausgeben"
+          other: "%{name} hat %{num} Guthaben zum Ausgeben"
+
+

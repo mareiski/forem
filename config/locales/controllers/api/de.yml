@@ -1,0 +1,23 @@
+﻿---
+de:
+  api:
+    v0:
+      analytics_controller:
+        invalid_date_format: Date parameters 'start' or 'end' must be in the format of 'yyyy-mm-dd'
+        start_missing: Erforderlicher 'Start' -Parameter fehlt
+      articles_controller:
+        must_be_json: article param muss ein JSON-Objekt sein. Sie haben den Artikel als  %{type} bereitgestellt
+        page_limit_exceeded: Seitentiefe begrenzt auf 1000 ohne API-SchlÃ¼ssel
+      follows_controller:
+        followed:
+          one: folgte  %{count}  User
+          other: "%{count}  Benutzern gefolgt"
+      health_checks_controller:
+        app_is_up: Die App ist da!
+        database_connected: Datenbank verbunden
+        database_not_connected: Datenbank NICHT verbunden!
+        redis_connected: Redis verbunden
+        redis_not_connected: Red IST NICHT verbunden!
+      listings_controller:
+        no_credit: Nicht genÃ¼gend verfÃ¼gbares Guthaben
+

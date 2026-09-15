@@ -1,0 +1,82 @@
+---
+de:
+  views:
+    listings:
+      meta:
+        description: "%{community} Inserat"
+      heading: Inserate
+      back: Zurück
+      delete:
+        subtitle: Möchtest du dieses Inserat wirklich löschen?
+        description:
+          text_html: Diese Aktion kann nicht rückgängig gemacht werden. Möchtest du stattdessen vielleicht %{action}?
+          edit: bearbeiten
+          unpublish: zurückziehen
+        edit: Bearbeiten
+        submit: Löschen
+        unpublish: Zurückziehen
+      edit:
+        heading: Inserat bearbeiten
+        bump:
+          subtitle: Inserat erneuern
+          button: Inserat erneuern
+          description: Du kannst dein Inserat zum gleichen Preis wie das ursprüngliche Inserat erneuern
+          last: 'Zuletzt veröffentlicht/Erneuert: %{date}'
+        notice: Du kannst nur Titel/Inhalt/Tags von Entwürfen oder innerhalb der ersten 24 Stunden nach Veröffentlichung oder Erneuerung bearbeiten
+        not_published:
+          text_html: Dieses Inserat ist %{not} veröffentlicht.
+          aside_html: Dieses Inserat ist %{not} veröffentlicht
+          not: nicht
+        publish: Inserat veröffentlichen
+        unpublish: Inserat zurückziehen
+        update: Inserat aktualisieren
+        update_draft: Entwurf aktualisieren
+      to_edit: Bearbeiten
+      errors:
+        one: '1 Fehler hat das Speichern dieses Inserats verhindert:'
+        other: "%{count} Fehler haben das Speichern dieses Inserats verhindert:"
+      expired: Dieses Inserat ist abgelaufen.
+      form:
+        body_markdown:
+          description: Maximal 400 Zeichen, maximal 12 Zeilenumbrüche, keine Bilder erlaubt, *Markdown wird empfohlen*. Bitte füge bei Bedarf eine Kontaktdaten hinzu.
+          placeholder: "..."
+        category:
+          label: Kategorie
+          placeholder: Konferenz-CFP (1 Guthaben)
+          summary: Kategoriedetails/Regeln
+        expiry:
+          description: Falls zutreffend für zeitlich begrenzte Veranstaltungen, Fristen usw.
+        location:
+          description: Maximal 32 Zeichen, Klartext
+          label: Ort (Falls zutreffend für Veranstaltungen usw.)
+          placeholder: New York
+        no_credit: Du benötigst mindestens ein Guthaben, um ein Inserat zu erstellen.
+        organization:
+          description: Das Veröffentlichen im Namen einer Organisation verwendet die Guthaben der Organisation.
+          none: Keine
+        publish: Inserat veröffentlichen
+        purchase: Guthaben kaufen
+        save: Entwurf speichern
+        save_notice: Dir werden keine Guthaben berechnet, um einen Entwurf zu speichern.
+        tags:
+          placeholder: Füge bis zu 8 Tags hinzu...
+        title:
+          placeholder: Maximal 128 Zeichen, Klartext
+      nav:
+        aria_label: Inserate
+        create: Erstellen
+        manage: Verwalten
+      new:
+        meta:
+          title: Neues Inserat
+        heading: Community-Inserat erstellen
+        buy: Mehr kaufen
+        disclaimer:
+          subtitle: Haftungsausschluss
+          description1: "%{community}-Admins können Tags und Kategorien ändern, um die Genauigkeit zu gewährleisten. Wir können auch unangemessene Inserate entfernen und rückerstatten."
+          description2: Inserate laufen 30 Tage nach Veröffentlichung oder Erneuerung ab.
+        organization: Organisations-Guthaben
+        personal: Persönliche Guthaben
+      preview_icon: DEV-Logo
+
+
