@@ -26,6 +26,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
     volumes:
       - forem_uploads:/opt/apps/forem/public/uploads
@@ -58,9 +60,35 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
     volumes:
       - forem_uploads:/opt/apps/forem/public/uploads
+
+  migrate:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: production
+    restart: "no"
+    command: bundle exec rails db:prepare
+    environment:
+      RAILS_ENV: production
+      NODE_ENV: production
+
+      DATABASE_URL: postgresql://forem:${POSTGRES_PASSWORD}@postgres:5432/forem_production
+
+      REDIS_URL: redis://redis:6379/1
+      REDIS_SIDEKIQ_URL: redis://redis:6379/3
+      REDIS_SESSIONS_URL: redis://redis:6379/4
+      REDIS_RPUSH_URL: redis://redis:6379/5
+
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   postgres:
     image: pgvector/pgvector:pg13-bookworm
@@ -81,10 +109,8 @@ services:
   redis:
     image: redis:7.0-alpine
     restart: unless-stopped
-
     volumes:
       - redis_data:/data
-
     healthcheck:
       test:
         [
