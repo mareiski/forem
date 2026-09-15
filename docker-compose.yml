@@ -63,25 +63,20 @@ services:
       - forem_uploads:/opt/apps/forem/public/uploads
 
   postgres:
-    image: pgvector/pgvector:pg13
+    image: pgvector/pgvector:pg13-bookworm
     restart: unless-stopped
     environment:
       POSTGRES_USER: forem
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: test123456789
       POSTGRES_DB: forem_production
-
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "pg_isready -U forem -d forem_production"
-        ]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U forem -d forem_production"]
+      interval: 10s
       timeout: 5s
-      retries: 20
+      retries: 30
+      start_period: 30s
 
   redis:
     image: redis:7.0-alpine
