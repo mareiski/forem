@@ -4,22 +4,31 @@ services:
       context: .
       dockerfile: Containerfile
       target: production
+
     restart: unless-stopped
+
     environment:
       RAILS_ENV: production
       NODE_ENV: production
-      PORT: 3000
-      RAILS_SERVE_STATIC_FILES: "true"
-      RAILS_LOG_TO_STDOUT: "true"
 
-      DATABASE_URL: postgresql://forem:${POSTGRES_PASSWORD}@postgres:5432/forem_production
+      PORT: 3000
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_SERVE_STATIC_FILES: "true"
+
+      APP_DOMAIN: community.roadtrip-planen.de
+      APP_PROTOCOL: https://
+
+      DATABASE_URL: postgresql://forem:${SERVICE_PASSWORD_64_POSTGRES}@postgres:5432/forem_production
 
       REDIS_URL: redis://redis:6379/1
       REDIS_SIDEKIQ_URL: redis://redis:6379/3
       REDIS_SESSIONS_URL: redis://redis:6379/4
       REDIS_RPUSH_URL: redis://redis:6379/5
 
-      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      SECRET_KEY_BASE: ${SERVICE_PASSWORD_64_SECRET}
+      FOREM_OWNER_SECRET: ${SERVICE_PASSWORD_64_OWNER}
+
+      COMMUNITY_NAME: Roadtrip Planen
 
     depends_on:
       postgres:
@@ -33,25 +42,32 @@ services:
     expose:
       - "3000"
 
+
   sidekiq:
     build:
       context: .
       dockerfile: Containerfile
       target: production
+
     restart: unless-stopped
+
     command: bundle exec sidekiq -t 25
+
     environment:
       RAILS_ENV: production
       NODE_ENV: production
 
-      DATABASE_URL: postgresql://forem:${POSTGRES_PASSWORD}@postgres:5432/forem_production
+      DATABASE_URL: postgresql://forem:${SERVICE_PASSWORD_64_POSTGRES}@postgres:5432/forem_production
 
       REDIS_URL: redis://redis:6379/1
       REDIS_SIDEKIQ_URL: redis://redis:6379/3
       REDIS_SESSIONS_URL: redis://redis:6379/4
       REDIS_RPUSH_URL: redis://redis:6379/5
 
-      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      SECRET_KEY_BASE: ${SERVICE_PASSWORD_64_SECRET}
+      FOREM_OWNER_SECRET: ${SERVICE_PASSWORD_64_OWNER}
+
+      COMMUNITY_NAME: Roadtrip Planen
 
     depends_on:
       postgres:
@@ -62,25 +78,41 @@ services:
     volumes:
       - forem_uploads:/opt/apps/forem/public/uploads
 
+
   postgres:
     image: pgvector/pgvector:pg13-bookworm
+
     restart: unless-stopped
+
     environment:
       POSTGRES_USER: forem
-      POSTGRES_PASSWORD: test123456789
+      POSTGRES_PASSWORD: ${SERVICE_PASSWORD_64_POSTGRES}
       POSTGRES_DB: forem_production
+
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U forem -d forem_production"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -h 127.0.0.1 -U forem -d forem_production"
+        ]
       interval: 10s
       timeout: 5s
       retries: 30
       start_period: 30s
 
+
   redis:
     image: redis:7.0-alpine
+
     restart: unless-stopped
+
+    command:
+      - redis-server
+      - --appendonly
+      - yes
 
     volumes:
       - redis_data:/data
@@ -92,9 +124,10 @@ services:
           "redis-cli",
           "ping"
         ]
-      interval: 5s
-      timeout: 3s
-      retries: 20
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
 
 volumes:
   postgres_data:
