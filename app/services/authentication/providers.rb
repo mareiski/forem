@@ -50,7 +50,9 @@ module Authentication
     def self.enabled
       return [] if ForemInstance.invitation_only?
 
-      Settings::Authentication.providers.map(&:to_sym)
+      providers = Settings::Authentication.providers.map(&:to_sym)
+      providers << :firebase if Settings::Authentication.firebase_only?
+      providers.uniq
     end
 
     def self.enabled_for_user(user)

@@ -5,7 +5,7 @@ class RegistrationPolicy
   end
 
   def create?
-    email_registrable?
+    !Settings::Authentication.firebase_only? && email_registrable?
   end
 
   private

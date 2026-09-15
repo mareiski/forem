@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     return redirect_to root_path(signin: "true") if user_signed_in?
+    return redirect_to root_path if Settings::Authentication.firebase_only?
 
     if URI(request.referer || "").host == URI(request.base_url).host
       store_location_for(:user, request.referer)

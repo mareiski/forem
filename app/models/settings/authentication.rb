@@ -19,6 +19,7 @@ module Settings
     setting :display_email_domain_allow_list_publicly, type: :boolean, default: false
     setting :facebook_key, type: :string
     setting :facebook_secret, type: :string
+    setting :firebase_project_id, type: :string, default: ApplicationConfig["FIREBASE_PROJECT_ID"]
     setting :forem_key, type: :string
     setting :forem_secret, type: :string
     setting :github_key, type: :string, default: ApplicationConfig["GITHUB_KEY"]
@@ -74,6 +75,10 @@ module Settings
 
     def self.limit_new_users?
       new_user_status == "limited"
+    end
+
+    def self.firebase_only?
+      firebase_project_id.present?
     end
   end
 end

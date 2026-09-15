@@ -12,6 +12,18 @@ RSpec.describe "Registrations" do
   end
 
   describe "Log In" do
+    context "when Firebase authentication is configured" do
+      before do
+        allow(Settings::Authentication).to receive(:firebase_project_id).and_return("roundtrips4you-2")
+      end
+
+      it "does not expose direct Forem registration" do
+        get sign_up_path, params: { state: "new-user" }
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context "when not logged in" do
       it "shows the sign in page with single sign on options" do
         get sign_up_path
