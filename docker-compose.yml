@@ -1,4 +1,11 @@
 services:
+  fix_upload_permissions:
+    image: alpine:3.20
+    restart: "no"
+    user: "0:0"
+    command: sh -c "mkdir -p /uploads/tmp && chown -R 1000:1000 /uploads"
+    volumes:
+      - forem_uploads:/uploads
   web:
     build:
       context: .
@@ -27,6 +34,8 @@ services:
       redis:
         condition: service_healthy
       migrate:
+        condition: service_completed_successfully
+      fix_upload_permissions:
         condition: service_completed_successfully
 
     volumes:
@@ -62,7 +71,8 @@ services:
         condition: service_healthy
       migrate:
         condition: service_completed_successfully
-
+      fix_upload_permissions:
+        condition: service_completed_successfully
     volumes:
       - forem_uploads:/opt/apps/forem/public/uploads
 
