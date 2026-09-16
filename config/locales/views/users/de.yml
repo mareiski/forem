@@ -73,12 +73,12 @@ de:
           title: Abmeldung bestätigen - %{community}
         heading: Möchtest du dich wirklich abmelden?
         'yes': Ja, abmelden
-      block: @%{user} blockieren
+      block: User @%{user} blockieren
       details: "%{user} Profildetails"
       dropdown: Benutzeraktionen
       email_icon: E-Mail-Adresse
       empty: 404 Bio nicht gefunden
-      flag: @%{user} melden
+      flag: User @%{user} melden
       follow: Folgen
       joined:
         icon: Beigetreten
@@ -91,8 +91,8 @@ de:
         notice_html: Alle privaten Interaktionen <b>müssen</b> die %{code} einhalten.
         placeholder: Gib hier deine Nachricht ein...
         submit: Senden
-      spam: @%{user} als Spam markieren
+      spam: User @%{user} als Spam markieren
       social: "%{service} Website"
-      unflag: @%{user} Melde-Sperre aufheben
-      unspam: @%{user} in gutem Standing setzen
+      unflag: User @%{user} Melde-Sperre aufheben
+      unspam: User @%{user} in gutem Standing setzen
       website: Persönliche Website
