@@ -28,7 +28,7 @@ RSpec.describe "Api::V0::FirebaseAuth", type: :request do
 
   it "creates a Forem user, identity, and session" do
     expect do
-      post "/api/v0/auth/firebase_exchange", headers: headers
+      post "/api/auth/firebase_exchange", headers: headers
     end.to change(User, :count).by(1).and change(Identity, :count).by(1)
 
     expect(response).to have_http_status(:ok)

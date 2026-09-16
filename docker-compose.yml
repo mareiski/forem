@@ -18,6 +18,12 @@ services:
       PORT: 3000
       RAILS_SERVE_STATIC_FILES: "true"
       RAILS_LOG_TO_STDOUT: "true"
+      APP_DOMAIN: ${APP_DOMAIN}
+      APP_PROTOCOL: ${APP_PROTOCOL}
+      FASTLY_CDN_URL: ${APP_PROTOCOL}${APP_DOMAIN}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID}
+      FIREBASE_AUTH_ORIGIN: ${FIREBASE_AUTH_ORIGIN}
 
       DATABASE_URL: postgresql://forem:${POSTGRES_PASSWORD}@postgres:5432/forem_production
 
@@ -44,6 +50,9 @@ services:
     expose:
       - "3000"
 
+    ports:
+     - "8000:3000"
+
   sidekiq:
     build:
       context: .
@@ -61,6 +70,10 @@ services:
       REDIS_SIDEKIQ_URL: redis://redis:6379/3
       REDIS_SESSIONS_URL: redis://redis:6379/4
       REDIS_RPUSH_URL: redis://redis:6379/5
+      APP_DOMAIN: ${APP_DOMAIN}
+      APP_PROTOCOL: ${APP_PROTOCOL}
+      FASTLY_CDN_URL: ${APP_PROTOCOL}${APP_DOMAIN}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
 
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
 
@@ -93,6 +106,7 @@ services:
       REDIS_SIDEKIQ_URL: redis://redis:6379/3
       REDIS_SESSIONS_URL: redis://redis:6379/4
       REDIS_RPUSH_URL: redis://redis:6379/5
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
 
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
 

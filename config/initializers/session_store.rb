@@ -1,5 +1,25 @@
 # Be sure to restart your server when you modify this file.
 
+require "ipaddr"
+
+module LocalSessionCookieDomain
+  private
+
+  def set_cookie(env, session_id, cookie)
+    host = env["HTTP_HOST"].to_s.split(":").first
+    cookie.delete(:domain) if host.blank? || host == "localhost" || local_ip?(host)
+    super
+  end
+
+  def local_ip?(host)
+    IPAddr.new(host).to_s == host
+  rescue IPAddr::InvalidAddressError
+    false
+  end
+end
+
+ActionDispatch::Session::RedisStore.prepend(LocalSessionCookieDomain)
+
 # we want a default in case the expiration is not set or set to 0
 # because 0 is an invalid value
 app_config_expires_after = ApplicationConfig["SESSION_EXPIRY_SECONDS"].to_i
@@ -17,7 +37,19 @@ if Rails.env.development?
   end
 end
 
-domain = Rails.env.production? ? ApplicationConfig["APP_DOMAIN"] : nil
+domain = nil
+if Rails.env.production?
+  configured_domain = ApplicationConfig["APP_DOMAIN"].to_s.split(":").first
+  local_host = configured_domain.blank? || configured_domain == "localhost"
+
+  begin
+    local_host ||= IPAddr.new(configured_domain).to_s == configured_domain
+  rescue IPAddr::InvalidAddressError
+    # Hostnames are expected here; only IP addresses need special handling.
+  end
+
+  domain = configured_domain unless local_host
+end
 
 begin
   parsed = PublicSuffix.parse(domain, default_rule: nil)
