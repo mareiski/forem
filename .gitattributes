@@ -1,4 +1,6 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
+*.sh text eol=lf
+scripts/* text eol=lf
 * text=auto
 
 *.rb   diff=ruby
