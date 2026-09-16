@@ -1,4 +1,4 @@
-﻿---
+---
 de:
   liquid_tags:
     invalid_url_scheme: "Invalid URL for '%{option}': only http and https URLs are allowed"

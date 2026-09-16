@@ -1,4 +1,4 @@
-﻿---
+---
 de:
   api_secrets_controller:
     generated: 'Ihr API-SchlÃ¼ssel wurde generiert:  %{secret}'
