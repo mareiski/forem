@@ -128,9 +128,9 @@ de:
           hide_text: Ausblenden
           unhide_text: Einblenden
         moderate:
-          aria_label: %{user}s Kommentar moderieren
+          aria_label: Kommentar von %{user} moderieren
         report:
-          aria_label: %{user}s Kommentar als Missbrauch oder Verstoß gegen unsere Verhaltensregeln und/oder Nutzungsbedingungen melden
+          aria_label: Kommentar von %{user} als Missbrauch oder Verstoß gegen unsere Verhaltensregeln und/oder Nutzungsbedingungen melden
       footer:
         heart:
           aria_label: Gefällt mir

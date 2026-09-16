@@ -17,7 +17,7 @@ de:
         placeholder: Nach Tag suchen
       edit:
         meta:
-          title: %{tag} bearbeiten
+          title: Tag %{tag} bearbeiten
         admin: "Admin"
         help: "Hilfe"
         view: "Anzeigen"
