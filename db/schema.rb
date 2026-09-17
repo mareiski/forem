@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_09_03_120001) do
+ActiveRecord::Schema[8.0].define(version: 2026_09_15_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "ltree"
@@ -2075,6 +2075,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_09_03_120001) do
     t.integer "unspent_credits_count", default: 0, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "username"
+    t.string "firebase_username"
     t.index "to_tsvector('simple'::regconfig, COALESCE((name)::text, ''::text))", name: "index_users_on_name_as_tsvector", using: :gin
     t.index "to_tsvector('simple'::regconfig, COALESCE((username)::text, ''::text))", name: "index_users_on_username_as_tsvector", using: :gin
     t.index ["apple_username"], name: "index_users_on_apple_username"
@@ -2086,6 +2087,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_09_03_120001) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["facebook_username"], name: "index_users_on_facebook_username"
     t.index ["feed_fetched_at"], name: "index_users_on_feed_fetched_at"
+    t.index ["firebase_username"], name: "index_users_on_firebase_username", unique: true
     t.index ["github_username"], name: "index_users_on_github_username", unique: true
     t.index ["google_oauth2_username"], name: "index_users_on_google_oauth2_username"
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true

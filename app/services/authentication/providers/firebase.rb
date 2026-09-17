@@ -23,8 +23,7 @@ module Authentication
         {
           name: info.name.presence || info.email.split("@").first,
           email: info.email,
-          remote_profile_image_url: Images::SafeRemoteProfileImageUrl.call(info.image),
-          firebase_username: user_nickname,
+          firebase_username: user_nickname
         }
       end
 
@@ -32,7 +31,9 @@ module Authentication
         { firebase_username: user_nickname }
       end
 
-      delegate :user_nickname, to: :info
+      def user_nickname
+        "firebase_#{Digest::SHA256.hexdigest(auth_payload.uid.to_s)[0, 20]}"
+      end
 
       protected
 

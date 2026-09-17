@@ -50,8 +50,7 @@ module Api
 
       def set_cors_headers
         origin = request.headers["Origin"]
-        return unless origin.present? && origin == ApplicationConfig["FIREBASE_AUTH_ORIGIN"]
-          return unless allowed_origin?(origin)
+        return unless allowed_origin?(origin)
 
         response.headers["Access-Control-Allow-Origin"] = origin
         response.headers["Access-Control-Allow-Credentials"] = "true"
@@ -62,15 +61,13 @@ module Api
 
       def reject_disallowed_origin
         origin = request.headers["Origin"]
-        return if origin.blank? || origin == ApplicationConfig["FIREBASE_AUTH_ORIGIN"]
-          return if origin.blank? || allowed_origin?(origin)
+        return if origin.blank? || allowed_origin?(origin)
 
         render json: { error: "Origin not allowed" }, status: :forbidden
-          render json: { error: "Origin not allowed" }, status: :forbidden
-        end
+      end
 
-        def allowed_origin?(origin)
-          origin.present? && ApplicationConfig["FIREBASE_AUTH_ORIGIN"].to_s.split(",").map(&:strip).include?(origin)
+      def allowed_origin?(origin)
+        origin.present? && ApplicationConfig["FIREBASE_AUTH_ORIGIN"].to_s.split(",").map(&:strip).include?(origin)
       end
     end
   end

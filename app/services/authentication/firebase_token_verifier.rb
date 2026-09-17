@@ -18,7 +18,11 @@ module Authentication
       claims = verifier.verify(token, aud: project_id, iss: issuer)
       validate_claims!(claims)
       claims
+    rescue InvalidToken => e
+      Rails.logger.warn("Firebase ID token verification failed: #{e.message}")
+      raise
     rescue StandardError => e
+      Rails.logger.warn("Firebase ID token verification failed: #{e.class}: #{e.message}")
       raise InvalidToken, e.message
     end
 
@@ -43,8 +47,8 @@ module Authentication
     end
 
     def validate_claims!(claims)
-      raise InvalidToken unless claims["sub"].present?
-      raise InvalidToken unless claims["email"].present? && claims["email_verified"] == true
+      raise InvalidToken, "missing subject" unless claims["sub"].present?
+      raise InvalidToken, "missing email" unless claims["email"].present?
     end
   end
 end

@@ -14,6 +14,7 @@ require "action_view/railtie"
 # require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require_relative "../app/lib/middlewares/firebase_cors"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -107,6 +108,7 @@ module PracticalDeveloper
     config.eager_load_paths += Dir["#{config.root}/lib"]
 
     config.middleware.use Rack::Deflater unless Rails.env.development?
+    config.middleware.insert_before 0, ::Middlewares::FirebaseCors
 
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml")]
 

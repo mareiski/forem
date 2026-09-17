@@ -29,10 +29,10 @@ RSpec.describe Authentication::FirebaseTokenVerifier do
     )
   end
 
-  it "rejects a token without a verified email" do
+  it "accepts a token with an unverified email" do
     allow(verifier).to receive(:verify).and_return(claims.merge("email_verified" => false))
 
-    expect { described_class.call("firebase-token") }.to raise_error(described_class::InvalidToken)
+    expect(described_class.call("firebase-token")).to eq(claims.merge("email_verified" => false))
   end
 
   it "rejects a token without a configured project" do

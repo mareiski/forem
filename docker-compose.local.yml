@@ -1,0 +1,128 @@
+x-app: &app
+  build:
+    target: development
+    context: .
+    args:
+      PG_MAJOR: '13'
+  image: forem-local-dev
+  environment: &env
+    NODE_ENV: development
+    RAILS_ENV: development
+    FIREBASE_AUTH_URL: http://localhost:8080
+  tmpfs:
+    - /tmp
+    - /app/tmp/pids
+
+x-backend: &backend
+  <<: *app
+  stdin_open: true
+  tty: true
+  volumes:
+    - .:/app:cached
+    - bundle:/usr/local/bundle
+    - node_modules:/app/node_modules
+    - rails_cache:/app/tmp/cache
+    - assets:/app/public/assets
+    - builds:/app/public/builds
+  environment: &backend_environment
+    <<: *env
+    CHROME_URL: http://chrome:3333
+    PORT: "8000"
+    URL_PORT: ""
+    REDIS_URL: redis://redis:6379/1
+    REDIS_SIDEKIQ_URL: redis://redis:6379/3
+    REDIS_SESSIONS_URL: redis://redis:6379/4
+    REDIS_RPUSH_URL: redis://redis:6379/5
+    DATABASE_URL: postgres://forem:postgres@postgres:5432/forem_development
+    DATABASE_URL_TEST: postgres://forem:postgres@postgres:5432/forem_test
+    MALLOC_ARENA_MAX: 2
+    WEB_CONCURRENCY: 1
+    BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
+    XDG_DATA_HOME: /app/tmp/cache
+    YARN_CACHE_FOLDER: /app/node_modules/.yarn-cache
+
+services:
+  setup:
+    <<: *backend
+    command: bash -c 'bundle install && yarn install && bundle exec ruby -e "sleep 30" && bundle exec rails db:prepare'
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  web:
+    <<: *backend
+    command: bundle exec rails server -b 0.0.0.0 -p 8000
+    environment:
+      <<: *backend_environment
+      FIREBASE_PROJECT_ID: roundtrips4you-2
+      FIREBASE_AUTH_ORIGIN: http://localhost:8080
+      FIREBASE_AUTH_URL: http://localhost:8080
+    ports:
+      - "8000:8000"
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+
+  sidekiq:
+    <<: *backend
+    command: bundle exec sidekiq
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+
+  esbuild:
+    <<: *app
+    command: yarn build --watch
+    volumes:
+      - .:/app:cached
+      - node_modules:/app/node_modules
+      - builds:/app/public/builds
+    environment:
+      <<: *env
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+      YARN_CACHE_FOLDER: /app/node_modules/.yarn-cache
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+
+  postgres:
+    image: pgvector/pgvector:pg13
+    environment:
+      POSTGRES_USER: forem
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: forem_development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forem -d forem_development"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 60s
+
+  redis:
+    image: redis:7.0-alpine
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    command: redis-server --protected-mode no
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres_data:
+  redis_data:
+  bundle:
+  node_modules:
+  rails_cache:
+  assets:
+  builds:

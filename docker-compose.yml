@@ -50,9 +50,6 @@ services:
     expose:
       - "3000"
 
-    ports:
-     - "8000:3000"
-
   sidekiq:
     build:
       context: .

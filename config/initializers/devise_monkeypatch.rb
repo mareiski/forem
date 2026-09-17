@@ -43,7 +43,7 @@ module Devise
       end
 
       def normalized_cookie_domain(domain)
-        self.class.normalized_cookie_domain(domain)
+        Devise::Controllers::Rememberable.normalized_cookie_domain(domain)
       end
     end
   end
