@@ -34,6 +34,7 @@ RSpec.describe "Api::V0::FirebaseAuth", type: :request do
     expect(response).to have_http_status(:ok)
     expect(response.headers["Access-Control-Allow-Origin"]).to eq(origin)
     expect(response.cookies).to include("remember_user_token")
+    expect(JSON.parse(response.body)).to include("csrf_token" => be_present)
 
     identity = Identity.find_by!(provider: "firebase", uid: "firebase-user-1")
     expect(identity.user.email).to eq("firebase@example.com")

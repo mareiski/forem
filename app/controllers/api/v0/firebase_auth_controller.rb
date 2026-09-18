@@ -24,7 +24,10 @@ module Api
         user.update_tracked_fields!(request)
         bypass_sign_in(user)
 
-        render json: { user: { id: user.id, email: user.email } }, status: :ok
+        render json: {
+          user: { id: user.id, email: user.email },
+          csrf_token: form_authenticity_token,
+        }, status: :ok
       rescue ::Authentication::FirebaseTokenVerifier::InvalidToken
         render json: { error: "Invalid Firebase token" }, status: :unauthorized
       rescue ::Authentication::Errors::ProviderNotEnabled, ::Authentication::Errors::ProviderNotFound
