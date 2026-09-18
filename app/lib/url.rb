@@ -32,7 +32,7 @@ module URL
   private_class_method :has_site_configs?
 
   def self.domain(domain_or_subforem = nil)
-    if domain_or_subforem
+    domain = if domain_or_subforem
       # Accept either a Subforem object or a domain string
       domain_or_subforem.is_a?(String) ? domain_or_subforem : domain_or_subforem.domain
     elsif database_available?
@@ -40,7 +40,20 @@ module URL
     else
       ApplicationConfig["APP_DOMAIN"]
     end
+
+    normalize_domain(domain)
   end
+
+  def self.normalize_domain(domain)
+    value = domain.to_s.strip
+    return value unless value.match?(%r{\Ahttps?://}i)
+
+    parsed = Addressable::URI.parse(value)
+    parsed.host.to_s + (parsed.port ? ":#{parsed.port}" : "")
+  rescue Addressable::URI::InvalidURIError
+    value
+  end
+  private_class_method :normalize_domain
 
   def self.url(uri = nil, domain_or_subforem = nil)
     base_url = "#{protocol}#{domain(domain_or_subforem)}"

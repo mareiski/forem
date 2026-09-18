@@ -57,6 +57,10 @@ RSpec.describe URL, type: :lib do
       it "returns the domain string" do
         expect(described_class.domain("subdomain.example.com")).to eq("subdomain.example.com")
       end
+
+      it "extracts the host from a full URL" do
+        expect(described_class.domain("https://subdomain.example.com/path")).to eq("subdomain.example.com")
+      end
     end
 
     context "when passed a Subforem object" do
