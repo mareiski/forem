@@ -121,6 +121,8 @@ function setCurrentUserToNavBar(user) {
 
 function initializeBaseUserData() {
   const user = userData();
+  if (!user) return;
+
   setCurrentUserToNavBar(user);
   initializeProfileImage(user);
   addRelevantButtonsToArticle(user);

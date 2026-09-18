@@ -1,7 +1,7 @@
 <div class="registration__actions-providers">
   <% authentication_enabled_providers.each do |provider| %>
     <% next unless display_social_login?(provider.provider_name) %>
-    <% firebase_login_url = ApplicationConfig["FIREBASE_AUTH_URL"] || ApplicationConfig["FIREBASE_AUTH_ORIGIN"] %>
+    <% firebase_login_url = ApplicationConfig["FIREBASE_AUTH_ORIGIN"] %>
     <% if provider.provider_name == :firebase && firebase_login_url.present? %>
       <a href="<%= firebase_login_url %>?return_to=<%= CGI.escape(request.original_url) %>"
         class="flex w-100 p-3 radius-default items-center bg-base-inverted registration__button-container brand-firebase">

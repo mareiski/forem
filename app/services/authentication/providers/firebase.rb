@@ -12,7 +12,7 @@ module Authentication
       end
 
       def self.sign_in_path(**_kwargs)
-        "/api/v0/auth/firebase_exchange"
+        ApplicationConfig["FIREBASE_AUTH_ORIGIN"]
       end
 
       def self.user_username_field

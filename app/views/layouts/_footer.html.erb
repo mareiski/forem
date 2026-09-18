@@ -30,6 +30,9 @@
     </ul>
 
     <div class="fs-s">
+      <% if Settings::Authentication.firebase_only? && !user_signed_in? %>
+        <p><%= link_to t("views.auth.sign_in"), new_user_session_path, class: "c-link c-link--branded" %></p>
+      <% end %>
       <%# The following copy is necessary for compatibility with the Forem AGPL licence which requires instances to link back to the source. %>
       <p><%= t("views.main.footer.built.text_html",
                forem: link_to(t("views.main.footer.built.forem"), "https://www.forem.com", class: "c-link c-link--branded", target: "_blank", rel: "noopener"),
