@@ -305,7 +305,7 @@ module Html
       username = mention.delete("@").downcase
       if User.find_by(username: username)
         <<~HTML.chomp
-          <a class='mentioned-user' href='#{ApplicationConfig['APP_PROTOCOL']}#{Settings::General.app_domain}/#{username}'>@#{username}</a>
+          <a class='mentioned-user' href='#{URL.url("/#{username}")}'>@#{username}</a>
         HTML
       else
         mention

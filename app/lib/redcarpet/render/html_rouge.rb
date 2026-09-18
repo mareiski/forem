@@ -59,7 +59,7 @@ module Redcarpet
           elsif link.start_with?("#")
             %(<a href="#{link}"#{link_attributes}>#{content}</a>)
           else
-            %(<a href="#{app_protocol}#{app_domain}#{link}"#{link_attributes}>#{content}</a>)
+            %(<a href="#{URL.url(link)}"#{link_attributes}>#{content}</a>)
           end
         end
       end
@@ -92,14 +92,6 @@ module Redcarpet
       rescue StandardError => e
         Rails.logger.error("Mermaid block rendering failed: #{e.class}: #{e.message}")
         nil
-      end
-
-      def app_protocol
-        ApplicationConfig["APP_PROTOCOL"]
-      end
-
-      def app_domain
-        Settings::General.app_domain
       end
 
       def slugify(string)

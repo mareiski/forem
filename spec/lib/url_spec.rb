@@ -12,6 +12,26 @@ RSpec.describe URL, type: :lib do
     it "returns the value of APP_PROTOCOL env variable" do
       expect(described_class.protocol).to eq(ApplicationConfig["APP_PROTOCOL"])
     end
+
+    it "normalizes protocol when it includes a domain" do
+      allow(ApplicationConfig).to receive(:[]).with("APP_PROTOCOL").and_return("https://community.example.com")
+      expect(described_class.protocol).to eq("https://")
+    end
+
+    it "normalizes protocol when it includes a domain with http" do
+      allow(ApplicationConfig).to receive(:[]).with("APP_PROTOCOL").and_return("http://community.example.com")
+      expect(described_class.protocol).to eq("http://")
+    end
+
+    it "returns protocol as-is when it's just a protocol" do
+      allow(ApplicationConfig).to receive(:[]).with("APP_PROTOCOL").and_return("https://")
+      expect(described_class.protocol).to eq("https://")
+    end
+
+    it "returns protocol as-is when it doesn't match http/https" do
+      allow(ApplicationConfig).to receive(:[]).with("APP_PROTOCOL").and_return("custom://")
+      expect(described_class.protocol).to eq("custom://")
+    end
   end
 
   describe ".dev_port" do
@@ -75,6 +95,13 @@ RSpec.describe URL, type: :lib do
   describe ".url" do
     it "creates the correct base app URL" do
       expect(described_class.url).to eq("https://dev.to")
+    end
+
+    it "handles APP_PROTOCOL with full domain without doubling hostname" do
+      allow(ApplicationConfig).to receive(:[]).with("APP_PROTOCOL").and_return("https://community.example.com")
+      allow(ApplicationConfig).to receive(:[]).with("APP_DOMAIN").and_return("community.example.com")
+      allow(Settings::General).to receive(:app_domain).and_return("community.example.com")
+      expect(described_class.url).to eq("https://community.example.com")
     end
 
     it "creates a URL with a path" do

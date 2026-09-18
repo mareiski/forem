@@ -1,8 +1,23 @@
 # Utilities methods to safely build app wide URLs
 module URL
   def self.protocol
-    ApplicationConfig["APP_PROTOCOL"]
+    normalize_protocol(ApplicationConfig["APP_PROTOCOL"])
   end
+
+  def self.normalize_protocol(protocol)
+    return protocol unless protocol.to_s.match?(%r{\Ahttps?://}i)
+
+    # If protocol includes a domain (e.g., "https://community.example.com"),
+    # extract just the protocol part to avoid double hostname in URL construction
+    parsed = Addressable::URI.parse(protocol)
+    return protocol unless parsed.host
+
+    # Return just the scheme with ://
+    "#{parsed.scheme}://"
+  rescue Addressable::URI::InvalidURIError
+    protocol
+  end
+  private_class_method :normalize_protocol
 
   # Port appended to URLs in the development environment. Defaults to "3000"
   # to preserve historical behavior, but can be overridden by setting the

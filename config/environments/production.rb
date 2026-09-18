@@ -122,6 +122,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = false
+  # Normalize protocol to ensure it's just the scheme (http:// or https://) without domain
+  # to avoid double hostname when concatenated with APP_DOMAIN
+  if protocol.match?(%r{\Ahttps?://[^/]+}) # Has protocol and a host
+    # Extract just the protocol part
+    protocol = protocol.match(%r{\A(https?://)})[1]
+  end
   config.action_mailer.default_url_options = { host: protocol + ENV["APP_DOMAIN"].to_s }
 
   if ENV["HEROKU_APP_URL"].present? && ENV["HEROKU_APP_URL"] != ENV["APP_DOMAIN"]
@@ -153,5 +159,7 @@ end
 # rubocop:enable Metrics/BlockLength
 
 Rails.application.routes.default_url_options = {
-  protocol: ENV.fetch("APP_PROTOCOL", "http://").delete_suffix("://")
+  # Extract protocol scheme, handling cases where APP_PROTOCOL might include a domain
+  # If APP_PROTOCOL is "https://community.example.com", extract just "https"
+  protocol: ENV.fetch("APP_PROTOCOL", "http://").split("://").first
 }
