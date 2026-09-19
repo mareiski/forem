@@ -11,8 +11,14 @@ module Middlewares
     def call(env)
       host = env["HTTP_HOST"].to_s.split(":").first
       env["rack.session.options"][:domain] = cookie_domain(host)
+      env["rack.session.options"][:secure] = https_request?(env)
 
       @app.call(env)
+    end
+
+    def https_request?(env)
+      env["HTTP_X_FORWARDED_PROTO"].to_s.split(",").first.strip == "https" ||
+        env["rack.url_scheme"] == "https"
     end
 
     def cookie_domain(host)
