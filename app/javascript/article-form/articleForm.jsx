@@ -596,19 +596,19 @@ export class ArticleForm extends Component {
         {this.state.isModalOpen && (
           <Modal
             size="s"
-            title="You have unsaved changes"
+            title="Du hast ungespeicherte Änderungen"
             onClose={() => this.showModal(false)}
           >
             <p>
-              You've made changes to your post. Do you want to navigate to leave
-              this page?
+              Du hast Änderungen an deinem Beitrag vorgenommen. Möchtest du die
+              Seite verlassen?
             </p>
             <div className="pt-4">
               <Button className="mr-2" variant="danger" url="/" tagName="a">
-                Yes, leave the page
+                Ja, Seite verlassen
               </Button>
               <Button variant="secondary" onClick={() => this.showModal(false)}>
-                No, keep editing
+                Nein, weiter bearbeiten
               </Button>
             </div>
           </Modal>

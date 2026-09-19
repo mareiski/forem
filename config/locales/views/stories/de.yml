@@ -3,59 +3,57 @@ de:
   views:
     stories:
       meta:
-        description_tagged: "%{tag} content on %{name}"
-        page: " Page %{page}"
-        rss: "%{name} RSS Feed"
-      status_placeholder: "What's on your mind?"
-      status_expanded_placeholder: "Anything to add?"
-      submit: "Post"
-      status_hint_html: "<strong>Quickie Posts</strong> show up in the feed but not notifications or your profile â€” <a href='/new'>Open Full Editor</a>"
-      heading: Posts
-      discuss: "#discuss"
-      follow: Follow
+        description_tagged: "%{tag}-Inhalte auf %{name}"
+        page: " Seite %{page}"
+        rss: "%{name} RSS-Feed"
+      status_placeholder: "Was geht dir durch den Kopf?"
+      status_expanded_placeholder: "Etwas hinzuzufügen?"
+      submit: "Veröffentlichen"
+      status_hint_html: "<strong>Kurze Beiträge</strong> werden im Feed angezeigt, aber nicht in Benachrichtigungen oder auf deinem Profil — <a href='/new'>Vollständigen Editor öffnen</a>"
+      heading: Beiträge
+      discuss: "#diskutieren"
+      follow: Folgen
       menu:
-        aria_left: nav-button-left
-        aria_right: nav-button-right
+        aria_left: nav-button-links
+        aria_right: nav-button-rechts
       sort:
-        aria_label: View posts by
-        aria_tagged: View tagged posts by
-        relevant: Relevant
-        week: Week
-        month: Month
-        year: Year
-        infinity: Infinity
-        latest: Latest
-        latest_less_filtered: Latest (Less filtered)
-        signin_html: "ðŸ‘‹ <a href=\"%{path}\">Sign in</a> for the ability to sort posts by <strong>relevant</strong>, <strong>latest</strong>, or <strong>top</strong>."
+        aria_label: Beiträge sortieren nach
+        aria_tagged: Markierte Beiträge sortieren nach
+        relevant: Relevanz
+        week: Woche
+        month: Monat
+        year: Jahr
+        infinity: Alle Zeiten
+        latest: Neueste
+        latest_less_filtered: "Neueste (weniger gefiltert)"
+        signin_html: "👋 <a href=\"%{path}\">Anmelden</a>, um Beiträge nach <strong>Relevanz</strong>, <strong>Neuesten</strong> oder <strong>Top</strong> zu sortieren."
         top: Top
       feed:
-        discover: Discover
-        following: Following
-        curated: Curated
-        top_this_week: Top this week
-        top_this_month: Top this month
-        top_this_year: Top this year
-        top_this_infinity: Top of all time
+        discover: Entdecken
+        following: Gefolgte
+        curated: Empfohlen
+        top_this_week: Top dieser Woche
+        top_this_month: Top dieses Monats
+        top_this_year: Top dieses Jahres
+        top_this_infinity: Top aller Zeiten
         no_results:
           discover:
-            title: "No posts found"
-            description: "Check back later for or make your own post!"
-            action_text: "Create Post"
+            title: "Keine Beiträge gefunden"
+            description: "Komm später zurück oder erstelle einen eigenen Beitrag!"
+            action_text: "Beitrag erstellen"
             action_href: "/new"
           following:
-            title: "No posts from people you follow"
-            description: "Follow some members to see their latest posts in your feed."
-            action_text: "Back to discover tab"
+            title: "Keine Beiträge von Personen, denen du folgst"
+            description: "Folge einigen Mitgliedern, um ihre neuesten Beiträge in deinem Feed zu sehen."
+            action_text: "Zurück zum Entdecken-Tab"
             action_href: "/discover"
           curated:
-            title: "No curated posts found"
-            description: "Check back later to see posts favorited by the community!"
-            action_text: "Back to discover tab"
+            title: "Keine empfohlenen Beiträge gefunden"
+            description: "Komm später zurück, um von der Community ausgewählte Beiträge zu sehen!"
+            action_text: "Zurück zum Entdecken-Tab"
             action_href: "/discover"
           default:
-            title: "No posts found"
-            description: "Check back later for ore make your own post!"
-            action_text: "Create Post"
+            title: "Keine Beiträge gefunden"
+            description: "Komm später zurück oder erstelle einen eigenen Beitrag!"
+            action_text: "Beitrag erstellen"
             action_href: "/new"
-
-

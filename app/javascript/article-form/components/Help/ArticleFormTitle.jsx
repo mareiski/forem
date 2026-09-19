@@ -5,15 +5,16 @@ export const ArticleFormTitle = () => (
     data-testid="title-help"
     className="crayons-article-form__help crayons-article-form__help--title"
   >
-    <h4 className="mb-2 fs-l">Writing a Great Post Title</h4>
+    <h4 className="mb-2 fs-l">Einen großartigen Beitragstitel schreiben</h4>
     <ul className="list-disc pl-6 color-base-70">
       <li>
-        Think of your post title as a super short (but compelling!) description
-        — like an overview of the actual post in one short sentence.
+        Stell dir deinen Beitragstitel als eine sehr kurze (aber fesselnde!)
+        Beschreibung vor — wie eine Übersicht über den eigentlichen Beitrag in
+        einem kurzen Satz.
       </li>
       <li>
-        Use keywords where appropriate to help ensure people can find your post
-        by search.
+        Verwende bei Bedarf passende Schlüsselwörter, damit Leute deinen Beitrag
+        über die Suche finden können.
       </li>
     </ul>
   </div>

@@ -475,7 +475,7 @@ export const ArticleCoverImage = ({ onMainImageUrlChange, mainImage, coverImageH
   const extraProps = useNativeUpload()
     ? {
         onClick: initNativeImagePicker,
-        'aria-label': 'Upload cover image',
+        'aria-label': 'Titelbild hochladen',
       }
     : {};
 

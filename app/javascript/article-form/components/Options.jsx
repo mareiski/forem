@@ -215,16 +215,16 @@ export const Options = ({
         id="post-options-btn"
         variant="ghost"
         icon={CogIcon}
-        title="Advanced Post options"
-        aria-label="Advanced Post options"
+        title="Erweiterte Beitragsoptionen"
+        aria-label="Erweiterte Beitragsoptionen"
         disabled={previewLoading}
         onClick={() => setIsOptionsModalOpen(true)}
       >
-        <span className="hidden xl:inline-block ml-1">Advanced Options</span>
+        <span className="hidden xl:inline-block ml-1">Erweiterte Optionen</span>
       </Button>
       {isOptionsModalOpen && (
         <Modal
-          title="Advanced Post Options"
+          title="Erweiterte Beitragsoptionen"
           onClose={handleModalClose}
           size="large"
           backdropDismissible

@@ -5,19 +5,19 @@ export const TagInput = () => (
     data-testid="basic-tag-input-help"
     className="crayons-article-form__help crayons-article-form__help--tags"
   >
-    <h4 className="mb-2 fs-l">Tagging Guidelines</h4>
+    <h4 className="mb-2 fs-l">Richtlinien für Tags</h4>
     <ul className="list-disc pl-6 color-base-70">
       <li>
-        Tags help people find your post - think of them as the topics or
-        categories that best describe your post.
+        Tags helfen Leuten, deinen Beitrag zu finden – betrachte sie als Themen
+        oder Kategorien, die deinen Beitrag am besten beschreiben.
       </li>
       <li>
-        Add up to four comma-separated tags per post. Use existing tags whenever
-        possible.
+        Füge bis zu vier durch Kommas getrennte Tags pro Beitrag hinzu. Verwende
+        möglichst bestehende Tags.
       </li>
       <li>
-        Some tags have special posting guidelines - double check to make sure
-        your post complies with them.
+        Einige Tags haben spezielle Richtlinien für Beiträge – überprüfe genau,
+        ob dein Beitrag diesen entspricht.
       </li>
     </ul>
   </div>

@@ -3,35 +3,35 @@ de:
   views:
     editor:
       meta:
-        title: Edit Post
+        title: Beitrag bearbeiten
       heading:
-        new: New Post
-      create: Create Post
+        new: Neuer Beitrag
+      create: Beitrag erstellen
       close:
-        icon: Close
-        title: Close the editor
+        icon: Schließen
+        title: Editor schließen
       cover_image:
-        add: Upload Cover Image
-        change: Change
+        add: Titelbild hochladen
+        change: Ändern
       cover_video_link:
-        add: Cover Video Link
-        change: Change Video Link
-      edit: Edit
-      modes: View post modes
-      new_title: New post title here...
-      preview: Preview
+        add: Video-Link für Titelbild
+        change: Video-Link ändern
+      edit: Bearbeiten
+      modes: Beitragsansichten
+      new_title: Neuer Beitragstitel hier...
+      preview: Vorschau
       ai_helper:
         sidecar_title: "%{community_name} Buddy"
         title: "%{community_name} Buddy"
-        greeting: "Hello! I am your writing assistant. I know %{community_name} Editor guidelines. Need help with markdown, embeds, formatting, or advice on community guidelines and expectations?"
+        greeting: "Hallo! Ich bin dein Schreibassistent. Ich kenne die %{community_name}-Editor-Richtlinien. Brauchst du Hilfe bei Markdown, Einbettungen, Formatierung oder Tipps zu Community-Richtlinien und Erwartungen?"
       video:
         progress:
-          heading: "â³ Video Transcoding In Progress â³"
-          notice_1: You'll get an email when this process finishes.
-          notice_2: This is an ordinary unpublished post. Add title/tags/body/etc, and then mark as published after the video is done processing.
+          heading: "🎥 Video wird umgewandelt 🎥"
+          notice_1: Du erhältst eine E-Mail, wenn dieser Vorgang abgeschlossen ist.
+          notice_2: Dies ist ein normaler unveröffentlichter Beitrag. Füge Titel/Tags/Inhalt usw. hinzu und markiere ihn als veröffentlicht, sobald das Video fertig verarbeitet ist.
         submit_image:
-          button: Submit Change
-          text: 'Preview Image URL: '
-          placeholder: New Thumbnail URL
+          button: Änderung übermitteln
+          text: 'Vorschaubild-URL: '
+          placeholder: Neue Miniaturbild-URL
 
 

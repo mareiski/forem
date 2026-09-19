@@ -76,7 +76,7 @@ export const Help = ({ previewShowing, helpFor, helpPosition, version }) => {
       {liquidShowing &&
         renderModal(
           () => closeModal('liquidShowing'),
-          '🌊 Liquid Tags',
+          '🌊 Liquid-Tags',
           'editor-liquid-help',
         )}
 
