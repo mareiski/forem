@@ -21,8 +21,9 @@ module Authentication
 
       def new_user_data
         {
-          name: info.name.presence || info.email.split("@").first,
+          name: info.nickname.present? ? (info.name.presence || info.email.split("@").first) : "Anonymer Reisender",
           email: info.email,
+          username: forem_username,
           firebase_username: user_nickname
         }
       end
@@ -33,6 +34,12 @@ module Authentication
 
       def user_nickname
         "firebase_#{Digest::SHA256.hexdigest(auth_payload.uid.to_s)[0, 20]}"
+      end
+
+      def forem_username
+        seed = info.nickname.presence || "reisender"
+        uuid = SecureRandom.uuid.delete("-")
+        "#{seed}_#{uuid}".downcase.gsub(/[^0-9a-z_]/, "")[0, User::USERNAME_MAX_LENGTH]
       end
 
       protected

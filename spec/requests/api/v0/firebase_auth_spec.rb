@@ -38,6 +38,19 @@ RSpec.describe "Api::V0::FirebaseAuth", type: :request do
 
     identity = Identity.find_by!(provider: "firebase", uid: "firebase-user-1")
     expect(identity.user.email).to eq("firebase@example.com")
+    expect(identity.user.username).to start_with("firebaseuser_")
+    expect(identity.user.username.length).to eq(User::USERNAME_MAX_LENGTH)
+  end
+
+  it "uses the reisender username fallback when Firebase has no username" do
+    allow(Authentication::FirebaseTokenVerifier).to receive(:call).and_return(claims.except("name"))
+
+    post "/api/auth/firebase_exchange", headers: headers
+
+    expect(response).to have_http_status(:ok)
+    user = Identity.find_by!(provider: "firebase", uid: "firebase-user-1").user
+    expect(user.username).to start_with("reisender_")
+    expect(user.name).to eq("Anonymer Reisender")
   end
 
   it "does not create duplicates when exchanging the same token twice" do

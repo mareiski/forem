@@ -44,7 +44,7 @@ module Api
             email: claims.fetch("email"),
             name: claims["name"],
             image: claims["picture"],
-            nickname: claims.fetch("sub"),
+            nickname: claims["username"],
           },
           credentials: { token: nil, secret: nil },
           extra: { raw_info: claims.except("firebase") },
