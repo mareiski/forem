@@ -4,6 +4,8 @@ function initializeAllTagEditButtons() {
   var tagEditButton = document.getElementById('tag-edit-button');
   var tagAdminButton = document.getElementById('tag-admin-button');
   var user = userData();
+  if (!user) return;
+
   if (user.admin && tagAdminButton) {
     tagAdminButton.style.display = 'inline-block';
     document.getElementById('tag-admin-button').style.display = 'inline-block';

@@ -5,7 +5,7 @@ de:
     revoked: Ihr API-SchlÃ¼ssel wurde erfolgreich widerrufen.
   application_controller:
     bad_request: 'Fehler: UngÃ¼ltige Anfrage'
-    invalid_authenticity_token: 'Fehler: UngÃ¼ltiges AuthentizitÃ¤tstoken'
+    invalid_authenticity_token: 'Fehler: Ungültiges Authentizitätstoken'
     not_authorized: 'Fehler: nicht autorisiert'
     please_sign_in: Bitte anmelden
   articles_controller:
