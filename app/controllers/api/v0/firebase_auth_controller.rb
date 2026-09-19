@@ -22,6 +22,7 @@ module Api
         return render json: { error: "Authentication failed" }, status: :unauthorized if user.spam_or_suspended?
 
         user.update_tracked_fields!(request)
+        configure_cross_origin_session if request.origin.present? && request.origin != request.base_url
         bypass_sign_in(user)
 
         render json: {
@@ -35,6 +36,11 @@ module Api
       end
 
       private
+
+      def configure_cross_origin_session
+        request.session_options[:same_site] = :none
+        request.session_options[:secure] = true if request.ssl?
+      end
 
       def firebase_auth_payload(claims)
         OmniAuth::AuthHash.new(

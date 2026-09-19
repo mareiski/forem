@@ -157,7 +157,7 @@ de:
         one: "%{count} Kommentar"
         other: "%{count} Kommentare"
       empty: Neu
-      add: "Kommentar_hinzufuegen"
+      add: "Kommentar_hinzufügen"
       summary:
         count_html:
           one: "%{count}%{start}_Kommentar%{end}"

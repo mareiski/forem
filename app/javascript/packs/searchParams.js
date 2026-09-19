@@ -207,7 +207,13 @@ function search(query, filters, sortBy, sortDirection) {
     },
     credentials: 'same-origin',
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) return response.json();
+
+      const error = new Error(`Search request failed with status ${response.status}`);
+      error.status = response.status;
+      throw error;
+    })
     .then((content) => {
       const resultDivs = [];
       const currentUser = userData();
@@ -229,6 +235,13 @@ function search(query, filters, sortBy, sortDirection) {
         substoriesElement.innerHTML =
           '<div class="p-9 align-center crayons-card">No results match that query</div>';
       }
+    })
+    .catch((error) => {
+      const message = error.status === 429
+        ? 'Too many search requests. Please try again in a minute.'
+        : 'The search could not be completed. Please try again.';
+      document.getElementById('substories').innerHTML =
+        `<div class="p-9 align-center crayons-card">${message}</div>`;
     });
 }
 
@@ -271,10 +284,10 @@ function algoliaSearch(searchParams) {
           '<div class="p-9 align-center crayons-card">No results match that query</div>';
       }
     })
-  .catch(err => {
-    console.log('Algolia search error:') /* eslint-disable-line */
-    console.log(err); /* eslint-disable-line */
-  });
+    .catch(err => {
+      console.log('Algolia search error:') /* eslint-disable-line */
+      console.log(err); /* eslint-disable-line */
+    });
 }
 
 const waitingOnSearch = setInterval(() => {
