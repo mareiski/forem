@@ -76,5 +76,5 @@ de:
         step_5: "Für eine starke Community 🌱"
       tagline: Wir sind ein Ort, an dem Entwickler teilen, auf dem Laufenden bleiben und ihre Karriere fördern.
       title:
-        text_html: "%{name} ist eine Community von %{maybe_size}fantastischen %{label}"
+        text_html: "%{name} ist eine Community von %{maybe_size}fantastischen Reisenden"
         size: "%{num} "
