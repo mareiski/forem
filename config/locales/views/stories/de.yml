@@ -6,7 +6,7 @@ de:
         description_tagged: "%{tag}-Inhalte auf %{name}"
         page: " Seite %{page}"
         rss: "%{name} RSS-Feed"
-      status_placeholder: "Was geht dir durch den Kopf?"
+      status_placeholder: "Was möchtest du posten?"
       status_expanded_placeholder: "Etwas hinzuzufügen?"
       submit: "Veröffentlichen"
       status_hint_html: "<strong>Kurze Beiträge</strong> werden im Feed angezeigt, aber nicht in Benachrichtigungen oder auf deinem Profil — <a href='/new'>Vollständigen Editor öffnen</a>"
