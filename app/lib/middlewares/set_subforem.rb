@@ -27,28 +27,6 @@ module Middlewares
 
       # POST-PROCESS HEADERS HERE
       begin
-        # Example logic: if a subforem is found, we do custom cookie manipulation
-        if RequestStore.store[:subforem_id].present?
-          parsed = PublicSuffix.parse(request.host, default_rule: nil)
-          subdomain_regexp = /^([^.]+)\.#{parsed.sld}\.#{parsed.tld}$/
-
-          if request.host =~ subdomain_regexp
-            # Remove your session cookie (or any other cookie) from subdomain
-            Rack::Utils.delete_cookie_header!(
-              headers,
-              ApplicationConfig["SESSION_KEY"],
-              domain: request.host
-            )
-
-            # Also remove 'remember_user_token' or other cookies if needed
-            Rack::Utils.delete_cookie_header!(
-              headers,
-              "remember_user_token",
-              domain: request.host
-            )
-          end
-        end
-
         # Set Content-Security-Policy header to allow embedding in iframes for all subforems
         headers.delete("X-Frame-Options")
         unless headers["Content-Security-Policy"]&.include?("frame-ancestors")

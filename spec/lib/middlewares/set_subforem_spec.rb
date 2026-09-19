@@ -56,6 +56,19 @@ RSpec.describe Middlewares::SetSubforem do
         middleware.call(env)
         expect(RequestStore.store[:subforem_domain]).to eq("community.example.com")
       end
+
+      it "preserves authentication cookies on the subforem domain" do
+        allow(app).to receive(:call).and_return([
+          200,
+          { "Set-Cookie" => "_Dev_Community_Session=session; remember_user_token=token" },
+          ["OK"]
+        ])
+
+        _, headers, = middleware.call(env)
+
+        expect(headers["Set-Cookie"]).to include("_Dev_Community_Session=session")
+        expect(headers["Set-Cookie"]).to include("remember_user_token=token")
+      end
     end
 
     context "when no subforem matches the requested domain" do
