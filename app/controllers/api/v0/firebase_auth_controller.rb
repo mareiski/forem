@@ -38,8 +38,8 @@ module Api
       private
 
       def configure_cross_origin_session
-        request.session_options[:same_site] = :none
-        request.session_options[:secure] = request.origin.to_s.start_with?("https://")
+        request.session_options[:same_site] = :lax
+        request.session_options[:secure] = true if request.origin.to_s.start_with?("https://")
       end
 
       def firebase_auth_payload(claims)
