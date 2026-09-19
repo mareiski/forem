@@ -17,6 +17,7 @@ module Middlewares
       end
 
       status, headers, body = @app.call(env)
+      headers["Set-Cookie"] = secure_session_cookie(headers["Set-Cookie"])
       [status, headers.merge(cors_headers(origin)), body]
     end
 
@@ -28,6 +29,21 @@ module Middlewares
 
     def configured_origins
       ApplicationConfig["FIREBASE_AUTH_ORIGIN"].to_s.split(",").map(&:strip)
+    end
+
+    def secure_session_cookie(set_cookie_header)
+      return set_cookie_header if set_cookie_header.blank?
+
+      session_cookie_name = ApplicationConfig["SESSION_KEY"].to_s
+      cookies = set_cookie_header.is_a?(Array) ? set_cookie_header : set_cookie_header.split("\n")
+
+      cookies.map do |cookie|
+        next cookie unless cookie.start_with?("#{session_cookie_name}=")
+        next cookie unless cookie.match?(/;\s*samesite=none(?:;|$)/i)
+        next cookie if cookie.match?(/(?:^|;)\s*secure(?:;|$)/i)
+
+        "#{cookie}; Secure"
+      end.then { |cookies| set_cookie_header.is_a?(Array) ? cookies : cookies.join("\n") }
     end
 
     def cors_headers(origin)
