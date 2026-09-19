@@ -54,6 +54,15 @@ RSpec.describe "Api::V0::FirebaseAuth", type: :request do
     expect(user.name).to eq("Anonymer Reisender")
   end
 
+  it "confirms an existing user when Firebase confirms their email" do
+    user = create(:user, confirmed_at: nil, email: claims["email"])
+
+    post "/api/auth/firebase_exchange", headers: headers
+
+    expect(response).to have_http_status(:ok)
+    expect(user.reload).to be_confirmed
+  end
+
   it "does not create duplicates when exchanging the same token twice" do
     2.times { post "/api/v0/auth/firebase_exchange", headers: headers }
 

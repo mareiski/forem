@@ -21,6 +21,7 @@ module Api
         return render json: { error: "Authentication failed" }, status: :unauthorized unless user.persisted? && user.valid?
         return render json: { error: "Authentication failed" }, status: :unauthorized if user.spam_or_suspended?
 
+        user.confirm if claims["email_verified"] == true && !user.confirmed?
         user.update_tracked_fields!(request)
         configure_cross_origin_session if request.origin.present? && request.origin != request.base_url
         bypass_sign_in(user)
