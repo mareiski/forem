@@ -79,6 +79,7 @@ export const MarkdownToolbar = ({
   textAreaId,
   additionalPrimaryToolbarElements = [],
   additionalSecondaryToolbarElements = [],
+  hiddenFormatters = [],
 }) => {
   const textAreaRef = useRef(null);
 
@@ -116,6 +117,7 @@ export const MarkdownToolbar = ({
 
   const keyboardShortcuts = Object.fromEntries(
     Object.keys(markdownSyntaxFormatters)
+      .filter((syntaxName) => !hiddenFormatters.includes(syntaxName))
       .filter(
         (syntaxName) =>
           !!markdownSyntaxFormatters[syntaxName].getKeyboardShortcut,
@@ -334,11 +336,15 @@ export const MarkdownToolbar = ({
     isLargeScreen: largeScreen,
   });
 
+  const visibleSyntaxFormatters = Object.entries(markdownSyntaxFormatters).filter(
+    ([syntaxName]) => !hiddenFormatters.includes(syntaxName),
+  );
+
   const coreSyntaxFormatters = Object.fromEntries(
-    Object.entries(markdownSyntaxFormatters).slice(0, numberOfCoreFormatters),
+    visibleSyntaxFormatters.slice(0, numberOfCoreFormatters),
   );
   const secondarySyntaxFormatters = Object.fromEntries(
-    Object.entries(markdownSyntaxFormatters).slice(numberOfCoreFormatters),
+    visibleSyntaxFormatters.slice(numberOfCoreFormatters),
   );
 
   const secondaryFormatterButtons = Object.keys(secondarySyntaxFormatters).map(

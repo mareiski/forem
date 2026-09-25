@@ -466,7 +466,7 @@ export const ArticleCoverImage = ({ onMainImageUrlChange, mainImage, coverImageH
     handleMainImageUpload(event);
   };
 
-  const uploadLabel = mainImage ? 'Change' : 'Upload Cover Image';
+  const uploadLabel = mainImage ? 'Bild ändern' : 'Titelbild hochladen';
 
   // When the component is rendered in an environment that supports a native
   // image picker for image upload we want to add the aria-label attr and the

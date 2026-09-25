@@ -407,7 +407,7 @@ export const getNewTextAreaValueWithEdits = ({
 export const markdownSyntaxFormatters = {
   bold: {
     icon: () => <Icon src={BoldIcon} />,
-    label: 'Bold',
+    label: 'Fett',
     getKeyboardShortcut: () => {
       const modifier = getOSKeyboardModifierKeyString();
       return {
@@ -506,7 +506,7 @@ export const markdownSyntaxFormatters = {
   },
   orderedList: {
     icon: () => <Icon src={OrderedListIcon} />,
-    label: 'Ordered list',
+    label: 'Aufzählung',
     getFormatting: ({ selectionStart, selectionEnd, value }) => {
       const { selectedText, textBeforeSelection } = getSelectionData({
         selectionStart,
@@ -602,7 +602,7 @@ export const markdownSyntaxFormatters = {
   },
   unorderedList: {
     icon: () => <Icon src={UnorderedListIcon} />,
-    label: 'Unordered list',
+    label: 'Liste',
     getFormatting: ({ selectionStart, selectionEnd, value }) => {
       return undoOrAddFormattingForMultilineSyntax({
         selectionStart,
@@ -614,7 +614,7 @@ export const markdownSyntaxFormatters = {
   },
   heading: {
     icon: () => <Icon src={HeadingIcon} />,
-    label: 'Heading',
+    label: 'Überschrift',
     getFormatting: ({ selectionStart, selectionEnd, value }) => {
       let currentLineSelectionStart = selectionStart;
 
@@ -682,7 +682,7 @@ export const markdownSyntaxFormatters = {
   },
   quote: {
     icon: () => <Icon src={QuoteIcon} />,
-    label: 'Quote',
+    label: 'Zitat',
     getFormatting: ({ selectionStart, selectionEnd, value }) =>
       undoOrAddFormattingForMultilineSyntax({
         selectionStart,
@@ -717,7 +717,7 @@ export const markdownSyntaxFormatters = {
   },
   embed: {
     icon: () => <Icon src={EmbedIcon} />,
-    label: 'Embed',
+    label: 'Einbetten',
     getKeyboardShortcut: () => {
       const modifier = getOSKeyboardModifierKeyString();
       return {
@@ -736,7 +736,7 @@ export const markdownSyntaxFormatters = {
   },
   underline: {
     icon: () => <Icon src={UnderlineIcon} />,
-    label: 'Underline',
+    label: 'Unterstrichen',
     getKeyboardShortcut: () => {
       const modifier = getOSKeyboardModifierKeyString();
       return {
@@ -755,7 +755,7 @@ export const markdownSyntaxFormatters = {
   },
   strikethrough: {
     icon: () => <Icon src={StrikethroughIcon} />,
-    label: 'Strikethrough',
+    label: 'Durchgestrichen',
     getKeyboardShortcut: () => {
       const modifier = getOSKeyboardModifierKeyString();
       return {
@@ -774,7 +774,7 @@ export const markdownSyntaxFormatters = {
   },
   divider: {
     icon: () => <Icon src={DividerIcon} />,
-    label: 'Line divider',
+    label: 'Trennlinie',
     getFormatting: ({ selectionStart, selectionEnd, value }) =>
       undoOrAddFormattingForMultilineSyntax({
         selectionStart,

@@ -199,7 +199,7 @@ describe('<Form />', () => {
     });
 
     it('renders a toolbar of markdown formatters', () => {
-      const { getByRole } = render(
+      const { getByRole, queryByRole } = render(
         <Form
           titleDefaultValue="Test Title v2"
           titleOnChange={null}
@@ -246,17 +246,78 @@ describe('<Form />', () => {
       expect(textArea.value).toEqual('> \n');
       userEvent.clear(textArea);
 
-      getByRole('button', { name: 'Code' }).click();
-      expect(textArea.value).toEqual('``');
-      userEvent.clear(textArea);
+      expect(queryByRole('button', { name: 'Code' })).not.toBeInTheDocument();
+      expect(
+        queryByRole('button', { name: 'Code block' }),
+      ).not.toBeInTheDocument();
+      expect(queryByRole('button', { name: 'Embed' })).not.toBeInTheDocument();
+    });
 
-      getByRole('button', { name: 'Code block' }).click();
-      expect(textArea.value).toEqual('```\n\n```\n');
-      userEvent.clear(textArea);
+    it('inserts a Roadlio liquid tag from the toolbar', () => {
+      const { getByLabelText, getByRole, queryByRole } = render(
+        <Form
+          titleDefaultValue="Test Title v2"
+          titleOnChange={null}
+          tagsDefaultValue="javascript, career"
+          tagsOnInput={null}
+          bodyDefaultValue=""
+          bodyOnChange={null}
+          bodyHasFocus={false}
+          version="v2"
+          mainImage={mainImage}
+          onMainImageUrlChange={null}
+          errors={null}
+          switchHelpContext={null}
+        />,
+      );
+
+      const textArea = getByRole('textbox', { name: 'Post Content' });
+
+      getByRole('button', { name: 'Roadlio' }).click();
+      userEvent.type(getByLabelText('URL'), 'https://roadl.io/event');
+      expect(getByRole('dialog')).toBeInTheDocument();
+      getByRole('radio', { name: 'Karte' }).click();
+      expect(getByRole('dialog')).toBeInTheDocument();
+
+      getByRole('button', { name: 'OK' }).click();
+
+      expect(textArea.value).toEqual(
+        '{% roadlio https://roadl.io/event/Karte %}',
+      );
+      expect(queryByRole('dialog')).not.toBeInTheDocument();
+    });
+
+    it('inserts a Roadlio Zeitplan liquid tag without changing the URL', () => {
+      const { getByLabelText, getByRole } = render(
+        <Form
+          titleDefaultValue="Test Title v2"
+          titleOnChange={null}
+          tagsDefaultValue="javascript, career"
+          tagsOnInput={null}
+          bodyDefaultValue=""
+          bodyOnChange={null}
+          bodyHasFocus={false}
+          version="v2"
+          mainImage={mainImage}
+          onMainImageUrlChange={null}
+          errors={null}
+          switchHelpContext={null}
+        />,
+      );
+
+      const textArea = getByRole('textbox', { name: 'Post Content' });
+
+      getByRole('button', { name: 'Roadlio' }).click();
+      expect(getByRole('radio', { name: 'Zeitplan' })).toBeChecked();
+      userEvent.type(getByLabelText('URL'), 'https://roadl.io/event');
+      expect(getByRole('dialog')).toBeInTheDocument();
+      getByRole('button', { name: 'OK' }).click();
+
+      expect(textArea.value).toEqual('{% roadlio https://roadl.io/event %}');
     });
 
     it('renders an overflow menu of markdown formatters', async () => {
-      const { getByRole } = render(
+      const { getByRole, queryByRole } = render(
         <Form
           titleDefaultValue="Test Title v2"
           titleOnChange={null}
@@ -316,6 +377,13 @@ describe('<Form />', () => {
       await waitFor(() =>
         expect(overflowMenuButton).toHaveAttribute('aria-expanded', 'true'),
       );
+      expect(queryByRole('menuitem', { name: 'Code' })).not.toBeInTheDocument();
+      expect(
+        queryByRole('menuitem', { name: 'Code block' }),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByRole('menuitem', { name: 'Embed' }),
+      ).not.toBeInTheDocument();
       expect(getByRole('menuitem', { name: 'Help' })).toBeInTheDocument();
     });
   });
