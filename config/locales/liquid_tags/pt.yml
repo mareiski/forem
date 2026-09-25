@@ -163,7 +163,7 @@ pt:
       invalid_role: "O papel deve ser um dos seguintes: all, admins, members"
     netlify_tag:
       invalid_url: "URL Netlify inválida. Deve ser uma URL https://*.netlify.app"
-    roadtrip_tag:
+    roadlio_tag:
       invalid_url: "URL Roadtrip inválida. Deve ser uma URL https://roadtrip-planen.de/reise-ansehen"
     features_tag:
       no_args: "A tag features não aceita argumentos"

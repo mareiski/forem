@@ -1,13 +1,13 @@
 module Middlewares
   class FirebaseCors
-    PATH = "/api/auth/firebase_exchange".freeze
+    PATHS = ["/api/auth/firebase_exchange", "/api/v0/auth/firebase_exchange"].freeze
 
     def initialize(app)
       @app = app
     end
 
     def call(env)
-      return @app.call(env) unless env["PATH_INFO"] == PATH
+      return @app.call(env) unless PATHS.include?(env["PATH_INFO"])
 
       origin = env["HTTP_ORIGIN"]
       return @app.call(env) unless allowed_origin?(origin)
@@ -17,7 +17,7 @@ module Middlewares
       end
 
       status, headers, body = @app.call(env)
-      headers["Set-Cookie"] = secure_session_cookie(headers["Set-Cookie"])
+      headers["Set-Cookie"] = cross_site_session_cookie(headers["Set-Cookie"])
       [status, headers.merge(cors_headers(origin)), body]
     end
 
@@ -31,7 +31,7 @@ module Middlewares
       ApplicationConfig["FIREBASE_AUTH_ORIGIN"].to_s.split(",").map(&:strip)
     end
 
-    def secure_session_cookie(set_cookie_header)
+    def cross_site_session_cookie(set_cookie_header)
       return set_cookie_header if set_cookie_header.blank?
 
       session_cookie_name = ApplicationConfig["SESSION_KEY"].to_s
@@ -39,10 +39,14 @@ module Middlewares
 
       cookies.map do |cookie|
         next cookie unless cookie.start_with?("#{session_cookie_name}=")
-        next cookie unless cookie.match?(/;\s*samesite=none(?:;|$)/i)
-        next cookie if cookie.match?(/(?:^|;)\s*secure(?:;|$)/i)
 
-        "#{cookie}; Secure"
+        cookie = if cookie.match?(/;\s*samesite=[^;]*/i)
+                   cookie.sub(/;\s*samesite=[^;]*/i, "; SameSite=None")
+                 else
+                   "#{cookie}; SameSite=None"
+                 end
+
+        cookie.match?(/(?:^|;)\s*secure(?:;|$)/i) ? cookie : "#{cookie}; Secure"
       end.then { |cookies| set_cookie_header.is_a?(Array) ? cookies : cookies.join("\n") }
     end
 

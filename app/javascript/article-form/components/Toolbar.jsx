@@ -10,6 +10,15 @@ import RoadlioIcon from '@images/logo_bw.svg';
 const ROADLIO_MAP_MODE = 'map';
 const ROADLIO_SCHEDULE_MODE = 'schedule';
 
+const RoadlioToolbarIcon = ({ className, ...props }) => (
+  <RoadlioIcon
+    {...props}
+    width="24"
+    height="24"
+    className={`${className || ''} crayons-icon--default`}
+  />
+);
+
 const insertTextAtCursor = ({ textAreaId, text }) => {
   const textArea = document.getElementById(textAreaId);
 
@@ -64,7 +73,7 @@ const RoadlioLiquidTagButton = ({ textAreaId, ...buttonProps }) => {
     <Fragment>
       <Button
         {...buttonProps}
-        icon={RoadlioIcon}
+        icon={RoadlioToolbarIcon}
         aria-label="Reise anfügen"
         title="Reise anfügen"
         onClick={openModal}
@@ -195,6 +204,10 @@ Toolbar.propTypes = {
 
 RoadlioLiquidTagButton.propTypes = {
   textAreaId: PropTypes.string.isRequired,
+};
+
+RoadlioToolbarIcon.propTypes = {
+  className: PropTypes.string,
 };
 
 Toolbar.displayName = 'Toolbar';

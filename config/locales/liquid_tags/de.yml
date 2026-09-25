@@ -163,7 +163,7 @@ de:
       invalid_role: "Role must be one of: all, admins, members"
     netlify_tag:
       invalid_url: "Invalid Netlify URL. Must be a https://*.netlify.app URL"
-    roadtrip_tag:
+    roadlio_tag:
       invalid_url: "Ungültige Roadlio-URL. Sie muss eine https://roadtrip-planen.de/reise-ansehen-URL sein"
     features_tag:
       no_args: "The features tag does not accept any arguments"
