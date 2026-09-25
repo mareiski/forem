@@ -83,11 +83,14 @@
 
     const resizeIframe = (event) => {
       if (event.origin !== targetOrigin || event.source !== iframe.contentWindow) return;
-      hideLoader();
+      
       if (event.data?.type !== "roadlio:resize") return;
 
       const height = Number(event.data.height);
       if (Number.isFinite(height) && height > 0) iframe.style.height = `${height}px`;
+      if(height > 100) {
+        hideLoader();
+      }
     };
 
     window.addEventListener("message", resizeIframe);

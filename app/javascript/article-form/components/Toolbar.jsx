@@ -86,9 +86,10 @@ const RoadlioLiquidTagButton = ({ textAreaId, ...buttonProps }) => {
           backdropDismissible
           size="small"
         >
-          <form onSubmit={handleInsert} className="p-4">
+          <form onSubmit={handleInsert} className="p-4" style="background-color: white;">
+            <p>Veröffentliche deine Reise auf Roadlio mit dem Teilen-Button unten rechts und füge den Link hier ein, um sie in deinem Post anzuzeigen.</p>
             <label className="crayons-field mb-4">
-              <span className="crayons-field__label">URL</span>
+              <span className="crayons-field__label">Link</span>
               <input
                 type="url"
                 className="crayons-textfield"
@@ -100,17 +101,6 @@ const RoadlioLiquidTagButton = ({ textAreaId, ...buttonProps }) => {
 
             <fieldset className="mb-4">
               <legend className="crayons-field__label mb-2">Ansicht</legend>
-              <label className="crayons-field crayons-field--radio mb-2">
-                <input
-                  type="radio"
-                  name="roadlioMode"
-                  value="map"
-                  checked={mode === ROADLIO_MAP_MODE}
-                  onChange={() => setMode(ROADLIO_MAP_MODE)}
-                  className="crayons-radio"
-                />
-                <span className="crayons-field__label">Karte</span>
-              </label>
               <label className="crayons-field crayons-field--radio">
                 <input
                   type="radio"
@@ -122,6 +112,17 @@ const RoadlioLiquidTagButton = ({ textAreaId, ...buttonProps }) => {
                 />
                 <span className="crayons-field__label">Zeitplan</span>
               </label>
+              <label className="crayons-field crayons-field--radio mb-2">
+                <input
+                  type="radio"
+                  name="roadlioMode"
+                  value="map"
+                  checked={mode === ROADLIO_MAP_MODE}
+                  onChange={() => setMode(ROADLIO_MAP_MODE)}
+                  className="crayons-radio"
+                />
+                <span className="crayons-field__label">Karte</span>
+              </label>     
             </fieldset>
 
             <div className="flex justify-end gap-2">
