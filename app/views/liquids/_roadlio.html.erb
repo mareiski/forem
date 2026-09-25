@@ -1,4 +1,43 @@
+<style>
+  .ltag-roadlio {
+    position: relative;
+  }
+
+  .ltag-roadlio__loader {
+    align-items: center;
+    background: var(--body-bg, #fff);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    min-height: 400px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .ltag-roadlio__loader[hidden] {
+    display: none;
+  }
+
+  .ltag-roadlio__spinner {
+    animation: ltag-roadlio-spin 0.8s linear infinite;
+    border: 3px solid var(--base-20, #d6d6d7);
+    border-radius: 50%;
+    border-top-color: var(--accent-brand, #3b49df);
+    height: 32px;
+    width: 32px;
+  }
+
+  @keyframes ltag-roadlio-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
 <div class="ltag-roadlio">
+  <div class="ltag-roadlio__loader" data-roadlio-loader>
+    <span class="ltag-roadlio__spinner" aria-hidden="true"></span>
+    <span>Reise wird geladen...</span>
+  </div>
   <iframe
     src="<%= url %>"
     title="Roadlio"
@@ -11,7 +50,9 @@
 </div>
 <script>
   (() => {
-    const iframe = document.currentScript.previousElementSibling.querySelector("iframe");
+    const roadlio = document.currentScript.previousElementSibling;
+    const iframe = roadlio.querySelector("iframe");
+    const loader = roadlio.querySelector("[data-roadlio-loader]");
     const targetOrigin = new URL(iframe.src).origin;
     const hideHeader = true;
 
@@ -36,8 +77,13 @@
       iframe.src = targetUrl.toString();
     };
 
+    const hideLoader = () => {
+      loader.hidden = true;
+    };
+
     const resizeIframe = (event) => {
       if (event.origin !== targetOrigin || event.source !== iframe.contentWindow) return;
+      hideLoader();
       if (event.data?.type !== "roadlio:resize") return;
 
       const height = Number(event.data.height);
@@ -45,8 +91,11 @@
     };
 
     window.addEventListener("message", resizeIframe);
-  iframe.addEventListener("load", sendSettings);
-  setInitialSettings();
+    iframe.addEventListener("load", () => {
+      hideLoader();
+      sendSettings();
+    });
+    setInitialSettings();
 
     new MutationObserver(sendSettings).observe(document.body, {
       attributes: true,

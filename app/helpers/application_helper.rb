@@ -196,7 +196,7 @@ module ApplicationHelper
   end
 
   def firebase_login_url
-    firebase_auth_url("/login")
+    firebase_auth_url("/anmelden")
   end
 
   def firebase_registration_url

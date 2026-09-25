@@ -26,6 +26,8 @@ module Api
         configure_cross_origin_session if request.origin.present? && request.origin != request.base_url
         bypass_sign_in(user)
 
+        return redirect_to safe_return_to, allow_other_host: false if params[:return_to].present?
+
         render json: {
           user: { id: user.id, email: user.email },
           csrf_token: form_authenticity_token,
@@ -41,6 +43,19 @@ module Api
       def configure_cross_origin_session
         request.session_options[:same_site] = :none
         request.session_options[:secure] = true
+      end
+
+      def safe_return_to
+        return_to = params[:return_to].to_s
+        uri = Addressable::URI.parse(return_to)
+
+        if uri.host.blank? || uri.host == request.host
+          uri.to_s
+        else
+          root_path
+        end
+      rescue Addressable::URI::InvalidURIError
+        root_path
       end
 
       def firebase_auth_payload(claims)
