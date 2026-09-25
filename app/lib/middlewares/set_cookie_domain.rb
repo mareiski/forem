@@ -18,7 +18,9 @@ module Middlewares
 
     def https_request?(env)
       env["HTTP_X_FORWARDED_PROTO"].to_s.split(",").first.strip == "https" ||
-        env["rack.url_scheme"] == "https"
+        env["rack.url_scheme"] == "https" ||
+        ApplicationConfig["FORCE_SSL_IN_RAILS"] == "true" ||
+        ApplicationConfig["APP_PROTOCOL"].to_s.start_with?("https")
     end
 
     def cookie_domain(host)

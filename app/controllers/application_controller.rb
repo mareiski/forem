@@ -388,9 +388,15 @@ class ApplicationController < ActionController::Base
     # Set the rememberable options for Devise
     request.env["devise.rememberable_options"] = {
       domain: domain,
-      secure: ApplicationConfig["FORCE_SSL_IN_RAILS"] == "true",
+      secure: secure_cookie_request?,
       httponly: true
     }
+  end
+
+  def secure_cookie_request?
+    ApplicationConfig["FORCE_SSL_IN_RAILS"] == "true" ||
+      request.ssl? ||
+      request.headers["X-Forwarded-Proto"].to_s.split(",").first&.strip == "https"
   end
 
   def remember_cookie_sync

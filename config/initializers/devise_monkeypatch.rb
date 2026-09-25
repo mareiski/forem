@@ -27,10 +27,15 @@ module Devise
       def self.cookie_values
         # Default: Rails.configuration.session_options.slice(:path, :domain, :secure)
         # We need to use Settings::General.app_domain instead of default Rails config on boot
-        options = { secure: ApplicationConfig["FORCE_SSL_IN_RAILS"] == "true" }
+        options = { secure: secure_cookies? }
         cookie_domain = Devise::Controllers::Rememberable.normalized_cookie_domain(Settings::General.app_domain)
         options[:domain] = cookie_domain if cookie_domain
         options
+      end
+
+      def self.secure_cookies?
+        ApplicationConfig["FORCE_SSL_IN_RAILS"] == "true" ||
+          ApplicationConfig["APP_PROTOCOL"].to_s.start_with?("https")
       end
 
       def self.normalized_cookie_domain(domain)

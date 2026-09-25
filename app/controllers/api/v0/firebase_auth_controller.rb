@@ -25,6 +25,7 @@ module Api
         user.update_tracked_fields!(request)
         configure_cross_origin_session if request.origin.present? && request.origin != request.base_url
         bypass_sign_in(user)
+        remember_me(user)
 
         return redirect_to safe_return_to, allow_other_host: false if params[:return_to].present?
 
