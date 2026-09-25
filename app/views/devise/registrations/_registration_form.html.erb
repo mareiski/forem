@@ -52,7 +52,7 @@
         </div>
         <div id="mobile-version" class="crayons-subtitle-3 color-grey-700 fw-normal align-center"></div>
 
-      <% else %>
+      <% elsif !Settings::Authentication.firebase_only? %>
         <div class="registration__actions-email" id="sign-in-password-form">
           <% if Settings::Authentication.allow_email_password_login %>
             <% unless authentication_enabled_providers.empty? %>

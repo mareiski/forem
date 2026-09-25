@@ -37,6 +37,8 @@ class ApplicationController < ActionController::Base
   include DevelopmentDependencyChecks if Rails.env.development?
   include Devise::Controllers::Rememberable
 
+  helper_method :firebase_login_url, :firebase_registration_url
+
   # We are not currently using this, as we're going to prefer manual review in prod.
   # This was removed due to flakiness.
   # include EdgeCacheSafetyCheck unless Rails.env.production?
@@ -581,6 +583,23 @@ class ApplicationController < ActionController::Base
                   end
 
     request.session_options[:expire_after] = ttl_seconds
+  end
+
+  def firebase_auth_url(path)
+    firebase_auth_origin = ApplicationConfig["FIREBASE_AUTH_ORIGIN"].to_s.chomp("/")
+    return if firebase_auth_origin.blank?
+
+    uri = Addressable::URI.parse("#{firebase_auth_origin}/#{path.to_s.delete_prefix('/')}")
+    uri.query_values = (uri.query_values || {}).merge("return_to" => request.original_url)
+    uri.to_s
+  end
+
+  def firebase_login_url
+    firebase_auth_url("/anmelden")
+  end
+
+  def firebase_registration_url
+    firebase_auth_url("/registrieren")
   end
 
   def set_session_domain

@@ -3,7 +3,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     return redirect_to root_path(signin: "true") if user_signed_in?
-    return redirect_to root_path if Settings::Authentication.firebase_only? && params[:state] == "new-user"
+    if Settings::Authentication.firebase_only? && params[:state] == "new-user"
+      return redirect_to firebase_registration_url, allow_other_host: true if firebase_registration_url.present?
+
+      return redirect_to root_path
+    end
 
     if URI(request.referer || "").host == URI(request.base_url).host
       store_location_for(:user, request.referer)
@@ -56,6 +60,15 @@ class RegistrationsController < Devise::RegistrationsController
     Settings::General.waiting_on_first_user = false
     Users::CreateMascotAccount.call
     Discover::RegisterWorker.perform_async # Register Forem instance on https://discover.forem.com
+  end
+
+  def firebase_registration_url
+    firebase_auth_origin = ApplicationConfig["FIREBASE_AUTH_ORIGIN"].to_s.chomp("/")
+    return if firebase_auth_origin.blank?
+
+    uri = Addressable::URI.parse("#{firebase_auth_origin}/registrieren")
+    uri.query_values = (uri.query_values || {}).merge("return_to" => request.original_url)
+    uri.to_s
   end
 
   def recaptcha_verified?

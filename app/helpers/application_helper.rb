@@ -186,6 +186,23 @@ module ApplicationHelper
     authentication_enabled_providers.any?
   end
 
+  def firebase_auth_url(path)
+    firebase_auth_origin = ApplicationConfig["FIREBASE_AUTH_ORIGIN"].to_s.chomp("/")
+    return if firebase_auth_origin.blank?
+
+    uri = Addressable::URI.parse("#{firebase_auth_origin}/#{path.to_s.delete_prefix('/')}")
+    uri.query_values = (uri.query_values || {}).merge("return_to" => request.original_url)
+    uri.to_s
+  end
+
+  def firebase_login_url
+    firebase_auth_url("/login")
+  end
+
+  def firebase_registration_url
+    firebase_auth_url("/registrieren")
+  end
+
   def beautified_url(url)
     url.sub(%r{\A((https?|ftp):/)?/}, "").sub(/\?.*/, "").chomp("/")
   rescue StandardError

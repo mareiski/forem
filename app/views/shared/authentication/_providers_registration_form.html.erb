@@ -1,9 +1,9 @@
 <div class="registration__actions-providers">
   <% authentication_enabled_providers.each do |provider| %>
+    <% next if Settings::Authentication.firebase_only? && provider.provider_name != :firebase %>
     <% next unless display_social_login?(provider.provider_name) %>
-    <% firebase_login_url = ApplicationConfig["FIREBASE_AUTH_ORIGIN"] %>
     <% if provider.provider_name == :firebase && firebase_login_url.present? %>
-      <a href="<%= firebase_login_url %>?return_to=<%= CGI.escape(request.original_url) %>"
+      <a href="<%= params[:state] == "new-user" ? firebase_registration_url : firebase_login_url %>"
         class="flex w-100 p-3 radius-default items-center bg-base-inverted registration__button-container brand-firebase">
         <%= crayons_icon_tag("#{provider.provider_name}-icon", class: "crayons-icon--default", aria_hidden: true, width: 24, height: 24) %>
         <span class="w-100 flex fw-medium fs-s justify-center items-center self-center color-primary">
@@ -21,7 +21,7 @@
       <% end %>
     <% end %>
   <% end %>
-  <% if params[:state] == "new-user" && Settings::Authentication.allow_email_password_registration && !ForemInstance.invitation_only? %>
+  <% if params[:state] == "new-user" && Settings::Authentication.allow_email_password_registration && !ForemInstance.invitation_only? && !Settings::Authentication.firebase_only? %>
     <a href="<%= url_for(request.params.merge(state: "email_signup").except("i")) %>"
       class="flex w-100 p-3 radius-default items-center bg-base-inverted registration__button-container"
       data-no_instant="">
