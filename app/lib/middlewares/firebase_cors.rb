@@ -34,11 +34,10 @@ module Middlewares
     def cross_site_session_cookie(set_cookie_header)
       return set_cookie_header if set_cookie_header.blank?
 
-      session_cookie_name = ApplicationConfig["SESSION_KEY"].to_s
       cookies = set_cookie_header.is_a?(Array) ? set_cookie_header : set_cookie_header.split("\n")
 
       cookies.map do |cookie|
-        next cookie unless cookie.start_with?("#{session_cookie_name}=")
+        next cookie unless session_cookie?(cookie)
 
         cookie = if cookie.match?(/;\s*samesite=[^;]*/i)
                    cookie.sub(/;\s*samesite=[^;]*/i, "; SameSite=None")
@@ -48,6 +47,18 @@ module Middlewares
 
         cookie.match?(/(?:^|;)\s*secure(?:;|$)/i) ? cookie : "#{cookie}; Secure"
       end.then { |cookies| set_cookie_header.is_a?(Array) ? cookies : cookies.join("\n") }
+    end
+
+    def session_cookie?(cookie)
+      session_cookie_names.any? { |name| cookie.start_with?("#{name}=") }
+    end
+
+    def session_cookie_names
+      [
+        ApplicationConfig["SESSION_KEY"],
+        Rails.application.config.session_options[:key],
+        "_session_id",
+      ].map(&:presence).compact.uniq
     end
 
     def cors_headers(origin)
