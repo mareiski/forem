@@ -44,7 +44,11 @@ x-backend: &backend
 services:
   setup:
     <<: *backend
-    command: bash -c 'bundle install && yarn install && bundle exec ruby -e "sleep 30" && bundle exec rails db:prepare'
+    command: bash -c 'bundle install && yarn install && bundle exec ruby -e "sleep 30" && bundle exec rails db:drop && bundle exec rails db:create && bundle exec rails runner "ActiveRecord::MigrationContext.new(ActiveRecord::Migrator.migrations_paths).migrate" && bundle exec rails db:seed'
+    environment:
+      <<: *backend_environment
+      SKIP_MIGRATION_CHECK: "yes"
+      SKIP_SCHEMA_DUMP: "yes"
     restart: "no"
     depends_on:
       postgres:
@@ -89,7 +93,10 @@ services:
         condition: service_completed_successfully
 
   postgres:
-    image: pgvector/pgvector:pg13
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+    image: forem-postgres-local
     environment:
       POSTGRES_USER: forem
       POSTGRES_PASSWORD: postgres

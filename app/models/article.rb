@@ -195,6 +195,7 @@ class Article < ApplicationRecord
   has_many :notifications, as: :notifiable, inverse_of: :notifiable, dependent: :delete_all
   has_many :page_views, dependent: :delete_all
   has_one :article_activity, dependent: :delete
+  has_one :article_geodatum, dependent: :destroy
   # `dependent: :destroy` because in Poll we cascade the deletes of
   #     the poll votes, options, and skips.
   has_many :polls, dependent: :destroy
@@ -335,6 +336,7 @@ class Article < ApplicationRecord
   after_save :collection_cleanup
   after_save :generate_social_image
   after_save :generate_context_notes
+  after_save :process_roadlio_geodata, if: :body_markdown_changed?
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -1198,6 +1200,36 @@ class Article < ApplicationRecord
 
       Articles::GenerateContextNoteWorker.perform_async(id, tag.id)
     end
+  end
+
+  def process_roadlio_geodata
+    return unless ENV['FIREBASE_AUTH_ORIGIN'].present?
+    
+    # Extract roadlio URLs from body_markdown
+    roadlio_urls = extract_roadlio_urls
+    return if roadlio_urls.empty?
+    
+    # Process each roadlio URL and fetch geodata
+    roadlio_urls.each do |url|
+      begin
+        GeodataService.new(self, url: url).create_or_update_geodata_from_roadlio(url)
+      rescue GeodataService::FetchError => e
+        Rails.logger.warn "Failed to fetch geodata for roadlio URL #{url}: #{e.message}"
+      rescue StandardError => e
+        Rails.logger.error "Error processing roadlio URL #{url}: #{e.message}"
+      end
+    end
+  end
+
+  def extract_roadlio_urls
+    return [] unless body_markdown
+    
+    # Match roadlio URLs in the body_markdown
+    # Use the same regex as RoadlioTag (dynamic based on FIREBASE_AUTH_ORIGIN)
+    roadlio_regex = RoadlioTag.valid_url_regexp
+    
+    # Find all matches
+    body_markdown.scan(roadlio_regex).flatten.uniq
   end
 
   def set_default_subforem_id

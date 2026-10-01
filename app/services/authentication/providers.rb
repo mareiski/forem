@@ -69,7 +69,7 @@ module Authentication
     end
 
     def self.username_fields
-      Authentication::Providers::Provider.subclasses.map(&:user_username_field).sort
+      Authentication::Providers::Provider.subclasses.map(&:user_username_field).compact.sort
     end
   end
 end

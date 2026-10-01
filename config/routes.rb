@@ -133,6 +133,14 @@ Rails.application.routes.draw do
 
         resources :articles, only: [] do
           get :semantic_search, on: :collection
+          resource :geodata, only: %i[show create destroy], controller: "geosearch"
+        end
+
+        # Geosearch endpoints
+        scope :geosearch, controller: "geosearch" do
+          get :nearby
+          get :within_bounds
+          get :count
         end
 
         namespace :admin do

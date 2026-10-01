@@ -119,7 +119,7 @@ services:
         condition: service_healthy
 
   postgres:
-    image: pgvector/pgvector:pg13-bookworm
+    image: garapadev/postgres-postgis-pgvector:13
     restart: unless-stopped
     environment:
       POSTGRES_USER: forem

@@ -5,5 +5,3 @@ require File.expand_path("config/application", __dir__)
 
 Rails.application.load_tasks
 
-# Use strong_migrations to alphabetize schema columns
-task "db:schema:dump": "strong_migrations:alphabetize_columns"
