@@ -375,6 +375,16 @@ class ArticlesController < ApplicationController
 
     allowed_params << :co_author_ids_list if allowed_to_manage_org_co_authors?
 
+    # Permit React component state parameters to prevent "Unpermitted parameters" warnings
+    # These are frontend state fields that don't map to database columns
+    react_state_params = %i[
+      form_key id published_at_was all_series scheduling_enabled preview_loading
+      submitting editing video_source_url organization_id co_author_ids_list edited
+      updated_at version site_logo cover_image_height cover_image_crop ai_available
+      ai_disclosure_enabled help_for help_position is_modal_open markdown_lint_errors
+    ]
+    allowed_params += react_state_params
+
     manage_published_at_params
 
     @article_params_json = params.require(:article).permit(allowed_params)
