@@ -92,11 +92,10 @@ class GeodataService
     unless roadlio_api_origin
       raise FetchError, "ROADLIO_API_ORIGIN environment variable not set"
     end
-    
-    endpoint = "#{roadlio_api_origin.chomp('/')}/utility/fetchPublicTripRouteOnServer"
-    
+        
     slug_and_short_id = slug_and_short_id_from_url(url)
-    uri = URI.parse(endpoint)
+
+    uri = URI.parse(@endpoint_url)
     request = Net::HTTP::Post.new(uri)
     request["Content-Type"] = "application/x-www-form-urlencoded"
     request.body = URI.encode_www_form({ slugAndShortId: slug_and_short_id })
@@ -106,13 +105,13 @@ class GeodataService
     end
     
     unless response.code == '200'
-      raise FetchError, "Failed to fetch from #{endpoint}: HTTP #{response.code} - #{response.message}"
+      raise FetchError, "Failed to fetch from #{@endpoint_url}: HTTP #{response.code} - #{response.message}"
     end
     
     data = JSON.parse(response.body)
     
     # Process the FeatureCollection - if it has multiple points, convert to LineString
-    process_geojson_response(data)
+  return  process_geojson_response(data)
     
   rescue JSON::ParserError => e
     raise FetchError, "Invalid JSON response from fetchPublicTripRouteOnServer: #{e.message}"
