@@ -336,7 +336,7 @@ class Article < ApplicationRecord
   after_save :collection_cleanup
   after_save :generate_social_image
   after_save :generate_context_notes
-  after_save :process_roadlio_geodata, if: :body_markdown_changed?
+  after_commit :process_roadlio_geodata, if: :saved_change_to_body_markdown?
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -1203,7 +1203,8 @@ class Article < ApplicationRecord
   end
 
   def process_roadlio_geodata
-    return unless ENV['FIREBASE_AUTH_ORIGIN'].present?
+    # Check for either ROADLIO_API_ORIGIN or FIREBASE_AUTH_ORIGIN
+    return unless ENV['ROADLIO_API_ORIGIN'].present? || ENV['FIREBASE_AUTH_ORIGIN'].present?
     
     # Extract roadlio URLs from body_markdown
     roadlio_urls = extract_roadlio_urls
@@ -1223,13 +1224,14 @@ class Article < ApplicationRecord
 
   def extract_roadlio_urls
     return [] unless body_markdown
-    
-    # Match roadlio URLs in the body_markdown
-    # Use the same regex as RoadlioTag (dynamic based on FIREBASE_AUTH_ORIGIN)
-    roadlio_regex = RoadlioTag.valid_url_regexp
-    
-    # Find all matches
-    body_markdown.scan(roadlio_regex).flatten.uniq
+
+    # Extract the complete argument from each Roadlio tag before validating it.
+    # RoadlioTag.valid_url_regexp is intentionally anchored for standalone input.
+    body_markdown
+      .scan(/\{%\s*roadlio\s+(.+?)\s*%\}/).flatten
+      .map { |input| RoadlioTag.extract_url(input) }
+      .select { |url| url.match?(RoadlioTag.valid_url_regexp) }
+      .uniq
   end
 
   def set_default_subforem_id

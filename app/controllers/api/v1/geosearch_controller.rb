@@ -1,7 +1,7 @@
 module Api
   module V1
     class GeosearchController < ApiController
-      before_action :authenticate_user!, only: [:create, :update, :destroy]
+      before_action :authenticate_user!, only: %i[create_or_update destroy]
       
       # GET /api/v1/geosearch/nearby
       # Search for articles near a point
@@ -20,7 +20,7 @@ module Api
         end
         
         service = GeosearchService.new
-        results = service.search_near_point([lon, lat], radius_km: radius_km, limit: limit)
+        results = service.search_near_point([lon, lat], radius_meters: radius_km * 1000, limit: limit)
         
         json_response({ 
           results: results.map { |r| serialize_result(r) },
@@ -217,6 +217,10 @@ module Api
       end
       
       private
+
+      def json_response(payload, status = :ok)
+        render json: payload, status: status
+      end
       
       def serialize_result(result)
         {

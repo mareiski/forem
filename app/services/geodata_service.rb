@@ -1,10 +1,10 @@
 class GeodataService
   # Service to fetch and store geodata from custom endpoints
-  # Fetches from: ENV['FIREBASE_AUTH_ORIGIN'] + '/utility/fetchPublicTripRouteOnServer'
+  # Fetches from: ENV['ROADLIO_API_ORIGIN'] + '/utility/fetchPublicTripRouteOnServer'
   
   # Default endpoint URL
   DEFAULT_ENDPOINT = lambda do
-    url = ENV['FIREBASE_AUTH_ORIGIN']
+    url = ENV['ROADLIO_API_ORIGIN'] || ENV['FIREBASE_AUTH_ORIGIN']
     url = url.chomp('/') if url
     "#{url}/utility/fetchPublicTripRouteOnServer"
   end
@@ -87,24 +87,26 @@ class GeodataService
       raise FetchError, "Invalid roadlio URL: #{url}. Expected URLs matching #{valid_url_regexp.inspect}"
     end
     
-    # Build the fetchPublicTrip endpoint URL
-    firebase_url = ENV['FIREBASE_AUTH_ORIGIN']
-    unless firebase_url
-      raise FetchError, "FIREBASE_AUTH_ORIGIN environment variable not set"
+    # Build the Roadlio server endpoint URL
+    roadlio_api_origin = ENV['ROADLIO_API_ORIGIN'] || ENV['FIREBASE_AUTH_ORIGIN']
+    unless roadlio_api_origin
+      raise FetchError, "ROADLIO_API_ORIGIN environment variable not set"
     end
     
-    firebase_url = firebase_url.chomp('/')
-    endpoint = "#{firebase_url}/utility/fetchPublicTrip"
+    endpoint = "#{roadlio_api_origin.chomp('/')}/utility/fetchPublicTripRouteOnServer"
     
-    # Add the URL as a query parameter
+    slug_and_short_id = slug_and_short_id_from_url(url)
     uri = URI.parse(endpoint)
-    uri.query = URI.encode_www_form({ url: url })
-    
-    # Make GET request
-    response = Net::HTTP.get_response(uri)
+    request = Net::HTTP::Post.new(uri)
+    request["Content-Type"] = "application/x-www-form-urlencoded"
+    request.body = URI.encode_www_form({ slugAndShortId: slug_and_short_id })
+
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+      http.request(request)
+    end
     
     unless response.code == '200'
-      raise FetchError, "Failed to fetch from #{endpoint}?#{uri.query}: HTTP #{response.code} - #{response.message}"
+      raise FetchError, "Failed to fetch from #{endpoint}: HTTP #{response.code} - #{response.message}"
     end
     
     data = JSON.parse(response.body)
@@ -113,9 +115,17 @@ class GeodataService
     process_geojson_response(data)
     
   rescue JSON::ParserError => e
-    raise FetchError, "Invalid JSON response from fetchPublicTrip: #{e.message}"
+    raise FetchError, "Invalid JSON response from fetchPublicTripRouteOnServer: #{e.message}"
   rescue StandardError => e
     raise FetchError, "Failed to fetch geodata from fetchPublicTrip: #{e.message}"
+  end
+
+  def slug_and_short_id_from_url(url)
+    path = URI.parse(url).path
+    slug_and_short_id = path.split("/reise-ansehen/", 2).last
+    URI.decode_www_form_component(slug_and_short_id.to_s)
+  rescue URI::InvalidURIError
+    raise FetchError, "Invalid roadlio URL: #{url}"
   end
   
   # Process the endpoint response

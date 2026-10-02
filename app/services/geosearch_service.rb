@@ -55,10 +55,7 @@ class GeosearchService
         geography(ST_MakePoint(?, ?)),
         ?
       )", longitude, latitude, radius_km * 1000)
-      .order("ST_Distance(
-        geography(geometry), 
-        geography(ST_MakePoint(?, ?))
-      ) ASC", longitude, latitude)
+      .order(Arel.sql(distance_order_sql(longitude, latitude)))
       .limit(limit)
       .offset(offset)
       .includes(:article)
@@ -119,10 +116,7 @@ class GeosearchService
         geography(ST_MakePoint(?, ?)),
         ?
       )", longitude, latitude, radius_meters)
-      .order("ST_Distance(
-        geography(geometry), 
-        geography(ST_MakePoint(?, ?))
-      ) ASC", longitude, latitude)
+      .order(Arel.sql(distance_order_sql(longitude, latitude)))
       .limit(limit)
       .includes(:article)
     
@@ -141,10 +135,7 @@ class GeosearchService
     
     geodata = ArticleGeodatum
       .with_geometry
-      .order("ST_Distance(
-        geography(geometry), 
-        geography(ST_MakePoint(?, ?))
-      ) ASC", longitude, latitude)
+      .order(Arel.sql(distance_order_sql(longitude, latitude)))
       .limit(limit)
       .includes(:article)
     
@@ -215,6 +206,14 @@ class GeosearchService
   end
   
   private
+
+  def distance_order_sql(longitude, latitude)
+    ArticleGeodatum.sanitize_sql_array([
+      "ST_Distance(geography(geometry), geography(ST_MakePoint(?, ?))) ASC",
+      longitude,
+      latitude,
+    ])
+  end
   
   # Calculate distance between geodatum and point in meters
   # Uses PostGIS ST_Distance function with geography type for accurate measurements

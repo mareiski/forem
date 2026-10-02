@@ -27,13 +27,19 @@ class RoadlioTag < LiquidTagBase
     %r{\A(?:#{origins.map { |origin| Regexp.escape(origin) }.join("|")})/reise-ansehen/[^\r\n]+\z}
   end
 
+  def self.extract_url(input)
+    value = input.to_s.strip
+    markdown_link = value.match(/\]\((https?:\/\/[^)]+)\)/)
+    markdown_link ? markdown_link[1] : value
+  end
+
   # Constants for backwards compatibility
   REGISTRY_REGEXP = registry_regexp
   VALID_URL_REGEXP = valid_url_regexp
 
   def initialize(_tag_name, input, _parse_context)
     super
-    @url = strip_tags(input)
+    @url = self.class.extract_url(strip_tags(input))
     raise StandardError, I18n.t("liquid_tags.roadlio_tag.invalid_url") unless @url.match?(self.class.valid_url_regexp)
   end
 

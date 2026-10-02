@@ -8,7 +8,7 @@ class ArticleGeodatum < ApplicationRecord
   VALID_SOURCE_TYPES = %w[custom_endpoint manual_entry gps_track api_import roadlio].freeze
   
   validates :article, presence: true, uniqueness: true
-  validates :geojson_data, presence: true, json: { message: 'must be valid JSON' }
+  validates :geojson_data, presence: true
   validates :geometry_type, presence: true, inclusion: { in: VALID_GEOMETRY_TYPES }
   validates :source_type, inclusion: { in: VALID_SOURCE_TYPES, allow_nil: true }
   
@@ -60,10 +60,10 @@ class ArticleGeodatum < ApplicationRecord
       
       # We support FeatureCollections with one or more features
       # Each feature should have a valid geometry
-      geojson[:features].each_with_index do |feature, index|
-        next unless feature.is_a?(Hash)
+      features = geojson[:features].map { |feature| feature.with_indifferent_access }
+      features.each_with_index do |feature, index|
         
-        geom = feature[:geometry]
+        geom = feature[:geometry]&.with_indifferent_access
         unless geom && geom[:type].present? && geom[:coordinates].present?
           errors.add(:geojson_data, "Feature at index #{index} must have valid geometry")
           return
@@ -76,7 +76,7 @@ class ArticleGeodatum < ApplicationRecord
       end
       
       # Set geometry_type based on the first feature's geometry
-      first_geom = geojson[:features].first&.[](:geometry)
+      first_geom = features.first&.[](:geometry)&.with_indifferent_access
       self.geometry_type = first_geom[:type] if first_geom&.[](:type)
       
     when 'Feature'
@@ -93,6 +93,8 @@ class ArticleGeodatum < ApplicationRecord
   
   def validate_geometry_object(geometry)
     return unless geometry
+
+    geometry = geometry.with_indifferent_access
     
     unless geometry[:type].present? && geometry[:coordinates].present?
       errors.add(:geojson_data, 'geometry must have type and coordinates')
@@ -194,13 +196,13 @@ class ArticleGeodatum < ApplicationRecord
       
       # If we have a single feature, extract its geometry
       if features.length == 1
-        return features.first&.[](:geometry)
+        return features.first&.with_indifferent_access&.[](:geometry)
       end
       
       # If we have multiple features, we need to handle them
       # For now, we'll create a GeometryCollection (not standard in GeoJSON, but we can use Multi* types)
       # Extract all geometries from features
-      geometries = features.map { |f| f[:geometry] }.compact
+      geometries = features.map { |feature| feature.with_indifferent_access[:geometry] }.compact
       
       if geometries.empty?
         return nil

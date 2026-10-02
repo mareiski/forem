@@ -71,6 +71,13 @@ Rails.application.routes.draw do
     end
 
     namespace :api, defaults: { format: "json" } do
+      # Keep geosearch directly addressable from browsers and simple clients
+      # that do not send Forem's versioned API Accept header.
+      get "/v1/geosearch/nearby", to: "v1/geosearch#nearby", defaults: { format: "json" }
+      get "/v1/geosearch/within_bounds", to: "v1/geosearch#within_bounds", defaults: { format: "json" }
+      get "/v1/geosearch/count", to: "v1/geosearch#count", defaults: { format: "json" }
+      get "/v1/articles/:article_id/geodata", to: "v1/geosearch#show", defaults: { format: "json" }
+
       scope module: :v1, constraints: ApiConstraints.new(version: 1, default: false) do
         # V1 only endpoints
         put "/articles/:id/unpublish", to: "articles#unpublish", as: :article_unpublish
