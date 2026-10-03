@@ -237,6 +237,9 @@ module Api
           slug: article.slug,
           url: article.url,
           published_at: article.published_at,
+          main_image: article.main_image,
+          description: article.description,
+          body_markdown: article.body_markdown,
           user: {
             id: article.user_id,
             username: article.user.username,
