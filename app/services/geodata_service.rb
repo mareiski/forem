@@ -109,9 +109,10 @@ class GeodataService
     end
     
     data = JSON.parse(response.body)
-    
+    Rails.logger.error "roadlio fetchPublicTripRouteOnServer response: #{data.inspect}"
+
     # Process the FeatureCollection - if it has multiple points, convert to LineString
-  return  process_geojson_response(data)
+    process_geojson_response(data)
     
   rescue JSON::ParserError => e
     raise FetchError, "Invalid JSON response from fetchPublicTripRouteOnServer: #{e.message}"

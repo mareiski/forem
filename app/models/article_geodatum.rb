@@ -15,8 +15,8 @@ class ArticleGeodatum < ApplicationRecord
   # Validate GeoJSON structure
   validate :validate_geojson_structure
   
-  # Callback to update geometry column when geojson_data changes
-  before_save :update_geometry_column
+  # Callback to update geometry and bounds when geojson_data changes
+  before_validation :set_geometry_type_and_column
   before_save :update_bounds
   
   # Scope for articles with geodata
@@ -75,10 +75,6 @@ class ArticleGeodatum < ApplicationRecord
         end
       end
       
-      # Set geometry_type based on the first feature's geometry
-      first_geom = features.first&.[](:geometry)&.with_indifferent_access
-      self.geometry_type = first_geom[:type] if first_geom&.[](:type)
-      
     when 'Feature'
       validate_geometry_object(geojson[:geometry])
       
@@ -104,12 +100,9 @@ class ArticleGeodatum < ApplicationRecord
     unless VALID_GEOMETRY_TYPES.include?(geometry[:type])
       errors.add(:geojson_data, "unsupported geometry type: #{geometry[:type]}")
     end
-    
-    # Set geometry_type based on the actual geometry
-    self.geometry_type = geometry[:type] if geometry[:type].present?
   end
   
-  def update_geometry_column
+  def set_geometry_type_and_column
     return unless geojson_data.present?
     
     geojson = geojson_data.with_indifferent_access
@@ -118,13 +111,19 @@ class ArticleGeodatum < ApplicationRecord
     geometry_obj = extract_geometry_object(geojson)
     return unless geometry_obj
     
+    # Set geometry_type based on the extracted geometry
+    self.geometry_type = geometry_obj[:type]
+    
     # Convert to WKT (Well-Known Text) format for PostGIS
     wkt = geojson_to_wkt(geometry_obj)
     
-    # Update the geometry column using PostGIS ST_GeomFromText
-    # This will be handled by the database, but we need to ensure the data is valid
+    # Store WKT string - will be converted to geometry by PostgreSQL or by after_save callback
     self.geometry = wkt
   end
+  
+
+  # Alias for backwards compatibility
+  alias_method :update_geometry_column, :set_geometry_type_and_column
   
   def update_bounds
     return unless geojson_data.present?
@@ -200,7 +199,6 @@ class ArticleGeodatum < ApplicationRecord
       end
       
       # If we have multiple features, we need to handle them
-      # For now, we'll create a GeometryCollection (not standard in GeoJSON, but we can use Multi* types)
       # Extract all geometries from features
       geometries = features.map { |feature| feature.with_indifferent_access[:geometry] }.compact
       
@@ -209,12 +207,27 @@ class ArticleGeodatum < ApplicationRecord
       elsif geometries.length == 1
         return geometries.first
       else
-        # Multiple geometries - for PostGIS, we'll create a MultiGeometry
-        # For simplicity, we'll take the first geometry that we can handle
-        # A better solution would be to create a proper MultiGeometry, but that requires
-        # knowing all geometries are of the same type
-        first_geometry = geometries.first
-        return first_geometry if first_geometry
+        # Multiple geometries - check if they're all the same type
+        # If so, create a Multi* geometry
+        geometry_types = geometries.map { |g| g[:type] }.uniq
+        
+        if geometry_types.length == 1
+          type = geometry_types.first
+          case type
+          when 'Point'
+            return { type: 'MultiPoint', coordinates: geometries.map { |g| g[:coordinates] } }
+          when 'LineString'
+            return { type: 'MultiLineString', coordinates: geometries.map { |g| g[:coordinates] } }
+          when 'Polygon'
+            return { type: 'MultiPolygon', coordinates: geometries.map { |g| g[:coordinates] } }
+          else
+            # For other types, just take the first geometry
+            return geometries.first
+          end
+        else
+          # Mixed geometry types - take the first geometry as fallback
+          return geometries.first
+        end
       end
       
     when 'Feature'
@@ -240,7 +253,7 @@ class ArticleGeodatum < ApplicationRecord
       coords = ring.map { |c| "#{c[0]} #{c[1]}" }.join(', ')
       "POLYGON((#{coords}))"
     when 'MultiPoint'
-      coords = geometry_obj[:coordinates].map { |c| "#{c[0]} #{c[1]}" }.join(', ')
+      coords = geometry_obj[:coordinates].map { |c| "(#{c[0]} #{c[1]})" }.join(', ')
       "MULTIPOINT(#{coords})"
     when 'MultiLineString'
       lines = geometry_obj[:coordinates].map do |line|

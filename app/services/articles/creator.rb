@@ -38,7 +38,17 @@ module Articles
     attr_reader :article, :user, :article_params
 
     def normalize_params(original_params)
-      original_params.except(:tags).tap do |params|
+      # Filter out React frontend state parameters that don't map to database columns
+      react_state_params = %i[
+        form_key id published_at_was all_series scheduling_enabled preview_loading
+        submitting editing video_source_url organization_id co_author_ids_list edited
+        updated_at version site_logo cover_image_height cover_image_crop ai_available
+        ai_disclosure_enabled help_for help_position is_modal_open markdown_lint_errors
+      ]
+      
+      filtered_params = original_params.except(:tags, *react_state_params)
+      
+      filtered_params.tap do |params|
         # convert tags from array to a string
         if (tags = original_params[:tags]).present?
           params[:tag_list] = tags.join(", ")
