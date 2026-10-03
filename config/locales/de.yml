@@ -36,10 +36,10 @@ de:
     loading: lädt...
     reaction: Reaktion
     report_abuse: Missbrauch melden
-    search: Suchen
+    search: suchen
     success_settings: Einstellungen erfolgreich aktualisiert.
-    search_placeholder: Suchen...
-    search_find_related_posts: Ähnliche Beiträge finden...
+    search_placeholder: suchen
+    search_find_related_posts: suchen
     search_powered_by: Unterstützt von Algolia
     search_submit_search: Suche für erweiterte Filterung absenden.
     search_displaying_recommendations: Algolia-Empfehlungen werden angezeigt - beginne mit der Eingabe, um zu suchen

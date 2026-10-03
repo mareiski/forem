@@ -2,13 +2,13 @@
 de:
   views:
     search:
-      heading: Search results%{for}
-      for: " for %{query}"
-      placeholder: Search...
-      find_related_posts: Find related posts...
+      heading: Suchergebnisse%{for}
+      for: " für %{query}"
+      placeholder: suchen
+      find_related_posts: suchen
       icon:
-        aria_label: Search
-        title: Search
+        aria_label: suchen
+        title: suchen
       powered_by: Powered by Algolia
       suggestions:
         submit_search: Submit search for advanced filtering.
