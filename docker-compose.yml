@@ -25,6 +25,8 @@ services:
       FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID}
       FIREBASE_AUTH_ORIGIN: ${FIREBASE_AUTH_ORIGIN}
       FIREBASE_AUTH_URL: ${FIREBASE_AUTH_URL}
+      ROADLIO_ORIGIN: ${ROADLIO_ORIGIN}
+      ROADLIO_API_ORIGIN: ${ROADLIO_API_ORIGIN}
 
       DATABASE_URL: postgresql://forem:${POSTGRES_PASSWORD}@postgres:5432/forem_production
 
@@ -75,6 +77,8 @@ services:
       FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID}
       FIREBASE_AUTH_ORIGIN: ${FIREBASE_AUTH_ORIGIN}
       FIREBASE_AUTH_URL: ${FIREBASE_AUTH_URL}
+      ROADLIO_ORIGIN: ${ROADLIO_ORIGIN}
+      ROADLIO_API_ORIGIN: ${ROADLIO_API_ORIGIN}
 
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
 
@@ -111,6 +115,8 @@ services:
       FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID}
       FIREBASE_AUTH_ORIGIN: ${FIREBASE_AUTH_ORIGIN}
       FIREBASE_AUTH_URL: ${FIREBASE_AUTH_URL}
+      ROADLIO_ORIGIN: ${ROADLIO_ORIGIN}
+      ROADLIO_API_ORIGIN: ${ROADLIO_API_ORIGIN}
 
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
 
@@ -119,7 +125,10 @@ services:
         condition: service_healthy
 
   postgres:
-    image: garapadev/postgres-postgis-pgvector:13
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+    image: forem-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: forem

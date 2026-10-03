@@ -3,10 +3,7 @@
     <p class="ltag-geosearch__empty">In diesem Umkreis wurden keine Artikel gefunden.</p>
   <% else %>
     <% results.each do |result| %>
-      <div class="ltag-geosearch__result">
         <%= render partial: "articles/single_story", locals: { story: result[:article], featured: false } %>
-        <p class="ltag-geosearch__distance"><%= result[:distance_km] %> km entfernt</p>
-      </div>
     <% end %>
   <% end %>
 </div>
