@@ -80,44 +80,75 @@ class GeodataService
     require 'net/http'
     require 'uri'
     require 'json'
-    
-    # Validate that the URL matches the expected host from RoadlioTag
+
     valid_url_regexp = RoadlioTag.valid_url_regexp
     unless url.match?(valid_url_regexp)
-      raise FetchError, "Invalid roadlio URL: #{url}. Expected URLs matching #{valid_url_regexp.inspect}"
+      raise FetchError,
+            "Invalid roadlio URL: #{url}"
     end
-    
-    # Build the Roadlio server endpoint URL
-    roadlio_api_origin = ENV['ROADLIO_API_ORIGIN'] || ENV['FIREBASE_AUTH_ORIGIN']
-    unless roadlio_api_origin
-      raise FetchError, "ROADLIO_API_ORIGIN environment variable not set"
+
+    unless @endpoint_url.present?
+      raise FetchError, 'No API endpoint configured'
     end
-        
+
     slug_and_short_id = slug_and_short_id_from_url(url)
-
     uri = URI.parse(@endpoint_url)
-    request = Net::HTTP::Post.new(uri)
-    request["Content-Type"] = "application/x-www-form-urlencoded"
-    request.body = URI.encode_www_form({ slugAndShortId: slug_and_short_id })
 
-    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+    unless %w[http https].include?(uri.scheme) && uri.host.present?
+      raise FetchError, "Invalid endpoint URL: #{@endpoint_url}"
+    end
+
+    Rails.logger.info(
+      "[GeodataService] Calling fetchPublicTripRouteOnServer " \
+      "article_id=#{@article.id} url=#{url}"
+    )
+
+    request = Net::HTTP::Post.new(uri)
+    request['Content-Type'] = 'application/x-www-form-urlencoded'
+    request.body = URI.encode_www_form(
+      slugAndShortId: slug_and_short_id
+    )
+
+    response = Net::HTTP.start(
+      uri.hostname,
+      uri.port,
+      use_ssl: uri.scheme == 'https',
+      open_timeout: 5,
+      read_timeout: 15,
+      write_timeout: 10
+    ) do |http|
       http.request(request)
     end
-    
-    unless response.code == '200'
-      raise FetchError, "Failed to fetch from #{@endpoint_url}: HTTP #{response.code} - #{response.message}"
-    end
-    
-    data = JSON.parse(response.body)
-    Rails.logger.error "roadlio fetchPublicTripRouteOnServer response: #{data.inspect}"
 
-    # Process the FeatureCollection - if it has multiple points, convert to LineString
+    unless response.code == '200'
+      raise FetchError,
+            "Failed to fetch from #{@endpoint_url}: " \
+            "HTTP #{response.code} - #{response.message}"
+    end
+
+    data = JSON.parse(response.body)
+
+    Rails.logger.info(
+      "[GeodataService] Endpoint responded " \
+      "article_id=#{@article.id} status=#{response.code}"
+    )
+
     process_geojson_response(data)
-    
+
+  rescue FetchError
+    raise
   rescue JSON::ParserError => e
-    raise FetchError, "Invalid JSON response from fetchPublicTripRouteOnServer: #{e.message}"
+    raise FetchError,
+          "Invalid JSON response from fetchPublicTripRouteOnServer: #{e.message}"
   rescue StandardError => e
-    raise FetchError, "Failed to fetch geodata from fetchPublicTrip: #{e.message}"
+    Rails.logger.error(
+      "[GeodataService] Fetch failed " \
+      "article_id=#{@article&.id} " \
+      "error=#{e.class}: #{e.message}"
+    )
+
+    raise FetchError,
+          "Failed to fetch geodata from fetchPublicTrip: #{e.message}"
   end
 
   def slug_and_short_id_from_url(url)
@@ -197,25 +228,40 @@ class GeodataService
   # @param source_type [String] Type of source (default: 'custom_endpoint')
   # @param source_metadata [Hash] Additional metadata about the source
   # @return [ArticleGeodatum] The created or updated geodatum
-  def create_or_update_geodata(geojson_data: nil, source_type: 'custom_endpoint', source_metadata: nil)
+  def create_or_update_geodata(
+    geojson_data: nil,
+    source_type: 'custom_endpoint',
+    source_metadata: nil
+  )
     data = geojson_data || @geojson_data
-    data ||= fetch_from_endpoint if @url.nil? && @endpoint_url
-    
-    raise FetchError, 'No GeoJSON data provided and no endpoint configured' unless data
-    
-    # Find or initialize the geodatum
-    geodatum = @article.article_geodatum || ArticleGeodatum.new(article: @article)
-    
-    # Set the data
+
+    # If a Roadlio URL is provided, always fetch from the
+    # Roadlio endpoint instead of silently skipping the request.
+    if data.nil? && @url.present?
+      return create_or_update_geodata_from_roadlio(
+        @url,
+        source_metadata: source_metadata
+      )
+    end
+
+    # Fetch from the configured endpoint if no data was provided.
+    data ||= fetch_from_endpoint if @endpoint_url.present?
+
+    raise FetchError,
+          'No GeoJSON data provided and no endpoint configured' unless data
+
+    geodatum = @article.article_geodatum ||
+              ArticleGeodatum.new(article: @article)
+
     geodatum.geojson_data = data
     geodatum.source_type = source_type
     geodatum.source_metadata = source_metadata || {}
-    
-    # Validate and save
+
     unless geodatum.valid?
-      raise InvalidGeoJSONError, "Invalid GeoJSON: #{geodatum.errors.full_messages.join(', ')}"
+      raise InvalidGeoJSONError,
+            "Invalid GeoJSON: #{geodatum.errors.full_messages.join(', ')}"
     end
-    
+
     geodatum.save!
     geodatum
   end
