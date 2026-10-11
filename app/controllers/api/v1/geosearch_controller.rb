@@ -93,6 +93,7 @@ module Api
           count: articles.length,
           metadata: { bounds: bounds }
         })
+      end
       
       # GET /api/v1/geosearch/count
       # Count articles within a bounding box or radius
