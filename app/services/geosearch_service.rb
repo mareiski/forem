@@ -84,6 +84,25 @@ class GeosearchService
       .includes(:article)
       .map(&:article)
   end
+
+  # Search for articles that intersect a bounding box
+  # Useful for finding articles that may partially overlap the area of interest
+  # @param bounds [Hash] with :min_lon, :min_lat, :max_lon, :max_lat
+  # @param limit [Integer] Maximum number of results
+  # @param offset [Integer] Pagination offset
+  # @return [Array<Article>] Articles that intersect the bounding box
+  def intersects_bounds(bounds, limit: DEFAULT_SEARCH_LIMIT, offset: 0)
+    ArticleGeodatum
+      .with_geometry
+      .intersects_bounds(
+        bounds[:min_lon], bounds[:min_lat], 
+        bounds[:max_lon], bounds[:max_lat]
+      )
+      .limit(limit)
+      .offset(offset)
+      .includes(:article)
+      .map(&:article)
+  end
   
   # Search for articles within a polygon (country, region, etc.)
   # @param polygon_wkt [String] Well-Known Text representation of the polygon

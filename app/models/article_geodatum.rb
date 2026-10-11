@@ -30,6 +30,14 @@ class ArticleGeodatum < ApplicationRecord
       min_lon, min_lat, max_lon, max_lat
     )
   end
+
+  scope :intersects_bounds, ->(min_lon, min_lat, max_lon, max_lat) do
+    where(
+      "bounds_max_lon >= ? AND bounds_min_lon <= ? AND " \
+      "bounds_max_lat >= ? AND bounds_min_lat <= ?",
+      min_lon, max_lon, min_lat, max_lat
+    )
+  end
   
   private
   

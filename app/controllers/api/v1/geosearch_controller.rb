@@ -66,6 +66,33 @@ module Api
           metadata: { bounds: bounds }
         })
       end
+
+      def intersects_bounds
+        min_lat = params[:min_lat]&.to_f
+        min_lon = params[:min_lon]&.to_f
+        max_lat = params[:max_lat]&.to_f
+        max_lon = params[:max_lon]&.to_f
+        limit = params[:limit]&.to_i || GeosearchService::DEFAULT_SEARCH_LIMIT
+
+        unless min_lat && min_lon && max_lat && max_lon
+          return json_response({ error: 'All bounds parameters (min_lat, min_lon, max_lat, max_lon) are required' }, :bad_request)
+        end
+
+         bounds = {
+          min_lon: min_lon,
+          min_lat: min_lat,
+          max_lon: max_lon,
+          max_lat: max_lat
+        }
+        
+        service = GeosearchService.new
+        articles = service.intersects_bounds(bounds, limit: limit)
+        
+        json_response({ 
+          results: articles.map { |a| serialize_article(a) },
+          count: articles.length,
+          metadata: { bounds: bounds }
+        })
       
       # GET /api/v1/geosearch/count
       # Count articles within a bounding box or radius

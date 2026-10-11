@@ -1209,6 +1209,13 @@ class Article < ApplicationRecord
     # Extract roadlio URLs from body_markdown
     roadlio_urls = extract_roadlio_urls
     return if roadlio_urls.empty?
+
+    # Reset existing geodata once before processing the current URLs 
+    article_geodatum = self.article_geodatum 
+    article_geodatum&.update!( 
+      geojson_data: nil,
+       source_metadata: {}
+    )
     
     # Process each roadlio URL and fetch geodata
     roadlio_urls.each do |url|
