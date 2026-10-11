@@ -1213,7 +1213,14 @@ class Article < ApplicationRecord
     # Reset existing geodata once before processing the current URLs 
     article_geodatum = self.article_geodatum 
     article_geodatum&.update!( 
-      geojson_data: nil,
+       geojson_data: {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          # not ideal coordinates, but we need to set something so that the geometry is valid
+          coordinates: [0, 0]
+        }
+      },
        source_metadata: {}
     )
     

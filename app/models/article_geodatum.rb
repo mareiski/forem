@@ -35,7 +35,7 @@ class ArticleGeodatum < ApplicationRecord
     envelope = "ST_MakeEnvelope(?, ?, ?, ?, 4326)"
 
     where(
-      "geom && #{envelope} AND ST_Intersects(geom, #{envelope})",
+      "geometry && #{envelope} AND ST_Intersects(geometry, #{envelope})",
       min_lon, min_lat, max_lon, max_lat,
       min_lon, min_lat, max_lon, max_lat
     )
