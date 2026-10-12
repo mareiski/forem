@@ -31,16 +31,22 @@ class ArticleGeodatum < ApplicationRecord
     )
   end
 
-  scope :intersects_bounds, ->(min_lon, min_lat, max_lon, max_lat) do
-    envelope = "ST_MakeEnvelope(?, ?, ?, ?, 4326)"
-
+  scope :intersects_geojson, ->(geojson) do
     where(
-      "geometry && #{envelope} AND ST_Intersects(geometry, #{envelope})",
-      min_lon, min_lat, max_lon, max_lat,
-      min_lon, min_lat, max_lon, max_lat
+      <<~SQL.squish,
+        geometry && ST_SetSRID(
+          ST_GeomFromGeoJSON(?), 4326
+        )
+        AND ST_Intersects(
+          geometry,
+          ST_SetSRID(ST_GeomFromGeoJSON(?), 4326)
+        )
+      SQL
+      geojson,
+      geojson
     )
   end
-  
+
   private
   
   def validate_geojson_structure

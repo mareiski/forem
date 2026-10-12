@@ -75,7 +75,7 @@ Rails.application.routes.draw do
       # that do not send Forem's versioned API Accept header.
       get "/v1/geosearch/nearby", to: "v1/geosearch#nearby", defaults: { format: "json" }
       get "/v1/geosearch/within_bounds", to: "v1/geosearch#within_bounds", defaults: { format: "json" }
-      get "/v1/geosearch/intersects_bounds", to: "v1/geosearch#intersects_bounds", defaults: { format: "json" }
+      get "/v1/geosearch/intersects_geojson", to: "v1/geosearch#intersects_geojson", defaults: { format: "json" }
       get "/v1/geosearch/count", to: "v1/geosearch#count", defaults: { format: "json" }
       get "/v1/articles/:article_id/geodata", to: "v1/geosearch#show", defaults: { format: "json" }
 

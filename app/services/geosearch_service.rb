@@ -87,22 +87,40 @@ class GeosearchService
 
   # Search for articles that intersect a bounding box
   # Useful for finding articles that may partially overlap the area of interest
-  # @param bounds [Hash] with :min_lon, :min_lat, :max_lon, :max_lat
+  # @param geojson [String] GeoJSON representation of the bounding box or polygon
   # @param limit [Integer] Maximum number of results
   # @param offset [Integer] Pagination offset
   # @return [Array<Article>] Articles that intersect the bounding box
-  def intersects_bounds(bounds, limit: DEFAULT_SEARCH_LIMIT, offset: 0)
-    ArticleGeodatum
-      .with_geometry
-      .intersects_bounds(
-        bounds[:min_lon], bounds[:min_lat], 
-        bounds[:max_lon], bounds[:max_lat]
-      )
-      .limit(limit)
-      .offset(offset)
-      .includes(:article)
-      .map(&:article)
+ def intersects_geojson(geojson, limit: DEFAULT_SEARCH_LIMIT, offset: 0)
+  parsed = geojson.is_a?(String) ? JSON.parse(geojson) : geojson
+
+  polygon =
+    case parsed["type"]
+    when "Feature"
+      parsed.fetch("geometry")
+    when "Polygon", "MultiPolygon"
+      parsed
+    else
+      raise ArgumentError,
+            "Expected Polygon or MultiPolygon, got #{parsed["type"]}"
+    end
+
+  unless %w[Polygon MultiPolygon].include?(polygon["type"])
+    raise ArgumentError, "Expected Polygon or MultiPolygon"
   end
+
+  polygon_json = polygon.to_json
+
+  Rails.logger.info("Geosearch geometry type: #{polygon["type"]}")
+
+  ArticleGeodatum
+    .with_geometry
+    .intersects_geojson(polygon_json)
+    .limit(limit)
+    .offset(offset)
+    .includes(:article)
+    .map(&:article)
+end
   
   # Search for articles within a polygon (country, region, etc.)
   # @param polygon_wkt [String] Well-Known Text representation of the polygon
