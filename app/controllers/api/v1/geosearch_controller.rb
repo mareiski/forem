@@ -84,6 +84,28 @@ module Api
           count: articles.length
         })
       end
+
+      def by_country
+        country_code = params[:country_code]
+
+        limit = params[:limit]&.to_i ||
+                GeosearchService::DEFAULT_SEARCH_LIMIT
+
+        articles = CountryGeosearchService.new
+          .articles_for_country(
+            country_code,
+            limit: limit
+          )
+
+        json_response(
+          {
+            results: articles.map { |article| serialize_article(article) },
+            count: articles.length
+          }
+        )
+      rescue ActiveRecord::RecordNotFound
+        json_response({ error: "Country not found" }, :not_found)
+      end
       
       # GET /api/v1/geosearch/count
       # Count articles within a bounding box or radius

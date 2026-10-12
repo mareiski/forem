@@ -76,6 +76,7 @@ Rails.application.routes.draw do
       get "/v1/geosearch/nearby", to: "v1/geosearch#nearby", defaults: { format: "json" }
       get "/v1/geosearch/within_bounds", to: "v1/geosearch#within_bounds", defaults: { format: "json" }
       get "/v1/geosearch/intersects_geojson", to: "v1/geosearch#intersects_geojson", defaults: { format: "json" }
+      get "/v1/geosearch/country", to: "v1/geosearch#by_country", defaults: { format: "json" }
       get "/v1/geosearch/count", to: "v1/geosearch#count", defaults: { format: "json" }
       get "/v1/articles/:article_id/geodata", to: "v1/geosearch#show", defaults: { format: "json" }
 
